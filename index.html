@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#14213d" />
+    <title>SMART WorkshopStudio</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <a class="brand" href="#" data-nav="dashboard" aria-label="SMART WorkshopStudio Startseite">
+          <span class="brand-mark">S</span>
+          <span><strong>SMART</strong><small>WorkshopStudio</small></span>
+        </a>
+
+        <nav class="main-nav" aria-label="Hauptnavigation">
+          <button class="nav-item active" data-nav="dashboard"><span>⌂</span> Übersicht</button>
+          <button class="nav-item" data-nav="modules"><span>▦</span> Modul-Bibliothek</button>
+          <button class="nav-item" data-nav="workshops"><span>◇</span> Schulungen</button>
+        </nav>
+
+        <div class="sidebar-bottom">
+          <button class="nav-item" id="backupButton"><span>⇩</span> Datensicherung</button>
+          <label class="nav-item import-label"><span>⇧</span> Sicherung laden<input id="importInput" type="file" accept="application/json" /></label>
+          <div class="storage-note"><span class="status-dot"></span><div><strong>Lokal gespeichert</strong><small>In diesem Browser</small></div></div>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow" id="pageEyebrow">DEIN ARBEITSBEREICH</p>
+            <h1 id="pageTitle">Guten Tag, Bernhard</h1>
+          </div>
+          <div class="top-actions">
+            <button class="button help-button" id="helpButton">? Hilfe</button>
+            <button class="button secondary" id="newModuleButton">+ Neues Modul</button>
+            <button class="button primary" id="newWorkshopButton">+ Neue Schulung</button>
+          </div>
+        </header>
+
+        <section id="viewRoot" class="view-root" aria-live="polite"></section>
+      </main>
+    </div>
+
+    <div id="modalRoot"></div>
+    <div id="presentationRoot"></div>
+    <div id="toastRoot" class="toast-root" aria-live="polite"></div>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
