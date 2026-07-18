@@ -29,7 +29,7 @@ const HELP_SECTIONS = [
     id: "features",
     title: "Wichtige Funktionen",
     eyebrow: "DAS KANN DIE APP",
-    content: `<ul class="help-feature-list"><li><strong>Modulverwaltung</strong><br>Folien, Dauer, Kategorien und Notizen pflegen.</li><li><strong>Bildbibliothek</strong><br>Titelbilder und eigene Bildbausteine zentral verwalten.</li><li><strong>Workshop Builder</strong><br>Module hinzufügen, sortieren und Zeitrahmen prüfen.</li><li><strong>Modulvorschau</strong><br>Einzelne Module ohne Workshop präsentieren.</li><li><strong>Referentenansicht</strong><br>Aktuelle und nächste Folie, Notizen und Timer separat anzeigen.</li><li><strong>Footer Gestaltung</strong><br>Firmenname, Datum und automatische Seitenzahl in drei Darstellungen festlegen.</li><li><strong>PDF Ausgabe</strong><br>Folien einschließlich Bilder als A4 Querformat sichern.</li><li><strong>HTML Export</strong><br>Eigenständige, offline nutzbare Präsentation mit eingebetteten Bildern erzeugen.</li><li><strong>Datensicherung</strong><br>Lokalen Bestand exportieren und wiederherstellen.</li><li><strong>Funkmaus Steuerung</strong><br>Pfeile, Leertaste und Page Up oder Page Down verwenden.</li></ul><h4>Grafische Folienlayouts</h4><p>Im Folieneditor stehen redaktionelle Seiten, Inhaltsübersicht, Zeitstrahl, Prozess, Gegenüberstellung, Roadmap, Pyramide, Systembild, Kernaussage, Kennzahlen, Tabelle und Bildlayouts zur Auswahl. Inhaltlich passende Darstellungen werden in der Präsentation automatisch gewählt. Bereiche werden im Editor durch eine eigene Trennzeile markiert. In einer Tabelle werden Zellen mit <strong>|</strong> getrennt. Für Bilder lassen sich Zuschnitt, Position, Alternativtext und Bildunterschrift festlegen.</p><h4>Optional denkbare KI Aufgaben, derzeit nicht aktiviert</h4><ul><li>Modulgliederungen und Lernziele vorschlagen</li><li>Ausgangstexte in Folienentwürfe umwandeln</li><li>Inhalte kürzen, strukturieren oder zusammenfassen</li><li>Übungen, Reflexionsfragen und Moderationsnotizen entwerfen</li><li>Workshop Agenden passend zu Zielgruppe und Zeitrahmen vorschlagen</li><li>Varianten für unterschiedliche Zielgruppen erzeugen</li><li>Qualitätsprüfung auf Redundanz, Verständlichkeit und Zeitbedarf unterstützen</li></ul><p>Diese Aufgaben wären Assistenzfunktionen. Inhalte müssen fachlich und rechtlich durch einen Menschen geprüft werden.</p>`
+    content: `<ul class="help-feature-list"><li><strong>Modulverwaltung</strong><br>Folien, Dauer, Kategorien und Notizen pflegen.</li><li><strong>Bildbibliothek</strong><br>Titelbilder und eigene Bildbausteine zentral verwalten.</li><li><strong>Workshop Builder</strong><br>Module hinzufügen, sortieren und Zeitrahmen prüfen.</li><li><strong>Modulvorschau</strong><br>Einzelne Module ohne Workshop präsentieren.</li><li><strong>Referentenansicht</strong><br>Aktuelle und nächste Folie, Notizen und Timer separat anzeigen.</li><li><strong>Präsentationsrahmen</strong><br>Startseite, Abschlussseite, Kontaktdaten und Footer zentral gestalten und je Schulung aktivieren.</li><li><strong>PDF Ausgabe</strong><br>Folien einschließlich Bilder als A4 Querformat sichern.</li><li><strong>HTML Export</strong><br>Eigenständige, offline nutzbare Präsentation mit eingebetteten Bildern erzeugen.</li><li><strong>Datensicherung</strong><br>Lokalen Bestand exportieren und wiederherstellen.</li><li><strong>Funkmaus Steuerung</strong><br>Pfeile, Leertaste und Page Up oder Page Down verwenden.</li></ul><h4>Grafische Folienlayouts</h4><p>Im Folieneditor stehen redaktionelle Seiten, Inhaltsübersicht, Zeitstrahl, Prozess, Gegenüberstellung, Roadmap, Pyramide, Systembild, Kernaussage, Kennzahlen, Tabelle und Bildlayouts zur Auswahl. Inhaltlich passende Darstellungen werden in der Präsentation automatisch gewählt. Bereiche werden im Editor durch eine eigene Trennzeile markiert. In einer Tabelle werden Zellen mit <strong>|</strong> getrennt. Für Bilder lassen sich Zuschnitt, Position, Alternativtext und Bildunterschrift festlegen.</p><h4>Optional denkbare KI Aufgaben, derzeit nicht aktiviert</h4><ul><li>Modulgliederungen und Lernziele vorschlagen</li><li>Ausgangstexte in Folienentwürfe umwandeln</li><li>Inhalte kürzen, strukturieren oder zusammenfassen</li><li>Übungen, Reflexionsfragen und Moderationsnotizen entwerfen</li><li>Workshop Agenden passend zu Zielgruppe und Zeitrahmen vorschlagen</li><li>Varianten für unterschiedliche Zielgruppen erzeugen</li><li>Qualitätsprüfung auf Redundanz, Verständlichkeit und Zeitbedarf unterstützen</li></ul><p>Diese Aufgaben wären Assistenzfunktionen. Inhalte müssen fachlich und rechtlich durch einen Menschen geprüft werden.</p>`
   },
   {
     id: "workflow",
@@ -186,7 +186,26 @@ function displayTitle(title = "") {
 const seedState = {
   visualVersion: 1,
   durationModelVersion: 1,
+  presentationFrameVersion: 2,
   images: [],
+  presentationFrame: {
+    start: {
+      title: "Willkommen",
+      subtitle: "Gemeinsam Wissen in Wirkung verwandeln",
+      presenter: "",
+      coverImage: "assets/visuals/ki-ueberblick.jpeg"
+    },
+    end: {
+      title: "Vielen Dank",
+      message: "Zeit für Fragen und den gemeinsamen Austausch",
+      company: "SMART WorkshopStudio",
+      contactName: "",
+      email: "",
+      phone: "",
+      website: "",
+      coverImage: "assets/visuals/chat-kommunikation.jpeg"
+    }
+  },
   footer: {
     layout: "classic",
     company: "SMART WorkshopStudio",
@@ -527,6 +546,8 @@ const seedState = {
       date: "2026-08-14",
       targetMinutes: 180,
       description: "Praxisnaher Einstieg in generative KI für Mitarbeitende.",
+      useStartPage: true,
+      useEndPage: true,
       moduleIds: ["mod-ki-grundlagen", "mod-prompting", "mod-transfer"],
       updatedAt: "2026-07-15"
     }
@@ -554,8 +575,10 @@ function loadState() {
       stored.images ||= [];
       const footerWasMissing = !stored.footer;
       stored.footer ||= structuredClone(seedState.footer);
+      const presentationFrameWasMissing = !stored.presentationFrame;
+      stored.presentationFrame ||= structuredClone(seedState.presentationFrame);
       const requiredLibraryModuleIds = ["mod-ki-tools-praxiseinsatz", "mod-notebooklm", "mod-ki-grundlagen", "mod-ki-entwicklung-zukunft", "mod-ki-werkzeuge", "mod-prompting", "mod-transfer", "mod-chatgpt-claude-web-api", "mod-ki-modelle-vergleich"];
-      let libraryChanged = footerWasMissing;
+      let libraryChanged = footerWasMissing || presentationFrameWasMissing;
       requiredLibraryModuleIds.forEach((moduleId) => {
         const libraryModule = seedState.modules.find((module) => module.id === moduleId);
         const storedIndex = stored.modules.findIndex((module) => module.id === moduleId);
@@ -581,6 +604,18 @@ function loadState() {
           if (libraryModule) module.duration = libraryModule.duration;
         });
         stored.durationModelVersion = seedState.durationModelVersion;
+        libraryChanged = true;
+      }
+      if (Number(stored.presentationFrameVersion || 0) < Number(seedState.presentationFrameVersion || 0)) {
+        stored.workshops.forEach((workshop) => {
+          if (typeof workshop.useStartPage !== "boolean") workshop.useStartPage = true;
+          if (typeof workshop.useEndPage !== "boolean") {
+            const libraryWorkshop = seedState.workshops.find((item) => item.id === workshop.id);
+            workshop.useEndPage = libraryWorkshop?.useEndPage ?? false;
+          }
+        });
+        if (/builtsmart/i.test(stored.footer?.company || "")) stored.footer.company = seedState.footer.company;
+        stored.presentationFrameVersion = seedState.presentationFrameVersion;
         libraryChanged = true;
       }
       if (libraryChanged) localStorage.setItem(STORAGE_KEY, JSON.stringify(stored));
@@ -851,7 +886,7 @@ function renderModules(query = "", category = "alle") {
 function renderWorkshops() {
   const sorted = state.workshops.slice().sort((a, b) => (a.date || "9999").localeCompare(b.date || "9999"));
   viewRoot.innerHTML = `
-    <div class="toolbar"><div class="search"><input id="workshopSearch" type="search" placeholder="Schulungen durchsuchen …" /></div><button class="button primary" data-new-workshop>+ Neue Schulung</button></div>
+    <div class="toolbar"><div class="search"><input id="workshopSearch" type="search" placeholder="Schulungen durchsuchen …" /></div><button class="button secondary" id="presentationFrameButton">Präsentationsrahmen gestalten</button><button class="button primary" data-new-workshop>+ Neue Schulung</button></div>
     <div class="workshop-list">
       ${sorted.length ? sorted.map((workshop) => {
         const date = shortDateParts(workshop.date);
@@ -860,9 +895,10 @@ function renderWorkshops() {
         const workshopPdfPath = `downloads/pdf/${slugify(workshop.title)}.pdf`;
         const printKey = `print-workshop:${workshop.id}`;
         const pdfAction = preparedPdf ? pdfDownloadButton(workshopPdfPath, `${slugify(workshop.title)}.pdf`) : `<button class="button ghost small${actionClass(printKey)}" data-pdf="${workshop.id}">${actionText(printKey, "PDF erstellen", "PDF vorbereitet")}</button>`;
+        const framePageCount = Number(workshop.useStartPage !== false) + Number(Boolean(workshop.useEndPage));
         return `<article class="workshop-row" data-workshop-row="${workshop.id}">
           <div class="date-tile"><div><strong>${date.day}</strong><small>${date.month}</small></div></div>
-          <div><h3>${escapeHtml(workshop.title)}</h3><p>${escapeHtml(workshop.client || "Ohne Auftraggeber")} · ${workshop.moduleIds.length} Module · ${minutesLabel(duration)}</p></div>
+          <div><h3>${escapeHtml(workshop.title)}</h3><p>${escapeHtml(workshop.client || "Ohne Auftraggeber")} · ${workshop.moduleIds.length} Module · ${minutesLabel(duration)} · ${framePageCount} ${framePageCount === 1 ? "Rahmenseite" : "Rahmenseiten"}</p></div>
           <div class="workshop-row-actions"><button class="button secondary small" data-edit-workshop="${workshop.id}">Bearbeiten</button><button class="button ghost small" data-present="${workshop.id}">▶ Präsentieren</button>${pdfAction}</div>
         </article>`;
       }).join("") : `<div class="empty-state"><strong>Noch keine Schulung</strong><p>Stelle deine erste Schulung aus vorhandenen Modulen zusammen.</p><button class="button primary" data-new-workshop>Jetzt beginnen</button></div>`}
@@ -1012,13 +1048,14 @@ function openWorkshopModal(workshopId = null) {
       <div class="field"><label>Termin</label><input name="date" type="date" value="${original?.date || ""}" /></div>
       <div class="field"><label>Zeitfenster in Minuten</label><input name="targetMinutes" type="number" min="15" step="15" value="${original?.targetMinutes || 180}" /></div>
       <div class="field full"><label>Beschreibung / Ziel</label><textarea name="description">${escapeHtml(original?.description || "")}</textarea></div>
+      <div class="field full frame-toggle-group"><span>Präsentationsrahmen</span><label class="frame-toggle"><input name="useStartPage" type="checkbox" ${original?.useStartPage !== false ? "checked" : ""} /><span><strong>Allgemeine Startseite verwenden</strong><small>Wird vor dem ersten Schulungsmodul eingefügt</small></span></label><label class="frame-toggle"><input name="useEndPage" type="checkbox" ${original?.useEndPage ? "checked" : ""} /><span><strong>Allgemeine Abschlussseite verwenden</strong><small>Wird nach dem letzten Schulungsmodul eingefügt</small></span></label></div>
     </div></div><div class="modal-footer">${original ? `<button type="button" class="button danger" data-delete-workshop="${original.id}">Schulung löschen</button>` : ""}<div class="footer-right"><button type="button" class="button secondary" data-close-modal>Abbrechen</button><button class="button primary" type="submit">Weiter zum Builder</button></div></div></form>
   </div></div>`;
   modalRoot.querySelector("#workshopForm").addEventListener("submit", (event) => {
     event.preventDefault();
     const data = new FormData(event.target);
     const workshop = {
-      id: original?.id || uid("ws"), title: data.get("title"), client: data.get("client"), date: data.get("date"), targetMinutes: Number(data.get("targetMinutes")), description: data.get("description"), moduleIds: original?.moduleIds || [], updatedAt: new Date().toISOString().slice(0, 10)
+      id: original?.id || uid("ws"), title: data.get("title"), client: data.get("client"), date: data.get("date"), targetMinutes: Number(data.get("targetMinutes")), description: data.get("description"), useStartPage: data.get("useStartPage") === "on", useEndPage: data.get("useEndPage") === "on", moduleIds: original?.moduleIds || [], updatedAt: new Date().toISOString().slice(0, 10)
     };
     if (original) state.workshops[state.workshops.findIndex((item) => item.id === original.id)] = workshop;
     else state.workshops.unshift(workshop);
@@ -1043,42 +1080,88 @@ function footerChoicePreview(layout, company, dateText) {
   return `<div class="footer-choice-preview preview-${layout}"><span>${escapeHtml(company || "Firmenname")}</span><span>${escapeHtml(dateText || "Datum")}</span><span>Seite 1 von 12</span></div>`;
 }
 
-function openFooterModal() {
+function resolvedPresentationFrame() {
+  return {
+    start: { ...seedState.presentationFrame.start, ...(state.presentationFrame?.start || {}) },
+    end: { ...seedState.presentationFrame.end, ...(state.presentationFrame?.end || {}) }
+  };
+}
+
+function openPresentationFrameModal() {
   const footer = { ...seedState.footer, ...(state.footer || {}) };
-  modalRoot.innerHTML = `<div class="modal-backdrop"><div class="modal wide" role="dialog" aria-modal="true" aria-label="Footer gestalten">
-    <div class="modal-header"><h2>Footer gestalten</h2><button class="close-button" data-close-modal aria-label="Footer schließen">×</button></div>
-    <form id="footerForm"><div class="modal-body">
-      <div class="form-grid footer-fields">
-        <div class="field"><label>Firmenname</label><input name="company" value="${escapeHtml(footer.company)}" placeholder="Firmenname" required /></div>
-        <div class="field"><label>Datum oder Stand</label><input name="dateText" value="${escapeHtml(footer.dateText)}" placeholder="Automatisch aus Schulung oder heutiges Datum" /></div>
+  const frame = resolvedPresentationFrame();
+  const imageOptions = imageLibrary().map((image) => `<option value="${escapeHtml(image.src)}">${escapeHtml(image.name)}</option>`).join("");
+  modalRoot.innerHTML = `<div class="modal-backdrop"><div class="modal wide" role="dialog" aria-modal="true" aria-label="Präsentationsrahmen gestalten">
+    <div class="modal-header"><h2>Präsentationsrahmen gestalten</h2><button class="close-button" data-close-modal aria-label="Präsentationsrahmen schließen">×</button></div>
+    <form id="presentationFrameForm"><div class="modal-body">
+      <section class="frame-section"><div class="frame-section-head"><h3>Allgemeine Startseite</h3><p>Diese Seite kann jeder Schulung vorgeschaltet werden.</p></div><div class="form-grid">
+        <div class="field"><label>Titel</label><input name="startTitle" value="${escapeHtml(frame.start.title)}" required /></div>
+        <div class="field"><label>Referentin oder Referent</label><input name="presenter" value="${escapeHtml(frame.start.presenter)}" /></div>
+        <div class="field full"><label>Untertitel</label><input name="startSubtitle" value="${escapeHtml(frame.start.subtitle)}" /></div>
+        <div class="field full"><label>Titelbild</label><select name="startCoverImage">${imageOptions}</select></div>
+      </div></section>
+      <section class="frame-section"><div class="frame-section-head"><h3>Allgemeine Abschlussseite</h3><p>Diese Seite bündelt Verabschiedung und Kontaktdaten.</p></div><div class="form-grid">
+        <div class="field"><label>Titel</label><input name="endTitle" value="${escapeHtml(frame.end.title)}" required /></div>
+        <div class="field"><label>Firmenname</label><input name="endCompany" value="${escapeHtml(frame.end.company)}" /></div>
+        <div class="field full"><label>Abschlusstext</label><input name="endMessage" value="${escapeHtml(frame.end.message)}" /></div>
+        <div class="field"><label>Ansprechpartner</label><input name="contactName" value="${escapeHtml(frame.end.contactName)}" /></div>
+        <div class="field"><label>E Mail</label><input name="email" type="email" value="${escapeHtml(frame.end.email)}" /></div>
+        <div class="field"><label>Telefon</label><input name="phone" value="${escapeHtml(frame.end.phone)}" /></div>
+        <div class="field"><label>Internetadresse</label><input name="website" value="${escapeHtml(frame.end.website)}" /></div>
+        <div class="field full"><label>Titelbild</label><select name="endCoverImage">${imageOptions}</select></div>
+      </div></section>
+      <section class="frame-section"><div class="frame-section-head"><h3>Footer</h3><p>Firmenname, Datum und automatische Seitenzahl erscheinen auf allen Folien.</p></div><div class="form-grid footer-fields">
+        <div class="field"><label>Firmenname</label><input name="footerCompany" value="${escapeHtml(footer.company)}" placeholder="Firmenname" required /></div>
+        <div class="field"><label>Datum oder Stand</label><input name="footerDateText" value="${escapeHtml(footer.dateText)}" placeholder="Automatisch aus Schulung oder heutiges Datum" /></div>
       </div>
       <fieldset class="footer-layout-fieldset"><legend>Darstellung wählen</legend><div class="footer-choice-grid">
         ${FOOTER_LAYOUTS.map((option) => `<label class="footer-choice"><input type="radio" name="layout" value="${option.id}" ${footer.layout === option.id ? "checked" : ""} /><span class="footer-choice-copy"><strong>${option.title}</strong><small>${option.description}</small></span>${footerChoicePreview(option.id, footer.company, footer.dateText)}</label>`).join("")}
       </div></fieldset>
       <p class="footer-hint">Die Seitenzahl wird automatisch erzeugt. Ohne eigene Datumsangabe verwendet die App den Termin der Schulung oder das aktuelle Datum.</p>
-    </div><div class="modal-footer"><div class="footer-right"><button type="button" class="button secondary" data-close-modal>Abbrechen</button><button class="button primary" type="submit">Footer übernehmen</button></div></div></form>
+      </section>
+    </div><div class="modal-footer"><div class="footer-right"><button type="button" class="button secondary" data-close-modal>Abbrechen</button><button class="button primary" type="submit">Präsentationsrahmen speichern</button></div></div></form>
   </div></div>`;
-  const footerForm = modalRoot.querySelector("#footerForm");
+  const footerForm = modalRoot.querySelector("#presentationFrameForm");
+  footerForm.elements.startCoverImage.value = frame.start.coverImage;
+  footerForm.elements.endCoverImage.value = frame.end.coverImage;
   const refreshFooterPreviews = () => {
     const data = new FormData(footerForm);
-    const company = String(data.get("company") || "").trim() || "Firmenname";
-    const dateText = String(data.get("dateText") || "").trim() || "Datum";
+    const company = String(data.get("footerCompany") || "").trim() || "Firmenname";
+    const dateText = String(data.get("footerDateText") || "").trim() || "Datum";
     modalRoot.querySelectorAll(".footer-choice-preview").forEach((preview) => {
       const values = preview.querySelectorAll("span");
       values[0].textContent = company;
       values[1].textContent = dateText;
     });
   };
-  footerForm.querySelectorAll('input[name="company"], input[name="dateText"]').forEach((input) => input.addEventListener("input", refreshFooterPreviews));
+  footerForm.querySelectorAll('input[name="footerCompany"], input[name="footerDateText"]').forEach((input) => input.addEventListener("input", refreshFooterPreviews));
   footerForm.addEventListener("submit", (event) => {
     event.preventDefault();
     const data = new FormData(event.target);
+    state.presentationFrame = {
+      start: {
+        title: String(data.get("startTitle") || "").trim(),
+        subtitle: String(data.get("startSubtitle") || "").trim(),
+        presenter: String(data.get("presenter") || "").trim(),
+        coverImage: String(data.get("startCoverImage") || "")
+      },
+      end: {
+        title: String(data.get("endTitle") || "").trim(),
+        message: String(data.get("endMessage") || "").trim(),
+        company: String(data.get("endCompany") || "").trim(),
+        contactName: String(data.get("contactName") || "").trim(),
+        email: String(data.get("email") || "").trim(),
+        phone: String(data.get("phone") || "").trim(),
+        website: String(data.get("website") || "").trim(),
+        coverImage: String(data.get("endCoverImage") || "")
+      }
+    };
     state.footer = {
       layout: FOOTER_LAYOUTS.some((option) => option.id === data.get("layout")) ? data.get("layout") : "classic",
-      company: String(data.get("company") || "").trim(),
-      dateText: String(data.get("dateText") || "").trim()
+      company: String(data.get("footerCompany") || "").trim(),
+      dateText: String(data.get("footerDateText") || "").trim()
     };
-    saveState("Footer übernommen");
+    saveState("Präsentationsrahmen gespeichert");
     closeModal();
     render();
   });
@@ -1193,11 +1276,30 @@ function modulePresentationSlides(module) {
 
 function workshopSlides(workshop) {
   const footerDate = workshop.date ? formatDate(workshop.date) : "";
-  const slides = [{ id: "opening", type: "title", title: workshop.title, body: `${workshop.client || ""}${workshop.date ? `\n${formatDate(workshop.date)}` : ""}`, notes: workshop.description || "", moduleCover: "assets/visuals/ki-ueberblick.jpeg", footerDate }];
+  const frame = resolvedPresentationFrame();
+  const slides = [];
+  if (workshop.useStartPage !== false) {
+    const startDetails = [workshop.title, frame.start.subtitle, workshop.client || "", workshop.date ? formatDate(workshop.date) : "", frame.start.presenter ? `Referent: ${frame.start.presenter}` : ""].filter(Boolean).join("\n");
+    slides.push({
+      id: `${workshop.id}-frame-start`, type: "title", layout: "opening", title: frame.start.title || workshop.title,
+      body: startDetails, notes: workshop.description || "", moduleTitle: state.footer?.company || "SMART WorkshopStudio",
+      moduleCover: frame.start.coverImage || "assets/visuals/ki-ueberblick.jpeg", footerDate
+    });
+  }
   workshop.moduleIds.forEach((moduleId) => {
     const module = state.modules.find((item) => item.id === moduleId);
     if (module) slides.push(...modulePresentationSlides(module).map((slide) => ({ ...slide, footerDate })));
   });
+  if (workshop.useEndPage) {
+    slides.push({
+      id: `${workshop.id}-frame-end`, type: "title", layout: "contact", title: frame.end.title || "Vielen Dank",
+      body: frame.end.message || "", notes: "Kontaktdaten nennen und Raum für Fragen sowie den gemeinsamen Austausch öffnen.",
+      moduleTitle: frame.end.company || state.footer?.company || "SMART WorkshopStudio",
+      moduleCover: frame.end.coverImage || "assets/visuals/chat-kommunikation.jpeg",
+      contact: { company: frame.end.company, name: frame.end.contactName, email: frame.end.email, phone: frame.end.phone, website: frame.end.website },
+      footerDate
+    });
+  }
   return slides;
 }
 
@@ -1223,6 +1325,16 @@ function renderEditorialBlock(value = "", index = 0) {
 
 function renderSlideContent(slide) {
   const layout = slide.layout || "standard";
+  if (layout === "contact") {
+    const contact = slide.contact || {};
+    const contactRows = [
+      contact.name ? ["Ansprechpartner", contact.name] : null,
+      contact.email ? ["E Mail", contact.email] : null,
+      contact.phone ? ["Telefon", contact.phone] : null,
+      contact.website ? ["Internet", contact.website] : null
+    ].filter(Boolean);
+    return `<div class="closing-layout"><div class="closing-message">${escapeHtml(slide.body || "").replace(/\n/g, "<br>")}</div><div class="closing-contact">${contact.company ? `<strong class="closing-company">${escapeHtml(contact.company)}</strong>` : ""}${contactRows.map(([label, value]) => `<div class="contact-row"><span>${escapeHtml(label)}</span><strong>${escapeHtml(value)}</strong></div>`).join("")}</div></div>`;
+  }
   if (Array.isArray(slide.visuals) && slide.visuals.length) {
     const visualClass = slide.visuals.length === 1 ? "visual-count-1" : "visual-count-2";
     const visuals = slide.visuals.map((visual) => `<figure class="slide-visual-card fit-${escapeHtml(visual.fit || "contain")} position-${escapeHtml(visual.position || "center")}"><div class="slide-visual-frame"><img src="${escapeHtml(visual.src)}" alt="${escapeHtml(visual.alt || "")}" /></div>${visual.caption ? `<figcaption>${escapeHtml(visual.caption)}</figcaption>` : ""}</figure>`).join("");
@@ -1289,6 +1401,8 @@ const EDITORIAL_EMBEDDED_CSS = `.slide:not(.title),.presenter-slide:not(.title){
 
 const FOOTER_EMBEDDED_CSS = `.slide-footer{position:absolute;z-index:3;right:6%;bottom:20px;left:6%;display:grid;align-items:center;gap:14px;color:#68768a;font:700 10px/1.2 Arial,sans-serif}.slide-footer .footer-page{text-align:right}.footer-layout-classic .slide-footer{grid-template-columns:1fr auto 1fr;padding-top:9px;border-top:1px solid #bcc7d3}.footer-layout-band .slide-footer{right:0;bottom:0;left:0;grid-template-columns:1fr auto 1fr;padding:12px 6%;color:#fff;background:#14213d}.footer-layout-band:after{display:none}.footer-layout-minimal .slide-footer{grid-template-columns:1fr auto auto}.footer-layout-minimal .footer-date,.footer-layout-minimal .footer-page{padding-left:14px;border-left:1px solid #bcc7d3}.title .slide-footer,.title-slide .slide-footer,.presenter-slide.title .slide-footer{color:#dce7f5;border-color:rgba(255,255,255,.28)}.title.footer-layout-band .slide-footer,.title-slide.footer-layout-band .slide-footer,.presenter-slide.title.footer-layout-band .slide-footer{background:rgba(8,18,38,.82)}.presenter-slide{position:relative}.presenter-slide .slide-footer{right:5%;bottom:10px;left:5%;font-size:7px}.presenter-slide.footer-layout-band .slide-footer{right:0;bottom:0;left:0;padding:7px 5%}`;
 
+const CONTACT_EMBEDDED_CSS = `.closing-layout{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(220px,.95fr);gap:36px;align-items:center}.closing-message{color:#fff;font:600 1.25em/1.3 Georgia,serif}.closing-contact{display:grid;gap:8px;padding:18px;border:1px solid rgba(255,255,255,.28);background:rgba(8,18,38,.66)}.closing-company{display:block;margin-bottom:4px;color:#fff;font:700 .82em Georgia,serif}.contact-row{display:grid;grid-template-columns:82px 1fr;gap:12px;padding-top:7px;border-top:1px solid rgba(255,255,255,.18)}.contact-row span{color:#a9c9ee;font-size:.48em;font-weight:800;text-transform:uppercase}.contact-row strong{color:#fff;font-size:.58em;overflow-wrap:anywhere}`;
+
 function resolvedFooterSettings() {
   const footer = { ...seedState.footer, ...(state.footer || {}) };
   if (!FOOTER_LAYOUTS.some((option) => option.id === footer.layout)) footer.layout = "classic";
@@ -1309,8 +1423,9 @@ function renderSlide(slide, index, total, className = "presentation-slide") {
   const shownTitle = displayTitle(slide.title);
   const dense = slide.body.length > 420 || slide.body.split("\n").length > 10;
   const footer = resolvedFooterSettings();
-  const titleStyle = slide.type === "title" && slide.moduleCover ? ` style="--slide-cover:url('${escapeHtml(slide.moduleCover)}')"` : "";
-  return `<article class="${className} ${slide.type === "title" ? "title-slide has-cover" : ""} layout-${slide.layout || "standard"} footer-layout-${footer.layout} ${dense ? "dense" : ""}"${titleStyle}>
+  const coverImage = slide.type === "title" && slide.moduleCover ? `<img class="slide-cover-image" src="${escapeHtml(slide.moduleCover)}" alt="" />` : "";
+  return `<article class="${className} ${slide.type === "title" ? "title-slide has-cover" : ""} layout-${slide.layout || "standard"} footer-layout-${footer.layout} ${dense ? "dense" : ""}">
+    ${coverImage}
     <div class="slide-kicker">${escapeHtml(slide.moduleTitle || "SMART WorkshopStudio")}</div>
     <h1 class="${slideTitleClass(shownTitle)}">${escapeHtml(shownTitle)}</h1>
     <div class="slide-body">${renderSlideBody(slide)}</div>
@@ -1391,7 +1506,7 @@ function renderPresenterWindow(force = false) {
   const nextLabel = next?.moduleTitle || presentation.title || "SMART WorkshopStudio";
   const html = `<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Referentenansicht – ${title}</title><style>
     :root{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#e9eef7;background:#080f1e}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:#080f1e}.shell{min-height:100vh;display:grid;grid-template-rows:auto 1fr auto}.top{display:flex;justify-content:space-between;align-items:center;padding:18px 24px;border-bottom:1px solid #26334b;background:#0d1930}.eyebrow{color:#9db8dc;font-size:11px;font-weight:800;letter-spacing:.14em}.top h1{margin:4px 0 0;font:500 24px Georgia,serif}.stats{display:flex;gap:24px;text-align:right}.stat strong,.stat span{display:block}.stat strong{font-size:20px}.stat span{color:#93a2b8;font-size:10px;text-transform:uppercase;letter-spacing:.08em}.grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(300px,.65fr);gap:18px;padding:18px;min-height:0}.panel{min-height:0;padding:14px;border:1px solid #26334b;border-radius:14px;background:#101a2c}.panel-label{margin:0 0 10px;color:#91a6c5;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.right{display:grid;grid-template-rows:minmax(220px,.9fr) minmax(210px,1.1fr);gap:18px;min-height:0}.presenter-slide{height:100%;padding:6%;overflow:auto;color:#172033;background:#fdfdfb}.presenter-slide.title{color:#fff;background:#14213d}.presenter-slide small{color:#2d4f7c;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.presenter-slide.title small{color:#a9c9ee}.presenter-slide h2{margin:7% 0 4%;font:500 clamp(21px,3vw,48px)/1.08 Georgia,serif;white-space:nowrap}.presenter-slide h2.title-md{font-size:clamp(19px,2.6vw,40px)}.presenter-slide h2.title-sm{font-size:clamp(17px,2.2vw,34px)}.presenter-slide h2.title-xs{font-size:clamp(15px,1.8vw,28px)}.presenter-slide .slide-body{color:#4d596c;font-size:clamp(12px,1.25vw,18px);line-height:1.4}.presenter-slide.title .slide-body{color:#cbd9ea}.slide-columns,.slide-tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.columns-3{grid-template-columns:repeat(3,minmax(0,1fr))}.slide-column,.slide-tile{padding:14px;border:1px solid #dce4ee;border-left:4px solid #2d4f7c;background:#f5f8fb}.tone-1{border-left-color:#6686ad}.tone-2{border-left-color:#173a64}.block-heading{color:#14213d!important;font-weight:800}.block-copy{margin-top:7px}.metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.metric-grid .block-heading{font-size:1.8em}.slide-table{width:100%;border-collapse:collapse}.slide-table th,.slide-table td{padding:7px;border:1px solid #d5dee9;text-align:left}.slide-table th{color:#fff;background:#14213d}.slide-visual-layout{display:grid;gap:6px}.slide-visual-grid{display:grid;gap:8px;height:55%}.visual-count-2{grid-template-columns:repeat(2,minmax(0,1fr))}.visual-count-1{grid-template-columns:1fr;height:62%}.slide-visual-card{display:flex;flex-direction:column;min-width:0;margin:0;overflow:hidden;border:1px solid #cad5e2;background:#f3f7fa}.slide-visual-frame{flex:1;min-height:0;padding:4px;background:#fff}.slide-visual-card img{display:block;width:100%;height:100%;object-fit:contain}.slide-visual-card figcaption{padding:5px 7px;color:#354b68;font-size:.62em;font-weight:700}.slide-visual-summary{margin:0;font-size:.68em}.next .presenter-slide h2{font-size:clamp(18px,2vw,30px)}.next .presenter-slide .slide-body{font-size:clamp(10px,1vw,14px)}.notes{height:100%;padding:18px;overflow:auto;border-radius:9px;color:#dce6f4;background:#17243b;font-size:16px;line-height:1.55;white-space:pre-line}.notes.empty{color:#7f8da2;font-style:italic}.empty-preview{display:grid;place-items:center;height:100%;color:#76849a;background:#111c2f}.controls{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 20px;border-top:1px solid #26334b;background:#0d1930}.controls button{padding:11px 15px;border:1px solid #34445f;border-radius:9px;color:#fff;background:#172b4d;font-weight:700;cursor:pointer}.controls button:hover{background:#233e69}.keys{color:#8fa0b8;font-size:12px}@media(max-width:850px){.grid{grid-template-columns:1fr}.right{grid-template-columns:1fr 1fr;grid-template-rows:320px}.stats{gap:10px}.keys{display:none}}
-    ${EMBEDDED_VISUAL_CSS.replace("height:min(38vh,360px)", "height:min(27vh,270px)").replace("height:62%", "height:52%")} ${EDITORIAL_EMBEDDED_CSS} ${FOOTER_EMBEDDED_CSS}
+    ${EMBEDDED_VISUAL_CSS.replace("height:min(38vh,360px)", "height:min(27vh,270px)").replace("height:62%", "height:52%")} ${EDITORIAL_EMBEDDED_CSS} ${FOOTER_EMBEDDED_CSS} ${CONTACT_EMBEDDED_CSS}
   </style></head><body><div class="shell"><header class="top"><div><div class="eyebrow">REFERENTENANSICHT</div><h1>${title}</h1></div><div class="stats"><div class="stat"><strong>${presentation.index + 1} / ${presentation.slides.length}</strong><span>Folie</span></div><div class="stat"><strong id="timer">00:00</strong><span>Vortragszeit</span></div></div></header><main class="grid"><section class="panel"><p class="panel-label">Aktuelle Folie</p>${presenterSlideMarkup(current, label, presentation.index, presentation.slides.length)}</section><div class="right"><section class="panel next"><p class="panel-label">Nächste Folie</p>${presenterSlideMarkup(next, nextLabel, presentation.index + 1, presentation.slides.length)}</section><section class="panel"><p class="panel-label">Moderationsnotizen</p><div class="notes ${current?.notes ? "" : "empty"}">${current?.notes ? escapeHtml(current.notes) : "Für diese Folie sind keine Moderationsnotizen hinterlegt."}</div></section></div></main><footer class="controls"><div><button onclick="opener.workshopPresenterCommand('prev')">← Zurück</button> <button onclick="opener.workshopPresenterCommand('next')">Weiter →</button></div><span class="keys">Pfeiltasten · Leertaste · Page Up/Down</span><button onclick="opener.workshopPresenterCommand('closePresenter')">Referentenansicht schließen</button></footer></div><script>
     const startedAt=${presentation.startedAt};function updateTimer(){const seconds=Math.floor((Date.now()-startedAt)/1000);const m=String(Math.floor(seconds/60)).padStart(2,'0');const s=String(seconds%60).padStart(2,'0');document.getElementById('timer').textContent=m+':'+s}updateTimer();setInterval(updateTimer,1000);addEventListener('keydown',e=>{if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();opener.workshopPresenterCommand('next')}if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();opener.workshopPresenterCommand('prev')}if(e.key==='Escape')opener.workshopPresenterCommand('closePresenter')});
   <\/script></body></html>`;
@@ -1489,7 +1604,7 @@ async function exportHtml(workshopId, button) {
     return `<section class="slide ${slide.type === "title" ? "title" : ""} layout-${slide.layout || "standard"} footer-layout-${footer.layout} ${dense ? "dense" : ""}"${coverStyle}><small>${escapeHtml(slide.moduleTitle || "SMART WorkshopStudio")}</small><h1 class="${slideTitleClass(shownTitle)}">${escapeHtml(shownTitle)}</h1><div class="slide-body">${renderSlideBody(slide)}</div>${renderSlideFooter(slide, index, slides.length)}</section>`;
   }).join("");
   const html = `<!doctype html><html lang="de"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>${escapeHtml(workshop.title)}</title><style>*{box-sizing:border-box}body{margin:0;background:#080f1e;color:#172033;font-family:Arial,sans-serif}.slide{display:none;position:fixed;inset:4vh 4vw;padding:6vh 6vw;background:#fdfdfb}.slide.active{display:block}.slide.title{color:white;background:#14213d}.slide small{color:#2d4f7c;font-weight:bold;letter-spacing:.15em;text-transform:uppercase}.slide.title small{color:#a9c9ee}h1{width:100%;margin:5vh 0 3vh;font:700 clamp(32px,4.5vw,64px)/1.05 Arial,sans-serif;white-space:nowrap;border-bottom:1px solid #dbe2ea;padding-bottom:2.2vh}.title-md{font-size:clamp(28px,3.8vw,54px)}.title-sm{font-size:clamp(24px,3.2vw,45px)}.title-xs{font-size:clamp(20px,2.6vw,36px)}.slide-body{width:100%;font-size:clamp(15px,1.65vw,24px);line-height:1.4;color:#4d596c}.slide.dense .slide-body{font-size:clamp(13px,1.35vw,19px)}.slide.title .slide-body{color:#cbd9ea}.slide-columns,.slide-tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2vw}.columns-3{grid-template-columns:repeat(3,minmax(0,1fr))}.slide-column,.slide-tile{min-height:18vh;padding:2vw;border:1px solid #dce4ee;border-left:6px solid #2d4f7c;background:#f5f8fb}.tone-1{border-left-color:#6686ad}.tone-2{border-left-color:#173a64}.block-heading{color:#14213d;font-weight:800}.block-copy{margin-top:1.2vh}.metric-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.metric-grid .block-heading{font-size:1.8em}.slide-table{width:100%;border-collapse:collapse}.slide-table th,.slide-table td{padding:1.1vh 1vw;border:1px solid #d5dee9;text-align:left}.slide-table th{color:#fff;background:#14213d}.slide-visual-layout{display:grid;gap:1.2vh}.slide-visual-grid{display:grid;gap:1.2vw;height:min(35vh,340px)}.visual-count-2{grid-template-columns:repeat(2,minmax(0,1fr))}.visual-count-1{grid-template-columns:1fr;height:min(39vh,380px)}.slide-visual-card{display:flex;flex-direction:column;min-width:0;margin:0;overflow:hidden;border:1px solid #cad5e2;border-radius:8px;background:#f3f7fa}.slide-visual-frame{flex:1;min-height:0;padding:.6vw;background:#fff}.slide-visual-card img{display:block;width:100%;height:100%;object-fit:contain}.slide-visual-card figcaption{padding:.7vh .8vw;color:#354b68;background:#eef3f8;font-size:.62em;font-weight:700}.slide-visual-summary{margin:0;color:#59677b;font-size:.72em}footer{position:absolute;bottom:3vh;color:#7d899c}.hint{position:fixed;right:2vw;bottom:1vh;color:#9cacc2;font-size:12px}@media print{@page{size:A4 landscape;margin:0}.slide{display:block!important;position:relative;inset:auto;width:297mm;height:210mm;break-after:page}.hint{display:none}}</style><body>${slideMarkup}<div class="hint">← → Leertaste · F Vollbild · P PDF</div><script>const s=[...document.querySelectorAll('.slide')];let i=0;function show(n){i=Math.max(0,Math.min(s.length-1,n));s.forEach((x,j)=>x.classList.toggle('active',j===i))}addEventListener('keydown',e=>{if(['ArrowRight','PageDown',' '].includes(e.key))show(i+1);if(['ArrowLeft','PageUp'].includes(e.key))show(i-1);if(e.key.toLowerCase()==='f')document.documentElement.requestFullscreen?.();if(e.key.toLowerCase()==='p')print()});addEventListener('click',e=>show(i+(e.clientX>innerWidth/2?1:-1)));show(0)<\/script></body></html>`;
-  const standaloneVisualCss = `${EMBEDDED_VISUAL_CSS.replace("height:min(38vh,360px)", "height:min(27vh,270px)").replace("height:62%", "height:52%")} ${EDITORIAL_EMBEDDED_CSS} ${FOOTER_EMBEDDED_CSS}`;
+  const standaloneVisualCss = `${EMBEDDED_VISUAL_CSS.replace("height:min(38vh,360px)", "height:min(27vh,270px)").replace("height:62%", "height:52%")} ${EDITORIAL_EMBEDDED_CSS} ${FOOTER_EMBEDDED_CSS} ${CONTACT_EMBEDDED_CSS}`;
   const standaloneHtml = html.replace("</style><body>", `</style><style>${standaloneVisualCss}</style><body>`);
   download(`${slugify(workshop.title)}.html`, standaloneHtml, "text/html");
   markActionComplete(`html-workshop:${workshopId}`, button, "HTML exportiert");
@@ -1553,7 +1668,7 @@ document.addEventListener("click", (event) => {
   if (!target) return;
   if (target.dataset.nav) { event.preventDefault(); setView(target.dataset.nav); }
   if (target.id === "helpButton") openHelpModal();
-  if (target.id === "footerButton") openFooterModal();
+  if (target.id === "presentationFrameButton") openPresentationFrameModal();
   if (target.dataset.helpSection) renderHelpSection(target.dataset.helpSection);
   if (target.id === "newModuleButton" || target.matches("[data-new-module]")) openModuleModal();
   if (target.id === "newWorkshopButton" || target.matches("[data-new-workshop], [data-start-workshop]")) openWorkshopModal();
