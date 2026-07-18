@@ -186,7 +186,7 @@ function displayTitle(title = "") {
 const seedState = {
   visualVersion: 1,
   durationModelVersion: 1,
-  presentationFrameVersion: 2,
+  presentationFrameVersion: 3,
   images: [],
   presentationFrame: {
     start: {
@@ -548,6 +548,7 @@ const seedState = {
       description: "Praxisnaher Einstieg in generative KI für Mitarbeitende.",
       useStartPage: true,
       useEndPage: true,
+      useFooter: true,
       moduleIds: ["mod-ki-grundlagen", "mod-prompting", "mod-transfer"],
       updatedAt: "2026-07-15"
     }
@@ -613,6 +614,7 @@ function loadState() {
             const libraryWorkshop = seedState.workshops.find((item) => item.id === workshop.id);
             workshop.useEndPage = libraryWorkshop?.useEndPage ?? false;
           }
+          if (typeof workshop.useFooter !== "boolean") workshop.useFooter = true;
         });
         if (/builtsmart/i.test(stored.footer?.company || "")) stored.footer.company = seedState.footer.company;
         stored.presentationFrameVersion = seedState.presentationFrameVersion;
@@ -898,7 +900,7 @@ function renderWorkshops() {
         const framePageCount = Number(workshop.useStartPage !== false) + Number(Boolean(workshop.useEndPage));
         return `<article class="workshop-row" data-workshop-row="${workshop.id}">
           <div class="date-tile"><div><strong>${date.day}</strong><small>${date.month}</small></div></div>
-          <div><h3>${escapeHtml(workshop.title)}</h3><p>${escapeHtml(workshop.client || "Ohne Auftraggeber")} · ${workshop.moduleIds.length} Module · ${minutesLabel(duration)} · ${framePageCount} ${framePageCount === 1 ? "Rahmenseite" : "Rahmenseiten"}</p></div>
+          <div><h3>${escapeHtml(workshop.title)}</h3><p>${escapeHtml(workshop.client || "Ohne Auftraggeber")} · ${workshop.moduleIds.length} Module · ${minutesLabel(duration)} · ${framePageCount} ${framePageCount === 1 ? "Rahmenseite" : "Rahmenseiten"} · ${workshop.useFooter === false ? "ohne Footer" : "Footer aktiv"}</p></div>
           <div class="workshop-row-actions"><button class="button secondary small" data-edit-workshop="${workshop.id}">Bearbeiten</button><button class="button ghost small" data-present="${workshop.id}">▶ Präsentieren</button>${pdfAction}</div>
         </article>`;
       }).join("") : `<div class="empty-state"><strong>Noch keine Schulung</strong><p>Stelle deine erste Schulung aus vorhandenen Modulen zusammen.</p><button class="button primary" data-new-workshop>Jetzt beginnen</button></div>`}
@@ -1048,14 +1050,14 @@ function openWorkshopModal(workshopId = null) {
       <div class="field"><label>Termin</label><input name="date" type="date" value="${original?.date || ""}" /></div>
       <div class="field"><label>Zeitfenster in Minuten</label><input name="targetMinutes" type="number" min="15" step="15" value="${original?.targetMinutes || 180}" /></div>
       <div class="field full"><label>Beschreibung / Ziel</label><textarea name="description">${escapeHtml(original?.description || "")}</textarea></div>
-      <div class="field full frame-toggle-group"><span>Präsentationsrahmen</span><label class="frame-toggle"><input name="useStartPage" type="checkbox" ${original?.useStartPage !== false ? "checked" : ""} /><span><strong>Allgemeine Startseite verwenden</strong><small>Wird vor dem ersten Schulungsmodul eingefügt</small></span></label><label class="frame-toggle"><input name="useEndPage" type="checkbox" ${original?.useEndPage ? "checked" : ""} /><span><strong>Allgemeine Abschlussseite verwenden</strong><small>Wird nach dem letzten Schulungsmodul eingefügt</small></span></label></div>
+      <div class="field full frame-toggle-group"><span>Präsentationsrahmen</span><label class="frame-toggle"><input name="useStartPage" type="checkbox" ${original?.useStartPage !== false ? "checked" : ""} /><span><strong>Allgemeine Startseite verwenden</strong><small>Wird vor dem ersten Schulungsmodul eingefügt</small></span></label><label class="frame-toggle"><input name="useEndPage" type="checkbox" ${original?.useEndPage ? "checked" : ""} /><span><strong>Allgemeine Abschlussseite verwenden</strong><small>Wird nach dem letzten Schulungsmodul eingefügt</small></span></label><label class="frame-toggle"><input name="useFooter" type="checkbox" ${original?.useFooter !== false ? "checked" : ""} /><span><strong>Footer verwenden</strong><small>Zeigt Firmenname, Datum und Seitenzahl auf allen Folien dieser Schulung</small></span></label></div>
     </div></div><div class="modal-footer">${original ? `<button type="button" class="button danger" data-delete-workshop="${original.id}">Schulung löschen</button>` : ""}<div class="footer-right"><button type="button" class="button secondary" data-close-modal>Abbrechen</button><button class="button primary" type="submit">Weiter zum Builder</button></div></div></form>
   </div></div>`;
   modalRoot.querySelector("#workshopForm").addEventListener("submit", (event) => {
     event.preventDefault();
     const data = new FormData(event.target);
     const workshop = {
-      id: original?.id || uid("ws"), title: data.get("title"), client: data.get("client"), date: data.get("date"), targetMinutes: Number(data.get("targetMinutes")), description: data.get("description"), useStartPage: data.get("useStartPage") === "on", useEndPage: data.get("useEndPage") === "on", moduleIds: original?.moduleIds || [], updatedAt: new Date().toISOString().slice(0, 10)
+      id: original?.id || uid("ws"), title: data.get("title"), client: data.get("client"), date: data.get("date"), targetMinutes: Number(data.get("targetMinutes")), description: data.get("description"), useStartPage: data.get("useStartPage") === "on", useEndPage: data.get("useEndPage") === "on", useFooter: data.get("useFooter") === "on", moduleIds: original?.moduleIds || [], updatedAt: new Date().toISOString().slice(0, 10)
     };
     if (original) state.workshops[state.workshops.findIndex((item) => item.id === original.id)] = workshop;
     else state.workshops.unshift(workshop);
@@ -1300,7 +1302,7 @@ function workshopSlides(workshop) {
       footerDate
     });
   }
-  return slides;
+  return slides.map((slide) => ({ ...slide, hideFooter: workshop.useFooter === false }));
 }
 
 function slideTitleClass(title = "") {
@@ -1415,6 +1417,7 @@ function slideFooterDate(slide) {
 }
 
 function renderSlideFooter(slide, index, total) {
+  if (slide.hideFooter) return "";
   const footer = resolvedFooterSettings();
   return `<footer class="slide-footer"><span class="footer-company">${escapeHtml(footer.company)}</span><span class="footer-date">${escapeHtml(slideFooterDate(slide))}</span><span class="footer-page">Seite ${index + 1} von ${total}</span></footer>`;
 }
