@@ -29,7 +29,7 @@ const HELP_SECTIONS = [
     id: "features",
     title: "Wichtige Funktionen",
     eyebrow: "DAS KANN DIE APP",
-    content: `<ul class="help-feature-list"><li><strong>Modulverwaltung</strong><br>Folien, Dauer, Kategorien und Notizen pflegen.</li><li><strong>Workshop-Builder</strong><br>Module hinzufügen, sortieren und Zeitrahmen prüfen.</li><li><strong>Modulvorschau</strong><br>Einzelne Module ohne Workshop präsentieren.</li><li><strong>Referentenansicht</strong><br>Aktuelle und nächste Folie, Notizen und Timer separat anzeigen.</li><li><strong>PDF-Ausgabe</strong><br>Folien als A4-Querformat sichern.</li><li><strong>HTML-Export</strong><br>Eigenständige, offline nutzbare Präsentation erzeugen.</li><li><strong>Datensicherung</strong><br>Lokalen Bestand exportieren und wiederherstellen.</li><li><strong>Funkmaus-Steuerung</strong><br>Pfeile, Leertaste und Page Up/Down verwenden.</li></ul><h4>Grafische Folienlayouts</h4><p>Im Folieneditor stehen Standard, 2 Spalten, 3 Spalten, Kacheln, Kennzahlen und Tabelle zur Auswahl. Bei Spalten und Kacheln trennt eine eigene Zeile mit <strong>---</strong> die Bereiche. In einer Tabelle werden Zellen mit <strong>|</strong> getrennt; die erste Zeile bildet die Tabellenüberschrift.</p><h4>Optional denkbare KI-Aufgaben – derzeit nicht aktiviert</h4><ul><li>Modulgliederungen und Lernziele vorschlagen</li><li>Ausgangstexte in Folienentwürfe umwandeln</li><li>Inhalte kürzen, strukturieren oder zusammenfassen</li><li>Übungen, Reflexionsfragen und Moderationsnotizen entwerfen</li><li>Workshop-Agenden passend zu Zielgruppe und Zeitrahmen vorschlagen</li><li>Varianten für unterschiedliche Zielgruppen erzeugen</li><li>Qualitätsprüfung auf Redundanz, Verständlichkeit und Zeitbedarf unterstützen</li></ul><p>Diese Aufgaben wären Assistenzfunktionen. Inhalte müssen fachlich und rechtlich durch einen Menschen geprüft werden.</p>`
+    content: `<ul class="help-feature-list"><li><strong>Modulverwaltung</strong><br>Folien, Dauer, Kategorien und Notizen pflegen.</li><li><strong>Bildbibliothek</strong><br>Titelbilder und eigene Bildbausteine zentral verwalten.</li><li><strong>Workshop-Builder</strong><br>Module hinzufügen, sortieren und Zeitrahmen prüfen.</li><li><strong>Modulvorschau</strong><br>Einzelne Module ohne Workshop präsentieren.</li><li><strong>Referentenansicht</strong><br>Aktuelle und nächste Folie, Notizen und Timer separat anzeigen.</li><li><strong>PDF-Ausgabe</strong><br>Folien einschließlich Bilder als A4-Querformat sichern.</li><li><strong>HTML-Export</strong><br>Eigenständige, offline nutzbare Präsentation mit eingebetteten Bildern erzeugen.</li><li><strong>Datensicherung</strong><br>Lokalen Bestand exportieren und wiederherstellen.</li><li><strong>Funkmaus-Steuerung</strong><br>Pfeile, Leertaste und Page Up/Down verwenden.</li></ul><h4>Grafische Folienlayouts</h4><p>Im Folieneditor stehen Standard, 2 Spalten, 3 Spalten, Kacheln, Kennzahlen, Tabelle, großes Bild und Text-Bild-Aufteilung zur Auswahl. Bei Spalten und Kacheln trennt eine eigene Zeile mit <strong>---</strong> die Bereiche. In einer Tabelle werden Zellen mit <strong>|</strong> getrennt; die erste Zeile bildet die Tabellenüberschrift. Für Bilder lassen sich Zuschnitt, Position, Alternativtext und Bildunterschrift festlegen.</p><h4>Optional denkbare KI-Aufgaben – derzeit nicht aktiviert</h4><ul><li>Modulgliederungen und Lernziele vorschlagen</li><li>Ausgangstexte in Folienentwürfe umwandeln</li><li>Inhalte kürzen, strukturieren oder zusammenfassen</li><li>Übungen, Reflexionsfragen und Moderationsnotizen entwerfen</li><li>Workshop-Agenden passend zu Zielgruppe und Zeitrahmen vorschlagen</li><li>Varianten für unterschiedliche Zielgruppen erzeugen</li><li>Qualitätsprüfung auf Redundanz, Verständlichkeit und Zeitbedarf unterstützen</li></ul><p>Diese Aufgaben wären Assistenzfunktionen. Inhalte müssen fachlich und rechtlich durch einen Menschen geprüft werden.</p>`
   },
   {
     id: "workflow",
@@ -63,17 +63,41 @@ const HELP_SECTIONS = [
   }
 ];
 
+const BUILT_IN_IMAGES = [
+  { id: "visual-ki-ueberblick", name: "KI im Überblick", src: "assets/visuals/ki-ueberblick.jpeg", alt: "Leuchtendes digitales Gehirn zwischen Symbolen für Dokumente, Prozesse, Daten, Ziele und Menschen", source: "Eigene Bildsammlung · Nutzungsrechte vor externer Veröffentlichung prüfen" },
+  { id: "visual-cloud-daten", name: "Cloud und Daten", src: "assets/visuals/cloud-daten.jpeg", alt: "Leuchtende Cloud mit Symbolen für Dokumente, Daten, Sicherheit und Zusammenarbeit", source: "Eigene Bildsammlung · Nutzungsrechte vor externer Veröffentlichung prüfen" },
+  { id: "visual-automatisierung", name: "Automatisierung und Prozesse", src: "assets/visuals/automatisierung.jpeg", alt: "Digitales Zahnrad mit verbundenen Prozess-, Daten- und Sicherheitssymbolen", source: "Eigene Bildsammlung · Nutzungsrechte vor externer Veröffentlichung prüfen" },
+  { id: "visual-cloud-ki", name: "Cloud-KI und API", src: "assets/visuals/cloud-ki.jpeg", alt: "Cloud mit KI-Chip und angebundenen Prozess-, Daten- und Sicherheitssymbolen", source: "Eigene Bildsammlung · Nutzungsrechte vor externer Veröffentlichung prüfen" },
+  { id: "visual-marketing", name: "Marketing und Kommunikation", src: "assets/visuals/marketing-kommunikation.jpeg", alt: "Digitales Kommunikationssymbol mit E-Mail, Zielgruppe, Kalender und Analytik", source: "Eigene Bildsammlung · Nutzungsrechte vor externer Veröffentlichung prüfen" },
+  { id: "visual-ki-tools", name: "KI-Werkzeuge", src: "assets/visuals/ki-werkzeuge.jpeg", alt: "Digitales Gehirn mit Symbolen für Robotik, Cloud, Daten, Teams und Ziele", source: "Eigene Bildsammlung · Nutzungsrechte vor externer Veröffentlichung prüfen" },
+  { id: "visual-chat", name: "Chat und Kommunikation", src: "assets/visuals/chat-kommunikation.jpeg", alt: "Leuchtende Sprechblase mit Symbolen für E-Mail, Telefon, Video und Support", source: "Eigene Bildsammlung · Nutzungsrechte vor externer Veröffentlichung prüfen" },
+  { id: "visual-dokumente", name: "Dokumentenanalyse", src: "assets/visuals/dokumentenanalyse.jpeg", alt: "Digitales Dokument mit Symbolen für PDF, Tabellen, Text, Bilder und Daten", source: "Eigene Bildsammlung · Nutzungsrechte vor externer Veröffentlichung prüfen" },
+  { id: "visual-risiko", name: "Risiko und Sicherheit", src: "assets/visuals/risikoanalyse.jpeg", alt: "Leuchtender Schutzschild mit Lupe und Symbolen für Prüfung, Analyse und Dokumentation", source: "Eigene Bildsammlung · Nutzungsrechte vor externer Veröffentlichung prüfen" },
+  { id: "visual-prompting", name: "Prompting und Dialog", src: "assets/visuals/prompting-dialog.jpeg", alt: "Leuchtende Dialogblasen mit Symbolen für Nachrichten, Teams und digitale Kommunikation", source: "Eigene Bildsammlung · Nutzungsrechte vor externer Veröffentlichung prüfen" }
+];
+
+function imageLibrary() {
+  return [...BUILT_IN_IMAGES, ...(state?.images || [])];
+}
+
+function imageBySrc(src) {
+  return imageLibrary().find((image) => image.src === src);
+}
+
 const seedState = {
+  visualVersion: 1,
+  images: [],
   modules: [
     {
       id: "mod-ki-tools-praxiseinsatz",
       title: "Leistungsstarke KI-Tools im Praxiseinsatz",
+      coverImage: "assets/visuals/ki-werkzeuge.jpeg",
       category: "KI-Werkzeuge",
       level: "Anwender & Entscheider",
       duration: 210,
       tags: ["KI-Tools", "Recherche", "Office", "Medien", "Entwicklung", "Automatisierung"],
       description: "Praxisorientierter Vergleich leistungsstarker KI-Werkzeuge – mit passenden Einsatzgebieten, konkreten Beispielen und Auswahlkriterien.",
-      version: 3,
+      version: 4,
       updatedAt: "2026-07-17",
       slides: [
         { id: "kit-1", type: "title", layout: "standard", title: "Leistungsstarke KI-Tools im Praxiseinsatz", body: "Das passende Werkzeug für Recherche, Dokumente, Daten, Medien, Entwicklung und Automatisierung\n\nPraxisworkshop mit konkreten Anwendungsbeispielen", notes: "Einstiegsfrage: Welches KI-Werkzeug verwenden die Teilnehmenden heute am häufigsten – und für welche Aufgabe?" },
@@ -89,13 +113,14 @@ const seedState = {
         { id: "kit-11", type: "content", layout: "two-column", title: "Microsoft 365 Copilot wirkt direkt im Office-Prozess", body: "SINNVOLLER EINSATZ\nDokumente in Word bearbeiten, Daten in Excel analysieren, Präsentationen in PowerPoint entwickeln, E-Mails in Outlook verarbeiten und Meetings in Teams zusammenfassen.\n---\nPRAXISBEISPIEL\nNach einer Teams-Besprechung Entscheidungen und Aufgaben erfassen, daraus in Word ein Projektprotokoll erstellen und die aktualisierten Kennzahlen in Excel für den Lenkungskreis aufbereiten.", notes: "Kontrolle: Copilot übernimmt vorhandene Zugriffsrechte nicht als Qualitätsprüfung. Falsch oder zu weit freigegebene Microsoft-365-Inhalte können in Antworten einfließen." },
         { id: "kit-12", type: "content", layout: "two-column", title: "GitHub Copilot unterstützt den Entwicklungszyklus", body: "SINNVOLLER EINSATZ\nCodevorschläge, Chat im Entwicklungswerkzeug, Planung, Änderungen, Pull Requests und Code Reviews mit Repository-Kontext.\n---\nPRAXISBEISPIEL\nFür eine bestehende Web-App einen CSV-Export ergänzen: zuerst Umsetzung planen, Tests schreiben, Änderungen in einem separaten Branch erzeugen und den Pull Request zusätzlich durch Copilot und einen Menschen prüfen lassen.", notes: "Kontrolle: Tests, Sicherheitsprüfung und menschliches Review bleiben erforderlich. Copilot ist laut GitHub nicht garantiert vollständig oder fehlerfrei." },
         { id: "kit-13", type: "content", layout: "two-column", title: "Gamma erzeugt schnell visuelle Erstfassungen", body: "SINNVOLLER EINSATZ\nAus Prompt, Gliederung, Text, Datei oder URL Präsentationen, Dokumente und Webseiten strukturieren; als Weblink teilen oder in gängige Formate exportieren.\n---\nPRAXISBEISPIEL\nEinen freigegebenen Projektstatusbericht importieren und daraus eine zehnteilige Management-Präsentation mit klarer Entscheidungsvorlage erzeugen; Zahlen und Botschaft anschließend manuell schärfen.", notes: "Kontrolle: KI-Layouts sind ein Entwurf. Storyline, Zahlen, Quellen, Corporate Design und mögliche Abweichungen beim PowerPoint-Export prüfen." },
-        { id: "kit-14", type: "content", layout: "two-column", title: "Canva verbindet KI mit visueller Kommunikation", body: "SINNVOLLER EINSATZ\nPräsentationen, Social-Media-Inhalte und kurze Videos entwerfen, Texte und Medien erzeugen, Formate anpassen, übersetzen und Markenbausteine anwenden.\n---\nPRAXISBEISPIEL\nAus einem freigegebenen Veranstaltungsbriefing ein konsistentes Paket erstellen: Präsentationscover, LinkedIn-Grafik, Bildschirmbanner und kurze Videoankündigung in passenden Abmessungen.", notes: "Kontrolle: Markenrichtlinien, Bildrechte, Lesbarkeit und Übersetzungen prüfen. Verfügbare Magic-Studio-Funktionen und Kontingente sind tarifabhängig." },
+        { id: "kit-14", type: "content", layout: "image-split", title: "Canva verbindet KI mit visueller Kommunikation", body: "SINNVOLLER EINSATZ\nPräsentationen, Social-Media-Inhalte und Videos gestalten, Formate anpassen und Markenbausteine anwenden.\n\nPRAXISBEISPIEL\nAus einem Veranstaltungsbriefing ein Präsentationscover und passende Kampagnengrafiken erzeugen.", visuals: [{ src: "assets/visuals/marketing-kommunikation.jpeg", alt: "Digitale Kommunikationskanäle und Marketingwerkzeuge als vernetztes System", caption: "Canva: visuelle Inhalte über mehrere Formate hinweg", fit: "cover", position: "center" }], links: [{ label: "Canva – offizielle Startseite", url: "https://www.canva.com/de_de/" }], notes: "Die offizielle Startseite über den Link öffnen und die Auswahl von Präsentation, Social Media, Video und Canva AI zeigen. Markenrichtlinien, Bildrechte, Lesbarkeit und tarifabhängige Funktionen prüfen." },
+        { id: "kit-14a", type: "content", layout: "image-split", title: "Napkin AI verwandelt Text in erklärende Visuals", body: "SINNVOLLER EINSATZ\nText einfügen, Diagramm erzeugen, Gestaltung anpassen und als PPT, PNG, PDF oder SVG exportieren.\n\nPRAXISBEISPIEL\nEine Prozessbeschreibung in ein geprüftes Fünf-Schritte-Schaubild überführen.", visuals: [{ src: "assets/visuals/automatisierung.jpeg", alt: "Vernetztes Zahnrad als Symbol für die Visualisierung eines Geschäftsprozesses", caption: "Napkin AI: aus Text werden Diagramme und Prozessbilder", fit: "cover", position: "center" }], links: [{ label: "Napkin AI – offizielle Startseite", url: "https://www.napkin.ai/" }], notes: "Napkin erzeugt Visuals aus vorhandenem Text. Die offizielle Startseite zeigt den Ablauf Importieren, Generieren, Anpassen und Exportieren. Das Ergebnis ist ein Entwurf; Inhalt, Logik, Begriffe und Nutzungsrechte prüfen." },
         { id: "kit-15", type: "content", layout: "two-column", title: "Adobe Firefly passt in professionelle Kreativprozesse", body: "SINNVOLLER EINSATZ\nBilder und Videos generieren oder bearbeiten und Ergebnisse in Adobe-Anwendungen wie Photoshop, Express oder Premiere Pro weiterverarbeiten.\n---\nPRAXISBEISPIEL\nFür eine Kampagne drei freigestellte Produktmotive in unterschiedlichen Umgebungen entwickeln, Licht und Hintergrund variieren und die ausgewählte Variante in Photoshop final retuschieren.", notes: "Kontrolle: Nur freigegebene, nicht als Beta gekennzeichnete Funktionen nach den jeweils geltenden Nutzungsbedingungen kommerziell einsetzen. Marken-, Persönlichkeits- und Urheberrechte prüfen." },
         { id: "kit-16", type: "content", layout: "two-column", title: "Runway spezialisiert sich auf generatives Video", body: "SINNVOLLER EINSATZ\nText- und Bildideen in Videoclips überführen sowie vorhandenes Material per Prompt bearbeiten, Hintergründe, Objekte, Stil oder einzelne Bildelemente verändern.\n---\nPRAXISBEISPIEL\nAus einem freigegebenen Produktfoto einen kurzen Kameraflug für eine Messewand erzeugen und störende Elemente im Ausgangsclip entfernen; anschließend Schnitt und Markenelemente finalisieren.", notes: "Kontrolle: Konsistenz zwischen Einzelbildern, physikalische Fehler, Rechte am Ausgangsmaterial und Kennzeichnungspflichten prüfen. Modelle und Funktionen ändern sich schnell." },
         { id: "kit-17", type: "content", layout: "two-column", title: "ElevenLabs erzeugt und lokalisiert Sprache", body: "SINNVOLLER EINSATZ\nText in Sprache umwandeln, Stimmen gestalten oder mit Einwilligung klonen, Audio transkribieren, Inhalte synchronisieren und sprachbasierte Assistenten entwickeln.\n---\nPRAXISBEISPIEL\nEine Sicherheitseinweisung als deutsche Audiospur produzieren und für internationale Teams in weitere Sprachen synchronisieren; Fachbegriffe und Aussprache je Sprachversion abnehmen lassen.", notes: "Kontrolle: Stimme nur mit klarer Berechtigung verwenden. Übersetzung, Aussprache, emotionale Wirkung und mögliche Wasserzeichen oder Tarifbedingungen prüfen." },
         { id: "kit-18", type: "content", layout: "two-column", title: "n8n verbindet KI mit wiederkehrenden Abläufen", body: "SINNVOLLER EINSATZ\nDienste, Datenquellen und KI-Schritte in visuellen Workflows verbinden; Regeln, Werkzeuge, Speicher und menschliche Freigaben gezielt kombinieren.\n---\nPRAXISBEISPIEL\nEingehende Support-E-Mails klassifizieren, Kundennummer und Anliegen extrahieren, einen Antwortentwurf erzeugen und erst nach menschlicher Freigabe im Ticketsystem speichern.", notes: "Kontrolle: Fehlerpfade, Berechtigungen, Protokollierung, Kostenlimits und Human-in-the-loop vor Produktivbetrieb definieren. Automatisierung erhöht auch die Geschwindigkeit von Fehlern." },
-        { id: "kit-19", type: "content", layout: "table", title: "Aufgabe und Werkzeug müssen zusammenpassen", body: "Aufgabe | Guter Startpunkt | Sinnvolle Alternative\nAllgemeine Analyse und Entwurf | ChatGPT oder Claude | Gemini\nQuellengebundene interne Wissensarbeit | NotebookLM | Claude-Projekt\nAktuelle Webrecherche | Perplexity | ChatGPT oder Gemini Deep Research\nMicrosoft-Office-Prozess | Microsoft 365 Copilot | allgemeiner Assistent mit freigegebenen Dateien\nSoftwareentwicklung | GitHub Copilot | Claude oder ChatGPT als Entwicklungsassistent\nPräsentation und Design | Gamma oder Canva | Microsoft 365 Copilot\nBild, Video und Sprache | Firefly, Runway oder ElevenLabs | Canva Magic Studio\nProzessautomatisierung | n8n | vorhandene Automationsplattform", notes: "Die Tabelle ist ein Startpunkt, keine dauerhafte Rangliste. Eigenes Testset, Datenschutz und vorhandene Systemlandschaft können zu einer anderen Wahl führen." },
-        { id: "kit-20", type: "content", layout: "three-column", title: "Ein guter Werkzeugmix folgt dem Arbeitsfluss", body: "1 · RECHERCHIEREN\nPerplexity oder Deep Research sammelt aktuelle Quellen\n---\n2 · VERDICHTEN\nChatGPT, Claude oder Gemini strukturiert Erkenntnisse\n---\n3 · BELEGEN\nNotebookLM prüft Aussagen gegen freigegebene Quellen\n---\n4 · GESTALTEN\nGamma, Canva, Firefly oder Runway erzeugt Medienentwürfe\n---\n5 · VERTONEN\nElevenLabs erstellt freigegebene Sprachversionen\n---\n6 · VERANKERN\nn8n überführt geprüfte Schritte in einen kontrollierten Ablauf", notes: "Nicht jede Aufgabe benötigt alle sechs Stufen. Jeder Medienbruch und jede zusätzliche Plattform erzeugt auch Aufwand und Datenschutzfragen." },
+        { id: "kit-19", type: "content", layout: "table", title: "Aufgabe und Werkzeug müssen zusammenpassen", body: "Aufgabe | Guter Startpunkt | Sinnvolle Alternative\nAllgemeine Analyse und Entwurf | ChatGPT oder Claude | Gemini\nQuellengebundene interne Wissensarbeit | NotebookLM | Claude-Projekt\nAktuelle Webrecherche | Perplexity | ChatGPT oder Gemini Deep Research\nMicrosoft-Office-Prozess | Microsoft 365 Copilot | allgemeiner Assistent mit freigegebenen Dateien\nSoftwareentwicklung | GitHub Copilot | Claude oder ChatGPT als Entwicklungsassistent\nPräsentation und Design | Gamma, Canva oder Napkin AI | Microsoft 365 Copilot\nBild, Video und Sprache | Firefly, Runway oder ElevenLabs | Canva Magic Studio\nProzessautomatisierung | n8n | vorhandene Automationsplattform", notes: "Die Tabelle ist ein Startpunkt, keine dauerhafte Rangliste. Eigenes Testset, Datenschutz und vorhandene Systemlandschaft können zu einer anderen Wahl führen." },
+        { id: "kit-20", type: "content", layout: "three-column", title: "Ein guter Werkzeugmix folgt dem Arbeitsfluss", body: "1 · RECHERCHIEREN\nPerplexity oder Deep Research sammelt aktuelle Quellen\n---\n2 · VERDICHTEN\nChatGPT, Claude oder Gemini strukturiert Erkenntnisse\n---\n3 · BELEGEN\nNotebookLM prüft Aussagen gegen freigegebene Quellen\n---\n4 · GESTALTEN\nGamma, Canva, Napkin AI, Firefly oder Runway erzeugt Medienentwürfe\n---\n5 · VERTONEN\nElevenLabs erstellt freigegebene Sprachversionen\n---\n6 · VERANKERN\nn8n überführt geprüfte Schritte in einen kontrollierten Ablauf", notes: "Nicht jede Aufgabe benötigt alle sechs Stufen. Jeder Medienbruch und jede zusätzliche Plattform erzeugt auch Aufwand und Datenschutzfragen." },
         { id: "kit-21", type: "content", layout: "two-column", title: "Praxisfall: eine Schulungskampagne entwickeln", body: "AUSGANGSLAGE\nEine neue interne Richtlinie soll erklärt, geschult und international ausgerollt werden. Quellen sind Richtlinie, Prozessbeschreibung und freigegebene FAQ.\n---\nWERKZEUGKETTE\nNotebookLM erstellt belegtes Briefing und Quiz. Gamma oder Canva erzeugt die Präsentation. ElevenLabs produziert freigegebene Sprachversionen. n8n verteilt erst nach dokumentierter Freigabe.", notes: "Das Beispiel zeigt sinnvolle Spezialisierung. Ein allgemeiner Assistent kann Teile übernehmen; die endgültige Auswahl hängt von vorhandenen Lizenzen und Systemen ab." },
         { id: "kit-22", type: "content", layout: "two-column", title: "Ein schlechter Prozess bleibt auch mit KI schlecht", body: "SCHWACHER ANSATZ\nUnklare Aufgabe, ungeprüfte Daten, beliebiges Tool, ein einziger Prompt und direkte Weitergabe des Ergebnisses.\n---\nBELASTBARER ANSATZ\nZiel und Risiko klären, Quellen freigeben, passendes Tool testen, Ergebnis belegen, fachlich prüfen und erst danach veröffentlichen oder automatisieren.", notes: "Technische Leistungsfähigkeit ersetzt keine Prozessverantwortung. Bei hohen Auswirkungen müssen Kontrollen stärker sein als bei einem unverbindlichen Entwurf." },
         { id: "kit-23", type: "content", layout: "tiles", title: "Vier Datenfragen kommen vor dem ersten Prompt", body: "WELCHE DATEN?\nPersonenbezug, Geschäftsgeheimnis und Schutzklasse bestimmen\n---\nWELCHES KONTO?\nConsumer, Business, Enterprise und Vertrag unterscheiden\n---\nWER DARF ZUGREIFEN?\nBerechtigungen, Connectors und Freigaben kontrollieren\n---\nWAS BLEIBT GESPEICHERT?\nTraining, Aufbewahrung, Protokolle und Löschung getrennt prüfen", notes: "Keine pauschale Datenschutzfreigabe für einen Produktnamen erteilen. Kontotyp, Tarif, Einstellungen, Vertrag, Region und konkrete Funktion gemeinsam bewerten." },
@@ -103,24 +128,32 @@ const seedState = {
         { id: "kit-25", type: "content", layout: "table", title: "Übung: den passenden Werkzeugmix entwerfen", body: "Schritt | Arbeitsauftrag | Ergebnis\n1 · Aufgabe | realen Prozess und gewünschtes Ergebnis beschreiben | klarer Anwendungsfall\n2 · Daten | Quellen, Sensibilität und Berechtigungen bestimmen | Datenrahmen\n3 · Auswahl | zwei geeignete Tools mit Kriterien vergleichen | begründete Entscheidung\n4 · Beispiel | konkreten Prompt und Beispielausgabe skizzieren | testbarer Ablauf\n5 · Kontrolle | Prüfer, Belege und Freigabepunkt festlegen | Sicherheitsnetz\n6 · Erfolg | Qualität, Zeit, Kosten und Fehler messen | Pilotkennzahlen", notes: "30 Minuten Gruppenarbeit und 15 Minuten Präsentation. Die Gruppen sollen nicht nur ein Tool nennen, sondern ihre Auswahl mit den fünf Kriterien aus Folie 5 begründen." },
         { id: "kit-26", type: "content", layout: "three-column", title: "Ein Pilot trennt Wirkung von Begeisterung", body: "1 · TESTSET\nReale, anonymisierte Beispiele und erwartete Ergebnisse festlegen\n---\n2 · VERGLEICH\nQualität, Belege, Nacharbeit, Zeit und Kosten erfassen\n---\n3 · ENTSCHEIDEN\nEinführen, begrenzen, nachbessern oder verwerfen\n---\n4 · REGELN\nZulässige Daten, Rollen und Freigaben dokumentieren\n---\n5 · SCHULEN\nGute Beispiele und typische Fehler weitergeben\n---\n6 · ÜBERWACHEN\nÄnderungen bei Funktionen, Preisen und Bedingungen verfolgen", notes: "Produktankündigungen sind kein Qualitätsnachweis für den eigenen Prozess. Vorher definierte Erfolgskriterien verhindern Schönfärberei." },
         { id: "kit-27", type: "content", layout: "tiles", title: "Fünf Regeln für den Werkzeugalltag", body: "AUFGABE VOR TOOL\nVom gewünschten Ergebnis ausgehen\n---\nQUELLE VOR ANTWORT\nBelegbare Informationen bevorzugen\n---\nSPEZIALIST VOR GEWOHNHEIT\nDas passende Format und die richtige Integration wählen\n---\nPRÜFUNG VOR WEITERGABE\nFolgen bestimmen den Kontrollaufwand\n---\nPILOT VOR ROLLOUT\nMit eigenen Fällen messen und lernen", notes: "Abschlussrunde: Jede Person nennt ein Werkzeug, einen sinnvollen Beispielprozess und die wichtigste Kontrolle." },
-        { id: "kit-28", type: "content", layout: "table", title: "Produktquellen und Aktualität", body: "Primärquelle des Anbieters | Verwendeter Schwerpunkt\nOpenAI und Anthropic Help Center | ChatGPT, Research, Canvas und Claude-Funktionen\nGoogle Gemini- und NotebookLM-Hilfe | Gemini, Gems, Deep Research und NotebookLM\nMicrosoft Support und GitHub Docs | Microsoft 365 Copilot und GitHub Copilot\nPerplexity, Gamma und Canva Help Center | Recherche, Präsentation und Design\nAdobe, Runway und ElevenLabs Docs | Bild, Video und Sprache\nn8n Docs | KI-Workflows und menschliche Freigaben\nStand | 17. Juli 2026 – Funktionen und Tarife erneut prüfen", notes: "Anbieterdokumentation ist die Primärquelle für den aktuellen Funktionsumfang, aber kein unabhängiger Qualitätsvergleich. Leistungsbehauptungen nur mit eigenen Testfällen übernehmen." }
+        { id: "kit-28", type: "content", layout: "table", title: "Produktquellen und Aktualität", body: "Primärquelle des Anbieters | Verwendeter Schwerpunkt\nOpenAI und Anthropic Help Center | ChatGPT, Research, Canvas und Claude-Funktionen\nGoogle Gemini- und NotebookLM-Hilfe | Gemini, Gems, Deep Research und NotebookLM\nMicrosoft Support und GitHub Docs | Microsoft 365 Copilot und GitHub Copilot\nPerplexity, Gamma, Canva und Napkin Help Center | Recherche, Präsentation und Design\nAdobe, Runway und ElevenLabs Docs | Bild, Video und Sprache\nn8n Docs | KI-Workflows und menschliche Freigaben\nStand | 17. Juli 2026 – Funktionen und Tarife erneut prüfen", notes: "Anbieterdokumentation ist die Primärquelle für den aktuellen Funktionsumfang, aber kein unabhängiger Qualitätsvergleich. Leistungsbehauptungen nur mit eigenen Testfällen übernehmen." }
       ]
     },
     {
       id: "mod-notebooklm",
       title: "NotebookLM praxisnah einsetzen",
+      coverImage: "assets/visuals/dokumentenanalyse.jpeg",
       category: "KI-Werkzeuge",
       level: "Einsteiger & Anwender",
       duration: 180,
       tags: ["NotebookLM", "Recherche", "Quellen", "Wissensmanagement", "Google"],
       description: "Praxisworkshop zu Funktionsweise, Quellenarbeit, Chat, Studio-Ergebnissen und verantwortlicher Nutzung von NotebookLM.",
-      version: 2,
+      version: 3,
       updatedAt: "2026-07-17",
       slides: [
         { id: "nlm-1", type: "title", layout: "standard", title: "NotebookLM praxisnah einsetzen", body: "Quellen analysieren, Wissen prüfen und Ergebnisse erzeugen\n\nPraxisworkshop für Recherche, Lernen und Wissensarbeit", notes: "Einstiegsfrage: Bei welcher Aufgabe müssen die Teilnehmenden regelmäßig viele Dokumente lesen, vergleichen oder zusammenfassen?" },
         { id: "nlm-2", type: "content", layout: "tiles", title: "Am Ende entsteht ein prüfbarer Arbeitsablauf", body: "EINORDNEN\nNotebookLM von einem allgemeinen KI-Chat unterscheiden\n---\nAUFBAUEN\nEin Notebook mit geeigneten Quellen strukturieren\n---\nANWENDEN\nChat und Studio zielgerichtet nutzen\n---\nPRÜFEN\nZitate, Datenschutz und Ergebnisqualität kontrollieren", notes: "Die Lernziele kurz vorstellen. Der Workshop kombiniert Demonstration, Einzelarbeit und eine Transferübung." },
         { id: "nlm-3", type: "content", layout: "two-column", title: "NotebookLM arbeitet mit einem abgegrenzten Wissensraum", body: "ALLGEMEINER KI-CHAT\nAntwortet aus Modellwissen, Gesprächskontext und – je nach Produkt – zusätzlichen Werkzeugen oder Websuche.\n---\nNOTEBOOKLM\nBeantwortet Fragen im Notebook quellengebunden. Hochgeladene und ausgewählte Quellen bilden den Arbeitskontext; Antworten enthalten Verweise auf Fundstellen.", notes: "Quellengebunden bedeutet nicht automatisch fehlerfrei. Auswahl, Aktualität und Qualität der Quellen bestimmen die mögliche Antwortqualität." },
         { id: "nlm-4", type: "content", layout: "three-column", title: "Drei Bereiche prägen die Arbeit", body: "QUELLEN\nDokumente hinzufügen, auswählen, ordnen und einzeln öffnen\n---\nCHAT\nFragen stellen, vergleichen, erklären und mit Zitaten prüfen\n---\nSTUDIO\nQuellen in Berichte, Audio, Video, Lernhilfen und weitere Formate überführen", notes: "Die Oberfläche live zeigen. Je nach Bildschirmgröße können die Bereiche ein- oder ausgeblendet werden." },
+        { id: "nlm-4a", type: "content", layout: "visual-pair", title: "Die Bibliothek organisiert Notebooks nach Themen", body: "Die Kachelansicht zeigt Titel, Aktualität und Anzahl der Quellen. Suche, Filter und verschiedene Ansichten helfen bei größeren Beständen.", visuals: [
+          { src: "assets/notebooklm/notebook-bibliothek-breit.png", alt: "Breite NotebookLM-Bibliothek mit mehreren thematischen Notebook-Kacheln", caption: "Breite Ansicht: mehr Notebooks gleichzeitig vergleichen" },
+          { src: "assets/notebooklm/notebook-bibliothek-kompakt.png", alt: "Kompakte NotebookLM-Bibliothek mit sechs sichtbaren Notebook-Kacheln", caption: "Kompakte Ansicht: Fokus auf die zuletzt genutzten Notebooks" }
+        ], notes: "Anhand der beiden echten Ansichten zeigen: Ein Notebook sollte einen klar abgegrenzten Zweck und einen verständlichen Namen haben. Die Oberfläche passt die Anzahl sichtbarer Kacheln an die Fensterbreite an." },
+        { id: "nlm-4b", type: "content", layout: "visual", title: "Quellen, Chat und Studio arbeiten zusammen", body: "Links wird der aktive Quellenbestand gesteuert, in der Mitte entstehen belegte Antworten und rechts werden daraus Audio, Berichte, Quiz, Mindmaps oder weitere Lernformate.", visuals: [
+          { src: "assets/notebooklm/notebook-arbeitsbereich.png", alt: "NotebookLM-Arbeitsbereich mit Quellenleiste, Chat und Studio-Werkzeugen", caption: "Praxisansicht: Quellen auswählen · Antworten mit Fundstellen prüfen · Studio-Ergebnisse erzeugen" }
+        ], notes: "Die drei Spalten von links nach rechts erklären. Im Screenshot sind 18 Quellen aktiv. Hervorheben, dass die Auswahl links den Antwortkontext bestimmt und Studio-Ergebnisse rechts weiterhin fachlich geprüft werden müssen." },
         { id: "nlm-5", type: "content", layout: "three-column", title: "So entsteht eine Antwort", body: "1 · QUELLEN IMPORTIEREN\nNotebookLM erstellt aus den bereitgestellten Inhalten einen nutzbaren Wissenskontext\n---\n2 · PASSAGEN FINDEN\nZur Frage passende Abschnitte werden aus den aktiven Quellen herangezogen\n---\n3 · ANTWORT FORMULIEREN\nDas Modell erzeugt eine Antwort und verbindet Aussagen mit anklickbaren Fundstellen", notes: "Vereinfacht als Retrieval-plus-Generierung erklären. NotebookLM verändert die Originaldateien in Google Drive nicht." },
         { id: "nlm-6", type: "content", layout: "table", title: "Viele Quellenformate lassen sich kombinieren", body: "Quellengruppe | Beispiele | Typische Nutzung\nDokumente | PDF, DOCX, TXT, Markdown, ePub | Berichte und Richtlinien\nOffice-Daten | Google Docs, Slides, Sheets, PPTX, CSV | Projekt- und Unternehmenswissen\nMedien | Audio, Bilder, öffentliche YouTube-Videos | Interviews, Vorträge, Abbildungen\nWeb | Webseiten und recherchierte Webquellen | Markt- und Themenrecherche\nDirekte Eingabe | kopierter Text, Gemini-Chats | Notizen und vorhandene Dialoge", notes: "Stand 17.07.2026. Bei Webseiten wird im Wesentlichen der Text importiert; bei YouTube das verfügbare Transkript. Unterstützte Formate und Limits können sich ändern." },
         { id: "nlm-7", type: "content", layout: "two-column", title: "Ein Notebook braucht eine klare Fragestellung", body: "ZU BREIT\n„Alles zum Projekt, zur Branche und zum Kunden“ erzeugt einen unübersichtlichen Quellenbestand mit widersprüchlichen Perspektiven.\n---\nBESSER ABGEGRENZT\n„Welche vertraglichen Pflichten, Termine und offenen Entscheidungen betreffen Projektphase 2?“ gibt Auswahl und Fragen eine klare Richtung.", notes: "Ein Notebook ist meist für ein Thema, Projekt oder Ergebnis gedacht. Getrennte Zwecke besser in getrennten Notebooks bearbeiten." },
@@ -149,6 +182,7 @@ const seedState = {
     {
       id: "mod-ki-grundlagen",
       title: "Grundlagen der künstlichen Intelligenz",
+      coverImage: "assets/visuals/ki-ueberblick.jpeg",
       category: "Künstliche Intelligenz",
       level: "Einsteiger",
       duration: 90,
@@ -179,6 +213,7 @@ const seedState = {
     {
       id: "mod-ki-entwicklung-zukunft",
       title: "Die Entwicklung der künstlichen Intelligenz",
+      coverImage: "assets/visuals/ki-ueberblick.jpeg",
       category: "Künstliche Intelligenz",
       level: "Alle",
       duration: 180,
@@ -224,6 +259,7 @@ const seedState = {
     {
       id: "mod-ki-werkzeuge",
       title: "KI-Werkzeuge gezielt einsetzen",
+      coverImage: "assets/visuals/automatisierung.jpeg",
       category: "Künstliche Intelligenz",
       level: "Anwender & Entscheider",
       duration: 210,
@@ -266,6 +302,7 @@ const seedState = {
     {
       id: "mod-prompting",
       title: "Professionelles Prompt Engineering",
+      coverImage: "assets/visuals/prompting-dialog.jpeg",
       category: "Methoden",
       level: "Anwender & Entwickler",
       duration: 150,
@@ -302,6 +339,7 @@ const seedState = {
     {
       id: "mod-transfer",
       title: "Transfer in den Arbeitsalltag",
+      coverImage: "assets/visuals/automatisierung.jpeg",
       category: "Transfer",
       level: "Alle",
       duration: 30,
@@ -319,6 +357,7 @@ const seedState = {
     {
       id: "mod-chatgpt-claude-web-api",
       title: "ChatGPT vs. Claude – Web/App und API im Vergleich",
+      coverImage: "assets/visuals/cloud-ki.jpeg",
       category: "KI & Datenschutz",
       level: "Entscheider & Anwender",
       duration: 75,
@@ -345,6 +384,7 @@ const seedState = {
     {
       id: "mod-ki-modelle-vergleich",
       title: "KI-Modelle im Vergleich – Welches Modell für welche Aufgabe?",
+      coverImage: "assets/visuals/ki-werkzeuge.jpeg",
       category: "KI & Architektur",
       level: "Entwickler & Entscheider",
       duration: 90,
@@ -405,6 +445,7 @@ function loadState() {
   try {
     const stored = JSON.parse(localStorage.getItem(STORAGE_KEY));
     if (stored?.modules && stored?.workshops) {
+      stored.images ||= [];
       const requiredLibraryModuleIds = ["mod-ki-tools-praxiseinsatz", "mod-notebooklm", "mod-ki-grundlagen", "mod-ki-entwicklung-zukunft", "mod-ki-werkzeuge", "mod-prompting", "mod-transfer", "mod-chatgpt-claude-web-api", "mod-ki-modelle-vergleich"];
       let libraryChanged = false;
       requiredLibraryModuleIds.forEach((moduleId) => {
@@ -418,6 +459,14 @@ function loadState() {
           libraryChanged = true;
         }
       });
+      if (Number(stored.visualVersion || 0) < Number(seedState.visualVersion || 0)) {
+        stored.modules.forEach((module) => {
+          const libraryModule = seedState.modules.find((item) => item.id === module.id);
+          if (libraryModule?.coverImage) module.coverImage = libraryModule.coverImage;
+        });
+        stored.visualVersion = seedState.visualVersion;
+        libraryChanged = true;
+      }
       if (libraryChanged) localStorage.setItem(STORAGE_KEY, JSON.stringify(stored));
       return stored;
     }
@@ -531,18 +580,21 @@ function render() {
   const configs = {
     dashboard: ["DEIN ARBEITSBEREICH", "Guten Tag, Bernhard"],
     modules: ["INHALTE ORGANISIEREN", "Modul-Bibliothek"],
+    images: ["VISUELLE BAUSTEINE", "Bildbibliothek"],
     workshops: ["PLANEN & DURCHFÜHREN", "Deine Schulungen"],
     builder: ["SCHULUNG ZUSAMMENSTELLEN", "Workshop-Builder"]
   };
   [pageEyebrow.textContent, pageTitle.textContent] = configs[currentView] || configs.dashboard;
   if (currentView === "dashboard") renderDashboard();
   if (currentView === "modules") renderModules();
+  if (currentView === "images") renderImages();
   if (currentView === "workshops") renderWorkshops();
   if (currentView === "builder") renderBuilder(editingWorkshopId);
 }
 
 function moduleCard(module, compact = false) {
   return `<article class="content-card">
+    ${module.coverImage ? `<div class="module-cover"><img src="${escapeHtml(module.coverImage)}" alt="${escapeHtml(imageBySrc(module.coverImage)?.alt || `Titelbild für ${module.title}`)}" /></div>` : ""}
     <div class="tag-row">
       <span class="tag">${escapeHtml(module.category)}</span>
       <span class="tag neutral">v${module.version}</span>
@@ -560,10 +612,13 @@ function renderDashboard() {
   viewRoot.innerHTML = `
     <div class="hero-grid">
       <article class="hero-card">
+        <div class="hero-image" aria-hidden="true"></div>
+        <div class="hero-content">
         <span class="kicker">SMART WORKSHOPSTUDIO</span>
         <h2>Von deinen Modulen zur fertigen Schulung.</h2>
         <p>Baue wiederverwendbare Inhalte auf, kombiniere sie passend zum Auftrag und präsentiere direkt aus dem Browser – inklusive PDF-Sicherung.</p>
         <button class="button" data-start-workshop>Schulung zusammenstellen →</button>
+        </div>
       </article>
       <div class="stat-stack">
         <article class="stat-card"><span class="stat-icon">▦</span><strong>${state.modules.length}</strong><span>Module in deiner Bibliothek</span></article>
@@ -574,6 +629,28 @@ function renderDashboard() {
     <div class="section-header"><h2>Zuletzt bearbeitete Module</h2><button class="text-link" data-show-modules>Alle Module ansehen →</button></div>
     <div class="card-grid">${recent.map((module) => moduleCard(module, true)).join("")}</div>
   `;
+}
+
+function renderImages() {
+  const images = imageLibrary();
+  viewRoot.innerHTML = `
+    <div class="image-library-intro"><div><h2>Visuelle Bausteine für Schulungen</h2><p>Titelbilder und Folienmotive werden in Vorschau, PDF und Offline-HTML übernommen. Eigene Bilder sollten nur mit geklärten Nutzungsrechten verwendet werden.</p></div><label class="button primary image-upload">+ Eigenes Bild<input id="imageUpload" type="file" accept="image/png,image/jpeg,image/webp" /></label></div>
+    <div class="image-library-grid">${images.map((image) => `<article class="image-library-card"><div class="image-library-preview"><img src="${escapeHtml(image.src)}" alt="${escapeHtml(image.alt || image.name)}" /></div><div class="image-library-copy"><strong>${escapeHtml(image.name)}</strong><p>${escapeHtml(image.alt || "Kein Alternativtext hinterlegt")}</p><small>${escapeHtml(image.source || "Eigener Upload")}</small></div></article>`).join("")}</div>`;
+  document.querySelector("#imageUpload")?.addEventListener("change", importLibraryImage);
+}
+
+function importLibraryImage(event) {
+  const file = event.target.files?.[0];
+  if (!file) return;
+  if (file.size > 1_500_000) return toast("Bitte ein Bild unter 1,5 MB wählen");
+  const reader = new FileReader();
+  reader.onload = () => {
+    state.images ||= [];
+    state.images.push({ id: uid("image"), name: file.name.replace(/\.[^.]+$/, ""), src: reader.result, alt: file.name.replace(/[-_]/g, " ").replace(/\.[^.]+$/, ""), source: "Eigener Upload · Nutzungsrechte prüfen" });
+    saveState("Bild zur Bibliothek hinzugefügt");
+    renderImages();
+  };
+  reader.readAsDataURL(file);
 }
 
 function renderModules(query = "", category = "alle") {
@@ -641,7 +718,7 @@ function renderBuilder(id) {
 function openModuleModal(moduleId = null) {
   const original = state.modules.find((module) => module.id === moduleId);
   const draft = original ? structuredClone(original) : {
-    id: uid("mod"), title: "", category: "Allgemein", level: "Alle", duration: 30, tags: [], description: "", version: 1, updatedAt: new Date().toISOString().slice(0, 10), slides: [{ id: uid("slide"), type: "title", layout: "standard", title: "", body: "", notes: "" }]
+    id: uid("mod"), title: "", coverImage: "assets/visuals/ki-ueberblick.jpeg", category: "Allgemein", level: "Alle", duration: 30, tags: [], description: "", version: 1, updatedAt: new Date().toISOString().slice(0, 10), slides: [{ id: uid("slide"), type: "title", layout: "standard", title: "", body: "", notes: "" }]
   };
 
   const renderModal = () => {
@@ -656,18 +733,24 @@ function openModuleModal(moduleId = null) {
             <div class="field"><label>Dauer in Minuten</label><input name="duration" type="number" min="5" step="5" required value="${draft.duration}" /></div>
             <div class="field"><label>Schlagwörter, mit Komma getrennt</label><input name="tags" value="${escapeHtml(draft.tags.join(", "))}" /></div>
             <div class="field full"><label>Kurzbeschreibung</label><textarea name="description">${escapeHtml(draft.description)}</textarea></div>
+            <div class="field full"><label>Modul-Titelbild</label><select name="coverImage"><option value="">Kein Titelbild</option>${imageLibrary().map((image) => `<option value="${escapeHtml(image.src)}" ${draft.coverImage === image.src ? "selected" : ""}>${escapeHtml(image.name)}</option>`).join("")}</select><small>Das Titelbild erscheint auf der Modulkarte sowie auf Titel- und Kapiteltrenner-Folien.</small></div>
           </div>
           <div class="section-header"><h2>Folien</h2><button type="button" class="button secondary small" data-add-slide>+ Folie</button></div>
-          <div class="slide-editor-list">${draft.slides.map((slide, index) => `<div class="slide-editor" data-slide-index="${index}">
+          <div class="slide-editor-list">${draft.slides.map((slide, index) => { const visual = slide.visuals?.[0]; return `<div class="slide-editor" data-slide-index="${index}">
             <div class="slide-editor-head"><strong>Folie ${index + 1}</strong><button type="button" class="button danger small" data-remove-slide="${index}">Entfernen</button></div>
             <div class="slide-editor-grid">
               <div class="field"><label>Folientitel</label><input data-slide-field="title" value="${escapeHtml(slide.title)}" required /></div>
               <div class="field"><label>Folientyp</label><select data-slide-field="type"><option value="content" ${slide.type === "content" ? "selected" : ""}>Inhalt</option><option value="title" ${slide.type === "title" ? "selected" : ""}>Titel / Trenner</option></select></div>
-              <div class="field full"><label>Darstellung</label><select data-slide-field="layout"><option value="standard" ${(slide.layout || "standard") === "standard" ? "selected" : ""}>Standard</option><option value="two-column" ${slide.layout === "two-column" ? "selected" : ""}>2 Spalten</option><option value="three-column" ${slide.layout === "three-column" ? "selected" : ""}>3 Spalten</option><option value="tiles" ${slide.layout === "tiles" ? "selected" : ""}>Kacheln</option><option value="metrics" ${slide.layout === "metrics" ? "selected" : ""}>Kennzahlen</option><option value="table" ${slide.layout === "table" ? "selected" : ""}>Tabelle</option></select><small>Spalten und Kacheln mit einer Zeile <strong>---</strong> trennen. Tabellenzellen mit <strong>|</strong>.</small></div>
+              <div class="field full"><label>Darstellung</label><select data-slide-field="layout"><option value="standard" ${(slide.layout || "standard") === "standard" ? "selected" : ""}>Standard</option><option value="two-column" ${slide.layout === "two-column" ? "selected" : ""}>2 Spalten</option><option value="three-column" ${slide.layout === "three-column" ? "selected" : ""}>3 Spalten</option><option value="tiles" ${slide.layout === "tiles" ? "selected" : ""}>Kacheln</option><option value="metrics" ${slide.layout === "metrics" ? "selected" : ""}>Kennzahlen</option><option value="table" ${slide.layout === "table" ? "selected" : ""}>Tabelle</option><option value="image-split" ${slide.layout === "image-split" ? "selected" : ""}>Text links · Bild rechts</option><option value="visual" ${slide.layout === "visual" ? "selected" : ""}>Großes Bild</option><option value="visual-pair" ${slide.layout === "visual-pair" ? "selected" : ""}>Zwei Bilder</option></select><small>Spalten und Kacheln mit einer Zeile <strong>---</strong> trennen. Tabellenzellen mit <strong>|</strong>.</small></div>
+              <div class="field"><label>Optionales Folienbild</label><select data-slide-image><option value="">Kein Bild</option>${imageLibrary().map((image) => `<option value="${escapeHtml(image.src)}" ${visual?.src === image.src ? "selected" : ""}>${escapeHtml(image.name)}</option>`).join("")}</select></div>
+              <div class="field"><label>Bilddarstellung</label><select data-slide-visual-field="fit"><option value="contain" ${(visual?.fit || "contain") === "contain" ? "selected" : ""}>Vollständig anzeigen</option><option value="cover" ${visual?.fit === "cover" ? "selected" : ""}>Fläche ausfüllen / zuschneiden</option></select></div>
+              <div class="field"><label>Bildposition</label><select data-slide-visual-field="position"><option value="center" ${(visual?.position || "center") === "center" ? "selected" : ""}>Mitte</option><option value="left" ${visual?.position === "left" ? "selected" : ""}>Links</option><option value="right" ${visual?.position === "right" ? "selected" : ""}>Rechts</option><option value="top" ${visual?.position === "top" ? "selected" : ""}>Oben</option><option value="bottom" ${visual?.position === "bottom" ? "selected" : ""}>Unten</option></select></div>
+              <div class="field"><label>Bildunterschrift</label><input data-slide-visual-field="caption" value="${escapeHtml(visual?.caption || "")}" /></div>
+              <div class="field full"><label>Alternativtext</label><input data-slide-visual-field="alt" value="${escapeHtml(visual?.alt || "")}" placeholder="Beschreibt den Bildinhalt für Barrierefreiheit" /></div>
               <div class="field body-field"><label>Inhalt</label><textarea data-slide-field="body" placeholder="Absätze und Aufzählungen …">${escapeHtml(slide.body)}</textarea></div>
               <div class="field body-field"><label>Moderationsnotizen (nicht auf der PDF-Folie)</label><textarea data-slide-field="notes">${escapeHtml(slide.notes)}</textarea></div>
             </div>
-          </div>`).join("")}</div>
+          </div>`; }).join("")}</div>
         </div>
         <div class="modal-footer">${original ? `<button type="button" class="button danger" data-delete-module="${draft.id}">Modul löschen</button>` : ""}<div class="footer-right"><button type="button" class="button secondary" data-close-modal>Abbrechen</button><button class="button primary" type="submit">Modul speichern</button></div></div>
       </form>
@@ -676,6 +759,17 @@ function openModuleModal(moduleId = null) {
     modalRoot.querySelectorAll("[data-slide-field]").forEach((field) => field.addEventListener("input", (event) => {
       const index = Number(event.target.closest("[data-slide-index]").dataset.slideIndex);
       draft.slides[index][event.target.dataset.slideField] = event.target.value;
+    }));
+    modalRoot.querySelectorAll("[data-slide-image]").forEach((field) => field.addEventListener("change", (event) => {
+      const index = Number(event.target.closest("[data-slide-index]").dataset.slideIndex);
+      const selected = imageBySrc(event.target.value);
+      draft.slides[index].visuals = selected ? [{ src: selected.src, alt: selected.alt, caption: selected.name, source: selected.source, fit: "contain", position: "center" }] : [];
+      renderModal();
+    }));
+    modalRoot.querySelectorAll("[data-slide-visual-field]").forEach((field) => field.addEventListener("input", (event) => {
+      const index = Number(event.target.closest("[data-slide-index]").dataset.slideIndex);
+      if (!draft.slides[index].visuals?.length) return;
+      draft.slides[index].visuals[0][event.target.dataset.slideVisualField] = event.target.value;
     }));
     modalRoot.querySelector("[data-add-slide]").addEventListener("click", () => {
       syncDraftFields();
@@ -715,6 +809,7 @@ function openModuleModal(moduleId = null) {
     draft.duration = Number(data.get("duration"));
     draft.tags = data.get("tags").split(",").map((tag) => tag.trim()).filter(Boolean);
     draft.description = data.get("description");
+    draft.coverImage = data.get("coverImage");
   };
   renderModal();
 }
@@ -784,10 +879,10 @@ function moveWorkshopModule(workshopId, index, direction) {
 }
 
 function workshopSlides(workshop) {
-  const slides = [{ id: "opening", type: "title", title: workshop.title, body: `${workshop.client || ""}${workshop.date ? `\n${formatDate(workshop.date)}` : ""}`, notes: workshop.description || "" }];
+  const slides = [{ id: "opening", type: "title", title: workshop.title, body: `${workshop.client || ""}${workshop.date ? `\n${formatDate(workshop.date)}` : ""}`, notes: workshop.description || "", moduleCover: "assets/visuals/ki-ueberblick.jpeg" }];
   workshop.moduleIds.forEach((moduleId) => {
     const module = state.modules.find((item) => item.id === moduleId);
-    if (module) slides.push(...module.slides.map((slide) => ({ ...slide, moduleTitle: module.title })));
+    if (module) slides.push(...module.slides.map((slide) => ({ ...slide, moduleTitle: module.title, moduleCover: module.coverImage })));
   });
   return slides;
 }
@@ -806,8 +901,15 @@ function renderTextBlock(value = "") {
   return `<div class="block-heading">${escapeHtml(heading)}</div>${rest.length ? `<div class="block-copy">${rest.map((line) => escapeHtml(line)).join("<br>")}</div>` : ""}`;
 }
 
-function renderSlideBody(slide) {
+function renderSlideContent(slide) {
   const layout = slide.layout || "standard";
+  if (Array.isArray(slide.visuals) && slide.visuals.length) {
+    const visualClass = slide.visuals.length === 1 ? "visual-count-1" : "visual-count-2";
+    const visuals = slide.visuals.map((visual) => `<figure class="slide-visual-card fit-${escapeHtml(visual.fit || "contain")} position-${escapeHtml(visual.position || "center")}"><div class="slide-visual-frame"><img src="${escapeHtml(visual.src)}" alt="${escapeHtml(visual.alt || "")}" /></div>${visual.caption ? `<figcaption>${escapeHtml(visual.caption)}</figcaption>` : ""}</figure>`).join("");
+    const summary = slide.body?.trim() ? `<p class="slide-visual-summary">${escapeHtml(slide.body).replace(/\n/g, "<br>")}</p>` : "";
+    if (layout === "image-split" && slide.visuals.length === 1) return `<div class="slide-image-split"><div class="slide-image-copy">${escapeHtml(slide.body || "").replace(/\n/g, "<br>")}</div>${visuals}</div>`;
+    return `<div class="slide-visual-layout"><div class="slide-visual-grid ${visualClass}">${visuals}</div>${summary}</div>`;
+  }
   const blocks = slide.body.split(/\n\s*---\s*\n/).map((part) => part.trim()).filter(Boolean);
   if (layout === "two-column" || layout === "three-column") {
     const count = layout === "three-column" ? 3 : 2;
@@ -824,9 +926,19 @@ function renderSlideBody(slide) {
   return `<div class="standard-copy">${escapeHtml(slide.body).replace(/\n/g, "<br>")}</div>`;
 }
 
+function renderSlideBody(slide) {
+  const links = Array.isArray(slide.links) && slide.links.length
+    ? `<div class="slide-links">${slide.links.map((link) => `<a href="${escapeHtml(link.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(link.label || link.url)} <span>↗</span></a>`).join("")}</div>`
+    : "";
+  return `${renderSlideContent(slide)}${links}`;
+}
+
+const EMBEDDED_VISUAL_CSS = `.slide-visual-layout{display:grid;gap:6px}.slide-visual-grid{display:grid;gap:8px;height:55%}.visual-count-2{grid-template-columns:repeat(2,minmax(0,1fr))}.visual-count-1{grid-template-columns:1fr;height:62%}.slide-visual-card{display:flex;flex-direction:column;min-width:0;margin:0;overflow:hidden;border:1px solid #cad5e2;background:#f3f7fa}.slide-visual-frame{flex:1;min-height:0;padding:4px;background:#fff}.slide-visual-card img{display:block;width:100%;height:100%;object-fit:contain}.slide-visual-card.fit-cover img{object-fit:cover}.slide-visual-card.position-left img{object-position:left center}.slide-visual-card.position-right img{object-position:right center}.slide-visual-card.position-top img{object-position:center top}.slide-visual-card.position-bottom img{object-position:center bottom}.slide-visual-card figcaption{padding:5px 7px;color:#354b68;font-size:.62em;font-weight:700}.slide-visual-summary{margin:0;font-size:.68em}.slide-image-split{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:18px;align-items:stretch;height:min(38vh,360px)}.slide-image-copy{display:flex;align-items:center;padding:20px;border-left:5px solid #2d4f7c;background:#f2f6fa;line-height:1.45}.slide-links{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}.slide-links a{display:inline-flex;gap:6px;padding:7px 10px;border:1px solid #bfd0e3;border-radius:6px;color:#204b7c;background:#eef5fb;font-size:.64em;font-weight:800;text-decoration:none}`;
+
 function renderSlide(slide, index, total, className = "presentation-slide") {
   const dense = slide.body.length > 420 || slide.body.split("\n").length > 10;
-  return `<article class="${className} ${slide.type === "title" ? "title-slide" : ""} layout-${slide.layout || "standard"} ${dense ? "dense" : ""}">
+  const titleStyle = slide.type === "title" && slide.moduleCover ? ` style="--slide-cover:url('${escapeHtml(slide.moduleCover)}')"` : "";
+  return `<article class="${className} ${slide.type === "title" ? "title-slide has-cover" : ""} layout-${slide.layout || "standard"} ${dense ? "dense" : ""}"${titleStyle}>
     <div class="slide-kicker">${escapeHtml(slide.moduleTitle || "SMART WorkshopStudio")}</div>
     <h1 class="${slideTitleClass(slide.title)}">${escapeHtml(slide.title)}</h1>
     <div class="slide-body">${renderSlideBody(slide)}</div>
@@ -848,7 +960,7 @@ function startModulePreview(moduleId) {
     moduleId,
     workshopId: null,
     title: module.title,
-    slides: module.slides.map((slide) => ({ ...slide, moduleTitle: module.title })),
+    slides: module.slides.map((slide) => ({ ...slide, moduleTitle: module.title, moduleCover: module.coverImage })),
     index: 0,
     startedAt: Date.now()
   };
@@ -892,7 +1004,8 @@ function openPresenterView() {
 
 function presenterSlideMarkup(slide, label) {
   if (!slide) return `<div class="empty-preview">Ende der Präsentation</div>`;
-  return `<div class="presenter-slide ${slide.type === "title" ? "title" : ""}"><small>${escapeHtml(label)}</small><h2 class="${slideTitleClass(slide.title)}">${escapeHtml(slide.title)}</h2><div class="slide-body">${renderSlideBody(slide)}</div></div>`;
+  const coverStyle = slide.type === "title" && slide.moduleCover ? ` style="background-image:linear-gradient(90deg,rgba(20,33,61,.97),rgba(20,33,61,.67)),url('${escapeHtml(slide.moduleCover)}');background-size:cover;background-position:center"` : "";
+  return `<div class="presenter-slide ${slide.type === "title" ? "title" : ""}"${coverStyle}><small>${escapeHtml(label)}</small><h2 class="${slideTitleClass(slide.title)}">${escapeHtml(slide.title)}</h2><div class="slide-body">${renderSlideBody(slide)}</div></div>`;
 }
 
 function renderPresenterWindow(force = false) {
@@ -903,7 +1016,8 @@ function renderPresenterWindow(force = false) {
   const label = current?.moduleTitle || presentation.title || "SMART WorkshopStudio";
   const nextLabel = next?.moduleTitle || presentation.title || "SMART WorkshopStudio";
   const html = `<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Referentenansicht – ${title}</title><style>
-    :root{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#e9eef7;background:#080f1e}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:#080f1e}.shell{min-height:100vh;display:grid;grid-template-rows:auto 1fr auto}.top{display:flex;justify-content:space-between;align-items:center;padding:18px 24px;border-bottom:1px solid #26334b;background:#0d1930}.eyebrow{color:#9db8dc;font-size:11px;font-weight:800;letter-spacing:.14em}.top h1{margin:4px 0 0;font:500 24px Georgia,serif}.stats{display:flex;gap:24px;text-align:right}.stat strong,.stat span{display:block}.stat strong{font-size:20px}.stat span{color:#93a2b8;font-size:10px;text-transform:uppercase;letter-spacing:.08em}.grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(300px,.65fr);gap:18px;padding:18px;min-height:0}.panel{min-height:0;padding:14px;border:1px solid #26334b;border-radius:14px;background:#101a2c}.panel-label{margin:0 0 10px;color:#91a6c5;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.right{display:grid;grid-template-rows:minmax(220px,.9fr) minmax(210px,1.1fr);gap:18px;min-height:0}.presenter-slide{height:100%;padding:6%;overflow:auto;color:#172033;background:#fdfdfb}.presenter-slide.title{color:#fff;background:#14213d}.presenter-slide small{color:#2d4f7c;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.presenter-slide.title small{color:#a9c9ee}.presenter-slide h2{margin:7% 0 4%;font:500 clamp(21px,3vw,48px)/1.08 Georgia,serif;white-space:nowrap}.presenter-slide h2.title-md{font-size:clamp(19px,2.6vw,40px)}.presenter-slide h2.title-sm{font-size:clamp(17px,2.2vw,34px)}.presenter-slide h2.title-xs{font-size:clamp(15px,1.8vw,28px)}.presenter-slide .slide-body{color:#4d596c;font-size:clamp(12px,1.25vw,18px);line-height:1.4}.presenter-slide.title .slide-body{color:#cbd9ea}.slide-columns,.slide-tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.columns-3{grid-template-columns:repeat(3,minmax(0,1fr))}.slide-column,.slide-tile{padding:14px;border:1px solid #dce4ee;border-left:4px solid #2d4f7c;background:#f5f8fb}.tone-1{border-left-color:#6686ad}.tone-2{border-left-color:#173a64}.block-heading{color:#14213d!important;font-weight:800}.block-copy{margin-top:7px}.metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.metric-grid .block-heading{font-size:1.8em}.slide-table{width:100%;border-collapse:collapse}.slide-table th,.slide-table td{padding:7px;border:1px solid #d5dee9;text-align:left}.slide-table th{color:#fff;background:#14213d}.next .presenter-slide h2{font-size:clamp(18px,2vw,30px)}.next .presenter-slide .slide-body{font-size:clamp(10px,1vw,14px)}.notes{height:100%;padding:18px;overflow:auto;border-radius:9px;color:#dce6f4;background:#17243b;font-size:16px;line-height:1.55;white-space:pre-line}.notes.empty{color:#7f8da2;font-style:italic}.empty-preview{display:grid;place-items:center;height:100%;color:#76849a;background:#111c2f}.controls{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 20px;border-top:1px solid #26334b;background:#0d1930}.controls button{padding:11px 15px;border:1px solid #34445f;border-radius:9px;color:#fff;background:#172b4d;font-weight:700;cursor:pointer}.controls button:hover{background:#233e69}.keys{color:#8fa0b8;font-size:12px}@media(max-width:850px){.grid{grid-template-columns:1fr}.right{grid-template-columns:1fr 1fr;grid-template-rows:320px}.stats{gap:10px}.keys{display:none}}
+    :root{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#e9eef7;background:#080f1e}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:#080f1e}.shell{min-height:100vh;display:grid;grid-template-rows:auto 1fr auto}.top{display:flex;justify-content:space-between;align-items:center;padding:18px 24px;border-bottom:1px solid #26334b;background:#0d1930}.eyebrow{color:#9db8dc;font-size:11px;font-weight:800;letter-spacing:.14em}.top h1{margin:4px 0 0;font:500 24px Georgia,serif}.stats{display:flex;gap:24px;text-align:right}.stat strong,.stat span{display:block}.stat strong{font-size:20px}.stat span{color:#93a2b8;font-size:10px;text-transform:uppercase;letter-spacing:.08em}.grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(300px,.65fr);gap:18px;padding:18px;min-height:0}.panel{min-height:0;padding:14px;border:1px solid #26334b;border-radius:14px;background:#101a2c}.panel-label{margin:0 0 10px;color:#91a6c5;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.right{display:grid;grid-template-rows:minmax(220px,.9fr) minmax(210px,1.1fr);gap:18px;min-height:0}.presenter-slide{height:100%;padding:6%;overflow:auto;color:#172033;background:#fdfdfb}.presenter-slide.title{color:#fff;background:#14213d}.presenter-slide small{color:#2d4f7c;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.presenter-slide.title small{color:#a9c9ee}.presenter-slide h2{margin:7% 0 4%;font:500 clamp(21px,3vw,48px)/1.08 Georgia,serif;white-space:nowrap}.presenter-slide h2.title-md{font-size:clamp(19px,2.6vw,40px)}.presenter-slide h2.title-sm{font-size:clamp(17px,2.2vw,34px)}.presenter-slide h2.title-xs{font-size:clamp(15px,1.8vw,28px)}.presenter-slide .slide-body{color:#4d596c;font-size:clamp(12px,1.25vw,18px);line-height:1.4}.presenter-slide.title .slide-body{color:#cbd9ea}.slide-columns,.slide-tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.columns-3{grid-template-columns:repeat(3,minmax(0,1fr))}.slide-column,.slide-tile{padding:14px;border:1px solid #dce4ee;border-left:4px solid #2d4f7c;background:#f5f8fb}.tone-1{border-left-color:#6686ad}.tone-2{border-left-color:#173a64}.block-heading{color:#14213d!important;font-weight:800}.block-copy{margin-top:7px}.metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.metric-grid .block-heading{font-size:1.8em}.slide-table{width:100%;border-collapse:collapse}.slide-table th,.slide-table td{padding:7px;border:1px solid #d5dee9;text-align:left}.slide-table th{color:#fff;background:#14213d}.slide-visual-layout{display:grid;gap:6px}.slide-visual-grid{display:grid;gap:8px;height:55%}.visual-count-2{grid-template-columns:repeat(2,minmax(0,1fr))}.visual-count-1{grid-template-columns:1fr;height:62%}.slide-visual-card{display:flex;flex-direction:column;min-width:0;margin:0;overflow:hidden;border:1px solid #cad5e2;background:#f3f7fa}.slide-visual-frame{flex:1;min-height:0;padding:4px;background:#fff}.slide-visual-card img{display:block;width:100%;height:100%;object-fit:contain}.slide-visual-card figcaption{padding:5px 7px;color:#354b68;font-size:.62em;font-weight:700}.slide-visual-summary{margin:0;font-size:.68em}.next .presenter-slide h2{font-size:clamp(18px,2vw,30px)}.next .presenter-slide .slide-body{font-size:clamp(10px,1vw,14px)}.notes{height:100%;padding:18px;overflow:auto;border-radius:9px;color:#dce6f4;background:#17243b;font-size:16px;line-height:1.55;white-space:pre-line}.notes.empty{color:#7f8da2;font-style:italic}.empty-preview{display:grid;place-items:center;height:100%;color:#76849a;background:#111c2f}.controls{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 20px;border-top:1px solid #26334b;background:#0d1930}.controls button{padding:11px 15px;border:1px solid #34445f;border-radius:9px;color:#fff;background:#172b4d;font-weight:700;cursor:pointer}.controls button:hover{background:#233e69}.keys{color:#8fa0b8;font-size:12px}@media(max-width:850px){.grid{grid-template-columns:1fr}.right{grid-template-columns:1fr 1fr;grid-template-rows:320px}.stats{gap:10px}.keys{display:none}}
+    ${EMBEDDED_VISUAL_CSS.replace("height:min(38vh,360px)", "height:min(27vh,270px)").replace("height:62%", "height:52%")}
   </style></head><body><div class="shell"><header class="top"><div><div class="eyebrow">REFERENTENANSICHT</div><h1>${title}</h1></div><div class="stats"><div class="stat"><strong>${presentation.index + 1} / ${presentation.slides.length}</strong><span>Folie</span></div><div class="stat"><strong id="timer">00:00</strong><span>Vortragszeit</span></div></div></header><main class="grid"><section class="panel"><p class="panel-label">Aktuelle Folie</p>${presenterSlideMarkup(current, label)}</section><div class="right"><section class="panel next"><p class="panel-label">Nächste Folie</p>${presenterSlideMarkup(next, nextLabel)}</section><section class="panel"><p class="panel-label">Moderationsnotizen</p><div class="notes ${current?.notes ? "" : "empty"}">${current?.notes ? escapeHtml(current.notes) : "Für diese Folie sind keine Moderationsnotizen hinterlegt."}</div></section></div></main><footer class="controls"><div><button onclick="opener.workshopPresenterCommand('prev')">← Zurück</button> <button onclick="opener.workshopPresenterCommand('next')">Weiter →</button></div><span class="keys">Pfeiltasten · Leertaste · Page Up/Down</span><button onclick="opener.workshopPresenterCommand('closePresenter')">Referentenansicht schließen</button></footer></div><script>
     const startedAt=${presentation.startedAt};function updateTimer(){const seconds=Math.floor((Date.now()-startedAt)/1000);const m=String(Math.floor(seconds/60)).padStart(2,'0');const s=String(seconds%60).padStart(2,'0');document.getElementById('timer').textContent=m+':'+s}updateTimer();setInterval(updateTimer,1000);addEventListener('keydown',e=>{if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();opener.workshopPresenterCommand('next')}if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();opener.workshopPresenterCommand('prev')}if(e.key==='Escape')opener.workshopPresenterCommand('closePresenter')});
   <\/script></body></html>`;
@@ -930,28 +1044,55 @@ function preparePrint(workshopId) {
 function prepareModulePrint(moduleId) {
   const module = state.modules.find((item) => item.id === moduleId);
   if (!module) return;
-  printSlides(module.slides.map((slide) => ({ ...slide, moduleTitle: module.title })));
+  printSlides(module.slides.map((slide) => ({ ...slide, moduleTitle: module.title, moduleCover: module.coverImage })));
 }
 
-function printSlides(slides) {
+async function printSlides(slides) {
   document.querySelector("#printDeck")?.remove();
   const deck = document.createElement("div");
   deck.id = "printDeck"; deck.className = "print-deck";
   deck.innerHTML = slides.map((slide, index) => renderSlide(slide, index, slides.length, "print-slide")).join("");
   document.body.append(deck);
+  await Promise.all([...deck.querySelectorAll("img")].map((image) => image.complete ? Promise.resolve() : new Promise((resolve) => {
+    image.addEventListener("load", resolve, { once: true });
+    image.addEventListener("error", resolve, { once: true });
+  })));
   toast("Im Druckdialog „Als PDF sichern“ wählen");
   setTimeout(() => window.print(), 100);
 }
 
-function exportHtml(workshopId) {
+async function fileAsDataUrl(src) {
+  try {
+    const response = await fetch(src);
+    const blob = await response.blob();
+    return await new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = reject;
+      reader.readAsDataURL(blob);
+    });
+  } catch {
+    return src;
+  }
+}
+
+async function exportHtml(workshopId) {
   const workshop = state.workshops.find((item) => item.id === workshopId);
-  const slides = workshopSlides(workshop);
+  if (!workshop) return;
+  const slides = await Promise.all(workshopSlides(workshop).map(async (slide) => ({
+    ...slide,
+    moduleCover: slide.moduleCover ? await fileAsDataUrl(slide.moduleCover) : slide.moduleCover,
+    visuals: Array.isArray(slide.visuals) ? await Promise.all(slide.visuals.map(async (visual) => ({ ...visual, src: await fileAsDataUrl(visual.src) }))) : slide.visuals
+  })));
   const slideMarkup = slides.map((slide, index) => {
     const dense = slide.body.length > 420 || slide.body.split("\n").length > 10;
-    return `<section class="slide ${slide.type === "title" ? "title" : ""} ${dense ? "dense" : ""}"><small>${escapeHtml(slide.moduleTitle || "SMART WorkshopStudio")}</small><h1 class="${slideTitleClass(slide.title)}">${escapeHtml(slide.title)}</h1><div class="slide-body">${renderSlideBody(slide)}</div><footer>${index + 1} / ${slides.length}</footer></section>`;
+    const coverStyle = slide.type === "title" && slide.moduleCover ? ` style="background-image:linear-gradient(90deg,rgba(20,33,61,.97),rgba(20,33,61,.64)),url('${escapeHtml(slide.moduleCover)}');background-size:cover;background-position:center"` : "";
+    return `<section class="slide ${slide.type === "title" ? "title" : ""} ${dense ? "dense" : ""}"${coverStyle}><small>${escapeHtml(slide.moduleTitle || "SMART WorkshopStudio")}</small><h1 class="${slideTitleClass(slide.title)}">${escapeHtml(slide.title)}</h1><div class="slide-body">${renderSlideBody(slide)}</div><footer>${index + 1} / ${slides.length}</footer></section>`;
   }).join("");
-  const html = `<!doctype html><html lang="de"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>${escapeHtml(workshop.title)}</title><style>*{box-sizing:border-box}body{margin:0;background:#080f1e;color:#172033;font-family:Arial,sans-serif}.slide{display:none;position:fixed;inset:4vh 4vw;padding:6vh 6vw;background:#fdfdfb}.slide.active{display:block}.slide.title{color:white;background:#14213d}.slide small{color:#2d4f7c;font-weight:bold;letter-spacing:.15em;text-transform:uppercase}.slide.title small{color:#a9c9ee}h1{width:100%;margin:5vh 0 3vh;font:700 clamp(32px,4.5vw,64px)/1.05 Arial,sans-serif;white-space:nowrap;border-bottom:1px solid #dbe2ea;padding-bottom:2.2vh}.title-md{font-size:clamp(28px,3.8vw,54px)}.title-sm{font-size:clamp(24px,3.2vw,45px)}.title-xs{font-size:clamp(20px,2.6vw,36px)}.slide-body{width:100%;font-size:clamp(15px,1.65vw,24px);line-height:1.4;color:#4d596c}.slide.dense .slide-body{font-size:clamp(13px,1.35vw,19px)}.slide.title .slide-body{color:#cbd9ea}.slide-columns,.slide-tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2vw}.columns-3{grid-template-columns:repeat(3,minmax(0,1fr))}.slide-column,.slide-tile{min-height:18vh;padding:2vw;border:1px solid #dce4ee;border-left:6px solid #2d4f7c;background:#f5f8fb}.tone-1{border-left-color:#6686ad}.tone-2{border-left-color:#173a64}.block-heading{color:#14213d;font-weight:800}.block-copy{margin-top:1.2vh}.metric-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.metric-grid .block-heading{font-size:1.8em}.slide-table{width:100%;border-collapse:collapse}.slide-table th,.slide-table td{padding:1.1vh 1vw;border:1px solid #d5dee9;text-align:left}.slide-table th{color:#fff;background:#14213d}footer{position:absolute;bottom:3vh;color:#7d899c}.hint{position:fixed;right:2vw;bottom:1vh;color:#9cacc2;font-size:12px}@media print{@page{size:A4 landscape;margin:0}.slide{display:block!important;position:relative;inset:auto;width:297mm;height:210mm;break-after:page}.hint{display:none}}</style><body>${slideMarkup}<div class="hint">← → Leertaste · F Vollbild · P PDF</div><script>const s=[...document.querySelectorAll('.slide')];let i=0;function show(n){i=Math.max(0,Math.min(s.length-1,n));s.forEach((x,j)=>x.classList.toggle('active',j===i))}addEventListener('keydown',e=>{if(['ArrowRight','PageDown',' '].includes(e.key))show(i+1);if(['ArrowLeft','PageUp'].includes(e.key))show(i-1);if(e.key.toLowerCase()==='f')document.documentElement.requestFullscreen?.();if(e.key.toLowerCase()==='p')print()});addEventListener('click',e=>show(i+(e.clientX>innerWidth/2?1:-1)));show(0)<\/script></body></html>`;
-  download(`${slugify(workshop.title)}.html`, html, "text/html");
+  const html = `<!doctype html><html lang="de"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>${escapeHtml(workshop.title)}</title><style>*{box-sizing:border-box}body{margin:0;background:#080f1e;color:#172033;font-family:Arial,sans-serif}.slide{display:none;position:fixed;inset:4vh 4vw;padding:6vh 6vw;background:#fdfdfb}.slide.active{display:block}.slide.title{color:white;background:#14213d}.slide small{color:#2d4f7c;font-weight:bold;letter-spacing:.15em;text-transform:uppercase}.slide.title small{color:#a9c9ee}h1{width:100%;margin:5vh 0 3vh;font:700 clamp(32px,4.5vw,64px)/1.05 Arial,sans-serif;white-space:nowrap;border-bottom:1px solid #dbe2ea;padding-bottom:2.2vh}.title-md{font-size:clamp(28px,3.8vw,54px)}.title-sm{font-size:clamp(24px,3.2vw,45px)}.title-xs{font-size:clamp(20px,2.6vw,36px)}.slide-body{width:100%;font-size:clamp(15px,1.65vw,24px);line-height:1.4;color:#4d596c}.slide.dense .slide-body{font-size:clamp(13px,1.35vw,19px)}.slide.title .slide-body{color:#cbd9ea}.slide-columns,.slide-tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2vw}.columns-3{grid-template-columns:repeat(3,minmax(0,1fr))}.slide-column,.slide-tile{min-height:18vh;padding:2vw;border:1px solid #dce4ee;border-left:6px solid #2d4f7c;background:#f5f8fb}.tone-1{border-left-color:#6686ad}.tone-2{border-left-color:#173a64}.block-heading{color:#14213d;font-weight:800}.block-copy{margin-top:1.2vh}.metric-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.metric-grid .block-heading{font-size:1.8em}.slide-table{width:100%;border-collapse:collapse}.slide-table th,.slide-table td{padding:1.1vh 1vw;border:1px solid #d5dee9;text-align:left}.slide-table th{color:#fff;background:#14213d}.slide-visual-layout{display:grid;gap:1.2vh}.slide-visual-grid{display:grid;gap:1.2vw;height:min(35vh,340px)}.visual-count-2{grid-template-columns:repeat(2,minmax(0,1fr))}.visual-count-1{grid-template-columns:1fr;height:min(39vh,380px)}.slide-visual-card{display:flex;flex-direction:column;min-width:0;margin:0;overflow:hidden;border:1px solid #cad5e2;border-radius:8px;background:#f3f7fa}.slide-visual-frame{flex:1;min-height:0;padding:.6vw;background:#fff}.slide-visual-card img{display:block;width:100%;height:100%;object-fit:contain}.slide-visual-card figcaption{padding:.7vh .8vw;color:#354b68;background:#eef3f8;font-size:.62em;font-weight:700}.slide-visual-summary{margin:0;color:#59677b;font-size:.72em}footer{position:absolute;bottom:3vh;color:#7d899c}.hint{position:fixed;right:2vw;bottom:1vh;color:#9cacc2;font-size:12px}@media print{@page{size:A4 landscape;margin:0}.slide{display:block!important;position:relative;inset:auto;width:297mm;height:210mm;break-after:page}.hint{display:none}}</style><body>${slideMarkup}<div class="hint">← → Leertaste · F Vollbild · P PDF</div><script>const s=[...document.querySelectorAll('.slide')];let i=0;function show(n){i=Math.max(0,Math.min(s.length-1,n));s.forEach((x,j)=>x.classList.toggle('active',j===i))}addEventListener('keydown',e=>{if(['ArrowRight','PageDown',' '].includes(e.key))show(i+1);if(['ArrowLeft','PageUp'].includes(e.key))show(i-1);if(e.key.toLowerCase()==='f')document.documentElement.requestFullscreen?.();if(e.key.toLowerCase()==='p')print()});addEventListener('click',e=>show(i+(e.clientX>innerWidth/2?1:-1)));show(0)<\/script></body></html>`;
+  const standaloneVisualCss = EMBEDDED_VISUAL_CSS.replace("height:min(38vh,360px)", "height:min(27vh,270px)").replace("height:62%", "height:52%");
+  const standaloneHtml = html.replace("</style><body>", `</style><style>${standaloneVisualCss}</style><body>`);
+  download(`${slugify(workshop.title)}.html`, standaloneHtml, "text/html");
   toast("Eigenständige HTML-Präsentation exportiert");
 }
 

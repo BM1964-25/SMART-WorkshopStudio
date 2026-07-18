@@ -13,10 +13,12 @@ Danach `http://localhost:3000` öffnen.
 ## Funktionen
 
 - Modul-Bibliothek mit Suche, Kategorien, Folien und Versionszähler
+- Bildbibliothek mit Modul-Titelbildern, eigenen Uploads, Alternativtexten und Quellenhinweisen
 - Workshop-Builder mit Agenda, Reihenfolge und Zeitprüfung
 - HTML-Präsentationsmodus mit Tastatur- und Funkmaus-Steuerung
-- PDF-Ausgabe über den Druckdialog des Browsers
-- Export einer eigenständigen HTML-Präsentation
+- Bildbasierte Titel-, Trenner- und Text-Bild-Folien
+- PDF-Ausgabe einschließlich Bilder über den Druckdialog des Browsers
+- Export einer eigenständigen HTML-Präsentation mit eingebetteten Bildern
 - JSON-Datensicherung und Wiederherstellung
 - Speicherung im lokalen Browser ohne Benutzerkonto
 
