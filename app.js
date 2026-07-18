@@ -29,7 +29,7 @@ const HELP_SECTIONS = [
     id: "features",
     title: "Wichtige Funktionen",
     eyebrow: "DAS KANN DIE APP",
-    content: `<ul class="help-feature-list"><li><strong>Modulverwaltung</strong><br>Folien, Dauer, Kategorien und Notizen pflegen.</li><li><strong>Bildbibliothek</strong><br>Titelbilder und eigene Bildbausteine zentral verwalten.</li><li><strong>Workshop-Builder</strong><br>Module hinzufügen, sortieren und Zeitrahmen prüfen.</li><li><strong>Modulvorschau</strong><br>Einzelne Module ohne Workshop präsentieren.</li><li><strong>Referentenansicht</strong><br>Aktuelle und nächste Folie, Notizen und Timer separat anzeigen.</li><li><strong>PDF-Ausgabe</strong><br>Folien einschließlich Bilder als A4-Querformat sichern.</li><li><strong>HTML-Export</strong><br>Eigenständige, offline nutzbare Präsentation mit eingebetteten Bildern erzeugen.</li><li><strong>Datensicherung</strong><br>Lokalen Bestand exportieren und wiederherstellen.</li><li><strong>Funkmaus-Steuerung</strong><br>Pfeile, Leertaste und Page Up/Down verwenden.</li></ul><h4>Grafische Folienlayouts</h4><p>Im Folieneditor stehen Standard, 2 Spalten, 3 Spalten, Kacheln, Kennzahlen, Tabelle, großes Bild und Text-Bild-Aufteilung zur Auswahl. Bei Spalten und Kacheln trennt eine eigene Zeile mit <strong>---</strong> die Bereiche. In einer Tabelle werden Zellen mit <strong>|</strong> getrennt; die erste Zeile bildet die Tabellenüberschrift. Für Bilder lassen sich Zuschnitt, Position, Alternativtext und Bildunterschrift festlegen.</p><h4>Optional denkbare KI-Aufgaben – derzeit nicht aktiviert</h4><ul><li>Modulgliederungen und Lernziele vorschlagen</li><li>Ausgangstexte in Folienentwürfe umwandeln</li><li>Inhalte kürzen, strukturieren oder zusammenfassen</li><li>Übungen, Reflexionsfragen und Moderationsnotizen entwerfen</li><li>Workshop-Agenden passend zu Zielgruppe und Zeitrahmen vorschlagen</li><li>Varianten für unterschiedliche Zielgruppen erzeugen</li><li>Qualitätsprüfung auf Redundanz, Verständlichkeit und Zeitbedarf unterstützen</li></ul><p>Diese Aufgaben wären Assistenzfunktionen. Inhalte müssen fachlich und rechtlich durch einen Menschen geprüft werden.</p>`
+    content: `<ul class="help-feature-list"><li><strong>Modulverwaltung</strong><br>Folien, Dauer, Kategorien und Notizen pflegen.</li><li><strong>Bildbibliothek</strong><br>Titelbilder und eigene Bildbausteine zentral verwalten.</li><li><strong>Workshop Builder</strong><br>Module hinzufügen, sortieren und Zeitrahmen prüfen.</li><li><strong>Modulvorschau</strong><br>Einzelne Module ohne Workshop präsentieren.</li><li><strong>Referentenansicht</strong><br>Aktuelle und nächste Folie, Notizen und Timer separat anzeigen.</li><li><strong>PDF Ausgabe</strong><br>Folien einschließlich Bilder als A4 Querformat sichern.</li><li><strong>HTML Export</strong><br>Eigenständige, offline nutzbare Präsentation mit eingebetteten Bildern erzeugen.</li><li><strong>Datensicherung</strong><br>Lokalen Bestand exportieren und wiederherstellen.</li><li><strong>Funkmaus Steuerung</strong><br>Pfeile, Leertaste und Page Up oder Page Down verwenden.</li></ul><h4>Grafische Folienlayouts</h4><p>Im Folieneditor stehen redaktionelle Seiten, Inhaltsübersicht, Zeitstrahl, Prozess, Gegenüberstellung, Roadmap, Pyramide, Systembild, Kernaussage, Kennzahlen, Tabelle und Bildlayouts zur Auswahl. Inhaltlich passende Darstellungen werden in der Präsentation automatisch gewählt. Bereiche werden im Editor durch eine eigene Trennzeile markiert. In einer Tabelle werden Zellen mit <strong>|</strong> getrennt. Für Bilder lassen sich Zuschnitt, Position, Alternativtext und Bildunterschrift festlegen.</p><h4>Optional denkbare KI Aufgaben, derzeit nicht aktiviert</h4><ul><li>Modulgliederungen und Lernziele vorschlagen</li><li>Ausgangstexte in Folienentwürfe umwandeln</li><li>Inhalte kürzen, strukturieren oder zusammenfassen</li><li>Übungen, Reflexionsfragen und Moderationsnotizen entwerfen</li><li>Workshop Agenden passend zu Zielgruppe und Zeitrahmen vorschlagen</li><li>Varianten für unterschiedliche Zielgruppen erzeugen</li><li>Qualitätsprüfung auf Redundanz, Verständlichkeit und Zeitbedarf unterstützen</li></ul><p>Diese Aufgaben wären Assistenzfunktionen. Inhalte müssen fachlich und rechtlich durch einen Menschen geprüft werden.</p>`
   },
   {
     id: "workflow",
@@ -64,16 +64,16 @@ const HELP_SECTIONS = [
 ];
 
 const BUILT_IN_IMAGES = [
-  { id: "visual-ki-ueberblick", name: "KI im Überblick", src: "assets/visuals/ki-ueberblick.jpeg", alt: "Leuchtendes digitales Gehirn zwischen Symbolen für Dokumente, Prozesse, Daten, Ziele und Menschen", source: "Eigene Bildsammlung · Nutzungsrechte vor externer Veröffentlichung prüfen" },
-  { id: "visual-cloud-daten", name: "Cloud und Daten", src: "assets/visuals/cloud-daten.jpeg", alt: "Leuchtende Cloud mit Symbolen für Dokumente, Daten, Sicherheit und Zusammenarbeit", source: "Eigene Bildsammlung · Nutzungsrechte vor externer Veröffentlichung prüfen" },
-  { id: "visual-automatisierung", name: "Automatisierung und Prozesse", src: "assets/visuals/automatisierung.jpeg", alt: "Digitales Zahnrad mit verbundenen Prozess-, Daten- und Sicherheitssymbolen", source: "Eigene Bildsammlung · Nutzungsrechte vor externer Veröffentlichung prüfen" },
-  { id: "visual-cloud-ki", name: "Cloud-KI und API", src: "assets/visuals/cloud-ki.jpeg", alt: "Cloud mit KI-Chip und angebundenen Prozess-, Daten- und Sicherheitssymbolen", source: "Eigene Bildsammlung · Nutzungsrechte vor externer Veröffentlichung prüfen" },
-  { id: "visual-marketing", name: "Marketing und Kommunikation", src: "assets/visuals/marketing-kommunikation.jpeg", alt: "Digitales Kommunikationssymbol mit E-Mail, Zielgruppe, Kalender und Analytik", source: "Eigene Bildsammlung · Nutzungsrechte vor externer Veröffentlichung prüfen" },
-  { id: "visual-ki-tools", name: "KI-Werkzeuge", src: "assets/visuals/ki-werkzeuge.jpeg", alt: "Digitales Gehirn mit Symbolen für Robotik, Cloud, Daten, Teams und Ziele", source: "Eigene Bildsammlung · Nutzungsrechte vor externer Veröffentlichung prüfen" },
-  { id: "visual-chat", name: "Chat und Kommunikation", src: "assets/visuals/chat-kommunikation.jpeg", alt: "Leuchtende Sprechblase mit Symbolen für E-Mail, Telefon, Video und Support", source: "Eigene Bildsammlung · Nutzungsrechte vor externer Veröffentlichung prüfen" },
-  { id: "visual-dokumente", name: "Dokumentenanalyse", src: "assets/visuals/dokumentenanalyse.jpeg", alt: "Digitales Dokument mit Symbolen für PDF, Tabellen, Text, Bilder und Daten", source: "Eigene Bildsammlung · Nutzungsrechte vor externer Veröffentlichung prüfen" },
-  { id: "visual-risiko", name: "Risiko und Sicherheit", src: "assets/visuals/risikoanalyse.jpeg", alt: "Leuchtender Schutzschild mit Lupe und Symbolen für Prüfung, Analyse und Dokumentation", source: "Eigene Bildsammlung · Nutzungsrechte vor externer Veröffentlichung prüfen" },
-  { id: "visual-prompting", name: "Prompting und Dialog", src: "assets/visuals/prompting-dialog.jpeg", alt: "Leuchtende Dialogblasen mit Symbolen für Nachrichten, Teams und digitale Kommunikation", source: "Eigene Bildsammlung · Nutzungsrechte vor externer Veröffentlichung prüfen" }
+  { id: "visual-ki-ueberblick", name: "KI im Überblick", src: "assets/visuals/ki-ueberblick.jpeg", alt: "Leuchtendes digitales Gehirn zwischen Symbolen für Dokumente, Prozesse, Daten, Ziele und Menschen", source: "KI-generiertes Bild · eigene Bildsammlung" },
+  { id: "visual-cloud-daten", name: "Cloud und Daten", src: "assets/visuals/cloud-daten.jpeg", alt: "Leuchtende Cloud mit Symbolen für Dokumente, Daten, Sicherheit und Zusammenarbeit", source: "KI-generiertes Bild · eigene Bildsammlung" },
+  { id: "visual-automatisierung", name: "Automatisierung und Prozesse", src: "assets/visuals/automatisierung.jpeg", alt: "Digitales Zahnrad mit verbundenen Prozess-, Daten- und Sicherheitssymbolen", source: "KI-generiertes Bild · eigene Bildsammlung" },
+  { id: "visual-cloud-ki", name: "Cloud-KI und API", src: "assets/visuals/cloud-ki.jpeg", alt: "Cloud mit KI-Chip und angebundenen Prozess-, Daten- und Sicherheitssymbolen", source: "KI-generiertes Bild · eigene Bildsammlung" },
+  { id: "visual-marketing", name: "Marketing und Kommunikation", src: "assets/visuals/marketing-kommunikation.jpeg", alt: "Digitales Kommunikationssymbol mit E-Mail, Zielgruppe, Kalender und Analytik", source: "KI-generiertes Bild · eigene Bildsammlung" },
+  { id: "visual-ki-tools", name: "KI-Werkzeuge", src: "assets/visuals/ki-werkzeuge.jpeg", alt: "Digitales Gehirn mit Symbolen für Robotik, Cloud, Daten, Teams und Ziele", source: "KI-generiertes Bild · eigene Bildsammlung" },
+  { id: "visual-chat", name: "Chat und Kommunikation", src: "assets/visuals/chat-kommunikation.jpeg", alt: "Leuchtende Sprechblase mit Symbolen für E-Mail, Telefon, Video und Support", source: "KI-generiertes Bild · eigene Bildsammlung" },
+  { id: "visual-dokumente", name: "Dokumentenanalyse", src: "assets/visuals/dokumentenanalyse.jpeg", alt: "Digitales Dokument mit Symbolen für PDF, Tabellen, Text, Bilder und Daten", source: "KI-generiertes Bild · eigene Bildsammlung" },
+  { id: "visual-risiko", name: "Risiko und Sicherheit", src: "assets/visuals/risikoanalyse.jpeg", alt: "Leuchtender Schutzschild mit Lupe und Symbolen für Prüfung, Analyse und Dokumentation", source: "KI-generiertes Bild · eigene Bildsammlung" },
+  { id: "visual-prompting", name: "Prompting und Dialog", src: "assets/visuals/prompting-dialog.jpeg", alt: "Leuchtende Dialogblasen mit Symbolen für Nachrichten, Teams und digitale Kommunikation", source: "KI-generiertes Bild · eigene Bildsammlung" }
 ];
 
 function imageLibrary() {
@@ -82,6 +82,105 @@ function imageLibrary() {
 
 function imageBySrc(src) {
   return imageLibrary().find((image) => image.src === src);
+}
+
+const SHORT_TITLES = {
+  "KI-Modelle im Vergleich – Welches Modell für welche Aufgabe?": "KI Modelle im Vergleich",
+  "ChatGPT vs. Claude – Web/App und API im Vergleich": "ChatGPT und Claude im Vergleich",
+  "Leistungsstarke KI-Tools im Praxiseinsatz": "KI Tools im Praxiseinsatz",
+  "Grundlagen der künstlichen Intelligenz": "Grundlagen der KI",
+  "Die Entwicklung der künstlichen Intelligenz": "Entwicklung der KI",
+  "Für diese Aufgaben ist NotebookLM unterschiedlich geeignet": "NotebookLM richtig einsetzen",
+  "NotebookLM arbeitet mit einem abgegrenzten Wissensraum": "Der Wissensraum von NotebookLM",
+  "Die menschliche Kontrolle richtet sich nach dem Risiko": "Kontrolle folgt dem Risiko",
+  "Adobe Firefly passt in professionelle Kreativprozesse": "Adobe Firefly im Kreativprozess",
+  "Microsoft 365 Copilot wirkt direkt im Office-Prozess": "Microsoft 365 Copilot im Office",
+  "Die Qualitätskontrolle folgt dem Vier-Augen-Prinzip": "Qualität im Vier Augen Prinzip",
+  "GitHub Copilot unterstützt den Entwicklungszyklus": "GitHub Copilot im Entwicklungszyklus",
+  "Entwicklungsassistenten bauen dauerhafte Lösungen": "Entwicklungsassistenten richtig nutzen",
+  "Ein schlechter Prozess bleibt auch mit KI schlecht": "KI verbessert keinen schlechten Prozess",
+  "Claude eignet sich für umfangreiche Wissensarbeit": "Claude für Wissensarbeit",
+  "Aus einer Absicht wird ein überprüfbarer Schritt": "Aus Absicht wird Handlung",
+  "Präzise Fragen führen zu nutzbaren Ergebnissen": "Präzise Fragen liefern Ergebnisse",
+  "Praxisfall: eine Richtlinie verständlich machen": "Praxisfall: Richtlinie erklären",
+  "Napkin AI verwandelt Text in erklärende Visuals": "Napkin AI für Visuals",
+  "Ein belastbarer Skill entsteht in drei Schritten": "Einen belastbaren Skill entwickeln",
+  "Die Bibliothek organisiert Notebooks nach Themen": "Notebooks nach Themen ordnen",
+  "Runway spezialisiert sich auf generatives Video": "Runway für generatives Video",
+  "Risiken wachsen nicht automatisch gleichmäßig": "Risiken entwickeln sich unterschiedlich",
+  "1990–2011: Statistik ersetzt viele Handregeln": "1990 bis 2011: Statistik und Regeln",
+  "n8n verbindet KI mit wiederkehrenden Abläufen": "n8n für wiederkehrende Abläufe",
+  "Recherche erweitert den Quellenbestand bewusst": "Quellen gezielt erweitern",
+  "Gemini verbindet Recherche mit Google-Diensten": "Gemini mit Google Diensten",
+  "Canva verbindet KI mit visueller Kommunikation": "Canva für visuelle Kommunikation",
+  "Arbeitsauftrag: ein belastbares Notebook bauen": "Arbeitsauftrag: Notebook bauen",
+  "2025–2026: Von Antworten zu Arbeitsschritten": "2025 bis 2026: KI wird aktiv",
+  "2022–2024: Generative KI erreicht den Alltag": "2022 bis 2024: KI im Alltag",
+  "2017: Der Transformer verändert Sprachmodelle": "2017: Der Transformer",
+  "Vier Datenfragen kommen vor dem ersten Prompt": "Vier Fragen vor dem Prompt",
+  "Praxisfall: eine Schulungskampagne entwickeln": "Praxisfall: Schulungskampagne",
+  "Fünf Kriterien verhindern Fehlentscheidungen": "Fünf Kriterien für die Auswahl",
+  "Frühindikatoren für den tatsächlichen Pfad": "Frühindikatoren erkennen",
+  "Ein Notebook braucht eine klare Fragestellung": "Die richtige Fragestellung",
+  "Am Ende entsteht ein prüfbarer Arbeitsablauf": "Ein prüfbarer Arbeitsablauf",
+  "2012: Deep Learning wird praktisch überlegen": "2012: Deep Learning setzt sich durch",
+  "Viele Quellenformate lassen sich kombinieren": "Quellenformate kombinieren",
+  "Teilen braucht einen eigenen Kontrollschritt": "Teilen bewusst kontrollieren",
+  "Gamma erzeugt schnell visuelle Erstfassungen": "Gamma für erste Präsentationen",
+  "Ein guter Werkzeugmix folgt dem Arbeitsfluss": "Werkzeuge passend kombinieren",
+  "Der Transfer beginnt mit einem kleinen Pilot": "Transfer mit einem Pilot starten",
+  "Das stärkste Tool hängt von der Aufgabe ab": "Das passende Tool wählen",
+  "Das Studio übersetzt Wissen in neue Formate": "Das Studio erstellt neue Formate",
+  "Artefakte liefern direkt nutzbare Ergebnisse": "Artefakte sinnvoll einsetzen",
+  "Aktueller Modellstand – wichtige Korrektur": "Aktueller Modellstand",
+  "Agenten bearbeiten Ziele statt Schrittfolgen": "Agenten verfolgen Ziele",
+  "1955/56: Dartmouth gibt dem Feld einen Namen": "1955 und 1956: Dartmouth",
+  "Übung: den passenden Werkzeugmix entwerfen": "Übung: Werkzeugmix entwerfen",
+  "Infrastruktur wird zum strategischen Faktor": "Infrastruktur wird strategisch",
+  "Aufgabe und Werkzeug müssen zusammenpassen": "Aufgabe und Werkzeug verbinden",
+  "Audio Overviews lassen sich gezielt steuern": "Audio Overviews gezielt steuern",
+  "Am Ende steht eine begründete Werkzeugwahl": "Eine Werkzeugwahl begründen",
+  "Wie sich Arbeit voraussichtlich verändert": "Wie sich Arbeit verändert",
+  "Von Assistenten zu digitalen Arbeitsketten": "Digitale Arbeitsketten gestalten",
+  "Quellen, Chat und Studio arbeiten zusammen": "Quellen, Chat und Studio",
+  "Perplexity beschleunigt aktuelle Recherche": "Perplexity für aktuelle Recherche",
+  "Gute Quellen schlagen große Quellenmengen": "Gute Quellen zuerst",
+  "ElevenLabs erzeugt und lokalisiert Sprache": "ElevenLabs für Sprache",
+  "Connectors erschließen vorhandene Systeme": "Connectors verbinden Systeme",
+  "2020: Skalierung und Lernen aus Beispielen": "2020: Skalierung und Beispiele",
+  "1980er: Expertensysteme und zweiter Winter": "1980er: Expertensysteme",
+  "Web/App: schnell, direkt, personenbezogen": "Web und App im Einsatz",
+  "Vier Optionen – nicht nur zwei Anbieter": "Vier mögliche Zugangswege",
+  "Vier Fragen führen zur richtigen Auswahl": "Vier Fragen zur Auswahl",
+  "Sechs Bausteine der KI-Werkzeuglandschaft": "Sechs Bausteine der KI Werkzeuge",
+  "Praxisfall: Verträge gezielt durchsuchen": "Praxisfall: Verträge durchsuchen",
+  "KI wird erst mit Werkzeugen arbeitsfähig": "KI mit Werkzeugen nutzen",
+  "Ein Pilot trennt Wirkung von Begeisterung": "Ein Pilot zeigt die Wirkung",
+  "Connector und Tool lösen andere Probleme": "Connector und Tool unterscheiden",
+  "APIs: Standardmäßig kein Modelltraining": "APIs ohne Modelltraining",
+  "1956–1973: Die Ära der symbolischen KI": "1956 bis 1973: Symbolische KI",
+  "Tools und Plugins erweitern Fähigkeiten": "Tools und Plugins einsetzen",
+  "Sechs Aufgabenklassen geben Orientierung": "Sechs Aufgabenklassen",
+  "Der Profi-Prompt – Auftrag und Kontext": "Profi Prompt: Auftrag und Kontext",
+  "Der Chat unterstützt vier Arbeitsweisen": "Vier Arbeitsweisen im Chat",
+  "Consumer-Chats: Training bewusst steuern": "Consumer Chats bewusst steuern",
+  "ChatGPT ist ein vielseitiger Arbeitsraum": "ChatGPT als Arbeitsraum",
+  "Zitate machen Antworten nachvollziehbar": "Zitate machen Antworten prüfbar",
+  "Vor dem Begriff künstliche Intelligenz": "Vor dem Begriff KI",
+  "Vier typische Fehler mindern den Nutzen": "Vier typische Fehler",
+  "Praxisfall: Bericht aus einem Gutachten": "Praxisfall: Bericht aus Gutachten",
+  "OpenAI API – Preise pro 1 Mio. Tokens": "OpenAI API Preise",
+  "NotebookLM macht eigene Quellen nutzbar": "NotebookLM für eigene Quellen",
+  "MCP standardisiert Werkzeugverbindungen": "MCP verbindet Werkzeuge",
+  "Fünf Regeln für die tägliche Nutzung": "Fünf Regeln für den Alltag",
+  "Der Profi-Prompt – Regeln und Ausgabe": "Profi Prompt: Regeln und Ausgabe",
+  "Datenschutz hängt auch vom Kontotyp ab": "Datenschutz und Kontotyp",
+  "Das Ausgabeformat folgt dem Arbeitsziel": "Passende Ausgabeformate",
+  "Claude API – Preise pro 1 Mio. Tokens": "Claude API Preise"
+};
+
+function displayTitle(title = "") {
+  return SHORT_TITLES[title] || title;
 }
 
 const seedState = {
@@ -140,17 +239,16 @@ const seedState = {
       duration: 180,
       tags: ["NotebookLM", "Recherche", "Quellen", "Wissensmanagement", "Google"],
       description: "Praxisworkshop zu Funktionsweise, Quellenarbeit, Chat, Studio-Ergebnissen und verantwortlicher Nutzung von NotebookLM.",
-      version: 3,
+      version: 4,
       updatedAt: "2026-07-17",
       slides: [
         { id: "nlm-1", type: "title", layout: "standard", title: "NotebookLM praxisnah einsetzen", body: "Quellen analysieren, Wissen prüfen und Ergebnisse erzeugen\n\nPraxisworkshop für Recherche, Lernen und Wissensarbeit", notes: "Einstiegsfrage: Bei welcher Aufgabe müssen die Teilnehmenden regelmäßig viele Dokumente lesen, vergleichen oder zusammenfassen?" },
         { id: "nlm-2", type: "content", layout: "tiles", title: "Am Ende entsteht ein prüfbarer Arbeitsablauf", body: "EINORDNEN\nNotebookLM von einem allgemeinen KI-Chat unterscheiden\n---\nAUFBAUEN\nEin Notebook mit geeigneten Quellen strukturieren\n---\nANWENDEN\nChat und Studio zielgerichtet nutzen\n---\nPRÜFEN\nZitate, Datenschutz und Ergebnisqualität kontrollieren", notes: "Die Lernziele kurz vorstellen. Der Workshop kombiniert Demonstration, Einzelarbeit und eine Transferübung." },
         { id: "nlm-3", type: "content", layout: "two-column", title: "NotebookLM arbeitet mit einem abgegrenzten Wissensraum", body: "ALLGEMEINER KI-CHAT\nAntwortet aus Modellwissen, Gesprächskontext und – je nach Produkt – zusätzlichen Werkzeugen oder Websuche.\n---\nNOTEBOOKLM\nBeantwortet Fragen im Notebook quellengebunden. Hochgeladene und ausgewählte Quellen bilden den Arbeitskontext; Antworten enthalten Verweise auf Fundstellen.", notes: "Quellengebunden bedeutet nicht automatisch fehlerfrei. Auswahl, Aktualität und Qualität der Quellen bestimmen die mögliche Antwortqualität." },
         { id: "nlm-4", type: "content", layout: "three-column", title: "Drei Bereiche prägen die Arbeit", body: "QUELLEN\nDokumente hinzufügen, auswählen, ordnen und einzeln öffnen\n---\nCHAT\nFragen stellen, vergleichen, erklären und mit Zitaten prüfen\n---\nSTUDIO\nQuellen in Berichte, Audio, Video, Lernhilfen und weitere Formate überführen", notes: "Die Oberfläche live zeigen. Je nach Bildschirmgröße können die Bereiche ein- oder ausgeblendet werden." },
-        { id: "nlm-4a", type: "content", layout: "visual-pair", title: "Die Bibliothek organisiert Notebooks nach Themen", body: "Die Kachelansicht zeigt Titel, Aktualität und Anzahl der Quellen. Suche, Filter und verschiedene Ansichten helfen bei größeren Beständen.", visuals: [
-          { src: "assets/notebooklm/notebook-bibliothek-breit.png", alt: "Breite NotebookLM-Bibliothek mit mehreren thematischen Notebook-Kacheln", caption: "Breite Ansicht: mehr Notebooks gleichzeitig vergleichen" },
-          { src: "assets/notebooklm/notebook-bibliothek-kompakt.png", alt: "Kompakte NotebookLM-Bibliothek mit sechs sichtbaren Notebook-Kacheln", caption: "Kompakte Ansicht: Fokus auf die zuletzt genutzten Notebooks" }
-        ], notes: "Anhand der beiden echten Ansichten zeigen: Ein Notebook sollte einen klar abgegrenzten Zweck und einen verständlichen Namen haben. Die Oberfläche passt die Anzahl sichtbarer Kacheln an die Fensterbreite an." },
+        { id: "nlm-4a", type: "content", layout: "visual", title: "Die Bibliothek organisiert Notebooks nach Themen", body: "Die Kachelansicht zeigt Titel, Aktualität und Anzahl der Quellen. Suche, Filter und verschiedene Ansichten helfen bei größeren Beständen.", visuals: [
+          { src: "assets/notebooklm/notebook-bibliothek-breit.png", alt: "Breite NotebookLM-Bibliothek mit mehreren thematischen Notebook-Kacheln", caption: "Breite Ansicht: mehr Notebooks gleichzeitig vergleichen" }
+        ], notes: "Anhand der Ansicht zeigen: Ein Notebook sollte einen klar abgegrenzten Zweck und einen verständlichen Namen haben. Die Oberfläche passt die Anzahl sichtbarer Kacheln an die Fensterbreite an." },
         { id: "nlm-4b", type: "content", layout: "visual", title: "Quellen, Chat und Studio arbeiten zusammen", body: "Links wird der aktive Quellenbestand gesteuert, in der Mitte entstehen belegte Antworten und rechts werden daraus Audio, Berichte, Quiz, Mindmaps oder weitere Lernformate.", visuals: [
           { src: "assets/notebooklm/notebook-arbeitsbereich.png", alt: "NotebookLM-Arbeitsbereich mit Quellenleiste, Chat und Studio-Werkzeugen", caption: "Praxisansicht: Quellen auswählen · Antworten mit Fundstellen prüfen · Studio-Ergebnisse erzeugen" }
         ], notes: "Die drei Spalten von links nach rechts erklären. Im Screenshot sind 18 Quellen aktiv. Hervorheben, dass die Auswahl links den Antwortkontext bestimmt und Studio-Ergebnisse rechts weiterhin fachlich geprüft werden müssen." },
@@ -593,21 +691,26 @@ function render() {
 }
 
 function moduleCard(module, compact = false) {
+  const pdfPath = `downloads/pdf/${slugify(module.title)}.pdf`;
   return `<article class="content-card">
     ${module.coverImage ? `<div class="module-cover"><img src="${escapeHtml(module.coverImage)}" alt="${escapeHtml(imageBySrc(module.coverImage)?.alt || `Titelbild für ${module.title}`)}" /></div>` : ""}
     <div class="tag-row">
       <span class="tag">${escapeHtml(module.category)}</span>
       <span class="tag neutral">v${module.version}</span>
     </div>
-    <h3>${escapeHtml(module.title)}</h3>
+    <h3>${escapeHtml(displayTitle(module.title))}</h3>
     <p>${escapeHtml(module.description)}</p>
     <div class="card-meta"><span>◷ ${minutesLabel(module.duration)}</span><span>▤ ${module.slides.length} Folien</span><span>${escapeHtml(module.level)}</span></div>
-    <div class="card-actions"><button class="button primary small" data-preview-module="${module.id}">▶ Vorschau</button><button class="button secondary small" data-edit-module="${module.id}">Bearbeiten</button>${compact ? "" : `<button class="button ghost small" data-duplicate-module="${module.id}">Duplizieren</button>`}</div>
+    <div class="card-actions"><button class="button primary small" data-preview-module="${module.id}">▶ Vorschau</button><button class="button secondary small" data-edit-module="${module.id}">Bearbeiten</button><a class="button ghost small" href="${pdfPath}" download>PDF Download</a>${compact ? "" : `<button class="button ghost small" data-duplicate-module="${module.id}">Duplizieren</button>`}</div>
   </article>`;
 }
 
 function renderDashboard() {
   const totalMinutes = state.modules.reduce((sum, module) => sum + module.duration, 0);
+  const availableHours = Math.round(totalMinutes / 60 * 10) / 10;
+  const availableHoursLabel = String(availableHours).replace(".", ",");
+  const moduleLabel = state.modules.length === 1 ? "Modul" : "Module";
+  const workshopLabel = state.workshops.length === 1 ? "Schulung" : "Schulungen";
   const recent = state.modules.slice().sort((a, b) => b.updatedAt.localeCompare(a.updatedAt)).slice(0, 3);
   viewRoot.innerHTML = `
     <div class="hero-grid">
@@ -620,10 +723,20 @@ function renderDashboard() {
         <button class="button" data-start-workshop>Schulung zusammenstellen →</button>
         </div>
       </article>
-      <div class="stat-stack">
-        <article class="stat-card"><span class="stat-icon">▦</span><strong>${state.modules.length}</strong><span>Module in deiner Bibliothek</span></article>
-        <article class="stat-card"><strong>${state.workshops.length}</strong><span>Schulungen</span></article>
-        <article class="stat-card"><strong>${Math.round(totalMinutes / 60 * 10) / 10} h</strong><span>verfügbarer Inhalt</span></article>
+      <section class="stats-panel" aria-label="Kennzahlen zum Schulungsbestand">
+        <div class="stat-strip">
+          <article class="stat-card"><span class="stat-icon" aria-hidden="true">▦</span><div class="stat-copy"><strong>${state.modules.length}</strong><span>${moduleLabel}</span></div></article>
+          <article class="stat-card"><span class="stat-icon" aria-hidden="true">▤</span><div class="stat-copy"><strong>${state.workshops.length}</strong><span>${workshopLabel}</span></div></article>
+          <article class="stat-card"><span class="stat-icon" aria-hidden="true">◷</span><div class="stat-copy"><strong>${availableHoursLabel} h</strong><span>verfügbarer Inhalt</span></div></article>
+        </div>
+        <div class="inventory-summary">
+          <span class="inventory-summary-mark" aria-hidden="true">↗</span>
+          <div>
+            <strong>Dein Schulungsbestand</strong>
+            <p>${state.modules.length} ${moduleLabel} mit insgesamt ${availableHoursLabel} Stunden Inhalt für ${state.workshops.length} ${workshopLabel}</p>
+          </div>
+        </div>
+      </section>
       </div>
     </div>
     <div class="section-header"><h2>Zuletzt bearbeitete Module</h2><button class="text-link" data-show-modules>Alle Module ansehen →</button></div>
@@ -634,7 +747,7 @@ function renderDashboard() {
 function renderImages() {
   const images = imageLibrary();
   viewRoot.innerHTML = `
-    <div class="image-library-intro"><div><h2>Visuelle Bausteine für Schulungen</h2><p>Titelbilder und Folienmotive werden in Vorschau, PDF und Offline-HTML übernommen. Eigene Bilder sollten nur mit geklärten Nutzungsrechten verwendet werden.</p></div><label class="button primary image-upload">+ Eigenes Bild<input id="imageUpload" type="file" accept="image/png,image/jpeg,image/webp" /></label></div>
+    <div class="image-library-intro"><div><h2>Visuelle Bausteine für Schulungen</h2><p>Titelbilder und Folienmotive werden in Vorschau, PDF und Offline-HTML übernommen. Die vorhandenen Motive sind deine KI-generierten Bilder.</p></div><label class="button primary image-upload">+ Eigenes Bild<input id="imageUpload" type="file" accept="image/png,image/jpeg,image/webp" /></label></div>
     <div class="image-library-grid">${images.map((image) => `<article class="image-library-card"><div class="image-library-preview"><img src="${escapeHtml(image.src)}" alt="${escapeHtml(image.alt || image.name)}" /></div><div class="image-library-copy"><strong>${escapeHtml(image.name)}</strong><p>${escapeHtml(image.alt || "Kein Alternativtext hinterlegt")}</p><small>${escapeHtml(image.source || "Eigener Upload")}</small></div></article>`).join("")}</div>`;
   document.querySelector("#imageUpload")?.addEventListener("change", importLibraryImage);
 }
@@ -679,10 +792,12 @@ function renderWorkshops() {
       ${sorted.length ? sorted.map((workshop) => {
         const date = shortDateParts(workshop.date);
         const duration = workshopDuration(workshop);
+        const preparedPdf = seedState.workshops.some((item) => item.id === workshop.id);
+        const pdfAction = preparedPdf ? `<a class="button ghost small" href="downloads/pdf/${slugify(workshop.title)}.pdf" download>PDF Download</a>` : `<button class="button ghost small" data-pdf="${workshop.id}">PDF erstellen</button>`;
         return `<article class="workshop-row" data-workshop-row="${workshop.id}">
           <div class="date-tile"><div><strong>${date.day}</strong><small>${date.month}</small></div></div>
           <div><h3>${escapeHtml(workshop.title)}</h3><p>${escapeHtml(workshop.client || "Ohne Auftraggeber")} · ${workshop.moduleIds.length} Module · ${minutesLabel(duration)}</p></div>
-          <div class="workshop-row-actions"><button class="button secondary small" data-edit-workshop="${workshop.id}">Bearbeiten</button><button class="button ghost small" data-present="${workshop.id}">▶ Präsentieren</button><button class="button ghost small" data-pdf="${workshop.id}">PDF</button></div>
+          <div class="workshop-row-actions"><button class="button secondary small" data-edit-workshop="${workshop.id}">Bearbeiten</button><button class="button ghost small" data-present="${workshop.id}">▶ Präsentieren</button>${pdfAction}</div>
         </article>`;
       }).join("") : `<div class="empty-state"><strong>Noch keine Schulung</strong><p>Stelle deine erste Schulung aus vorhandenen Modulen zusammen.</p><button class="button primary" data-new-workshop>Jetzt beginnen</button></div>`}
     </div>`;
@@ -741,7 +856,7 @@ function openModuleModal(moduleId = null) {
             <div class="slide-editor-grid">
               <div class="field"><label>Folientitel</label><input data-slide-field="title" value="${escapeHtml(slide.title)}" required /></div>
               <div class="field"><label>Folientyp</label><select data-slide-field="type"><option value="content" ${slide.type === "content" ? "selected" : ""}>Inhalt</option><option value="title" ${slide.type === "title" ? "selected" : ""}>Titel / Trenner</option></select></div>
-              <div class="field full"><label>Darstellung</label><select data-slide-field="layout"><option value="standard" ${(slide.layout || "standard") === "standard" ? "selected" : ""}>Standard</option><option value="two-column" ${slide.layout === "two-column" ? "selected" : ""}>2 Spalten</option><option value="three-column" ${slide.layout === "three-column" ? "selected" : ""}>3 Spalten</option><option value="tiles" ${slide.layout === "tiles" ? "selected" : ""}>Kacheln</option><option value="metrics" ${slide.layout === "metrics" ? "selected" : ""}>Kennzahlen</option><option value="table" ${slide.layout === "table" ? "selected" : ""}>Tabelle</option><option value="image-split" ${slide.layout === "image-split" ? "selected" : ""}>Text links · Bild rechts</option><option value="visual" ${slide.layout === "visual" ? "selected" : ""}>Großes Bild</option><option value="visual-pair" ${slide.layout === "visual-pair" ? "selected" : ""}>Zwei Bilder</option></select><small>Spalten und Kacheln mit einer Zeile <strong>---</strong> trennen. Tabellenzellen mit <strong>|</strong>.</small></div>
+              <div class="field full"><label>Darstellung</label><select data-slide-field="layout"><option value="standard" ${(slide.layout || "standard") === "standard" ? "selected" : ""}>Standard</option><option value="editorial" ${slide.layout === "editorial" ? "selected" : ""}>Redaktionell</option><option value="agenda" ${slide.layout === "agenda" ? "selected" : ""}>Inhaltsübersicht</option><option value="timeline" ${slide.layout === "timeline" ? "selected" : ""}>Zeitstrahl</option><option value="process" ${slide.layout === "process" ? "selected" : ""}>Prozess</option><option value="comparison" ${slide.layout === "comparison" ? "selected" : ""}>Gegenüberstellung</option><option value="roadmap" ${slide.layout === "roadmap" ? "selected" : ""}>Roadmap</option><option value="pyramid" ${slide.layout === "pyramid" ? "selected" : ""}>Pyramide</option><option value="hub" ${slide.layout === "hub" ? "selected" : ""}>Systembild</option><option value="statement" ${slide.layout === "statement" ? "selected" : ""}>Kernaussage</option><option value="two-column" ${slide.layout === "two-column" ? "selected" : ""}>2 Spalten</option><option value="three-column" ${slide.layout === "three-column" ? "selected" : ""}>3 Spalten</option><option value="tiles" ${slide.layout === "tiles" ? "selected" : ""}>Kacheln</option><option value="metrics" ${slide.layout === "metrics" ? "selected" : ""}>Kennzahlen</option><option value="table" ${slide.layout === "table" ? "selected" : ""}>Tabelle</option><option value="image-split" ${slide.layout === "image-split" ? "selected" : ""}>Text links · Bild rechts</option><option value="visual" ${slide.layout === "visual" ? "selected" : ""}>Großes Bild</option><option value="visual-pair" ${slide.layout === "visual-pair" ? "selected" : ""}>Zwei Bilder</option></select><small>Bereiche mit einer Zeile <strong>---</strong> trennen. Tabellenzellen mit <strong>|</strong>.</small></div>
               <div class="field"><label>Optionales Folienbild</label><select data-slide-image><option value="">Kein Bild</option>${imageLibrary().map((image) => `<option value="${escapeHtml(image.src)}" ${visual?.src === image.src ? "selected" : ""}>${escapeHtml(image.name)}</option>`).join("")}</select></div>
               <div class="field"><label>Bilddarstellung</label><select data-slide-visual-field="fit"><option value="contain" ${(visual?.fit || "contain") === "contain" ? "selected" : ""}>Vollständig anzeigen</option><option value="cover" ${visual?.fit === "cover" ? "selected" : ""}>Fläche ausfüllen / zuschneiden</option></select></div>
               <div class="field"><label>Bildposition</label><select data-slide-visual-field="position"><option value="center" ${(visual?.position || "center") === "center" ? "selected" : ""}>Mitte</option><option value="left" ${visual?.position === "left" ? "selected" : ""}>Links</option><option value="right" ${visual?.position === "right" ? "selected" : ""}>Rechts</option><option value="top" ${visual?.position === "top" ? "selected" : ""}>Oben</option><option value="bottom" ${visual?.position === "bottom" ? "selected" : ""}>Unten</option></select></div>
@@ -878,11 +993,84 @@ function moveWorkshopModule(workshopId, index, direction) {
   saveState(""); renderBuilder(workshopId);
 }
 
+function learningGoalBlocks(module) {
+  const goalsByTitle = {
+    "Leistungsstarke KI Tools im Praxiseinsatz": ["EINORDNEN\nKI Werkzeuge nach Aufgabe, Daten und Arbeitsablauf bewerten", "AUSWÄHLEN\nEine begründete Werkzeugwahl für einen konkreten Praxisfall treffen", "KONTROLLIEREN\nQualität, Quellen, Datenschutz und Kosten vor dem Einsatz prüfen"],
+    "NotebookLM praxisnah einsetzen": ["AUFBAUEN\nEin Notebook mit passenden Quellen strukturiert anlegen", "ANWENDEN\nFragen, Zitate und Studio Ergebnisse gezielt nutzen", "PRÜFEN\nErgebnisse anhand der Quellen kontrollieren und sicher weiterverwenden"],
+    "Grundlagen der künstlichen Intelligenz": ["VERSTEHEN\nGrundbegriffe, Modelle, Training und Inferenz verständlich erklären", "EINORDNEN\nGeeignete Aufgaben sowie Risiken von KI erkennen", "VERANTWORTEN\nKontrollen, Datenregeln und menschliche Freigaben planen"],
+    "Die Entwicklung der künstlichen Intelligenz": ["EINORDNEN\nWichtige Entwicklungsschritte der KI zeitlich und fachlich verstehen", "BEWERTEN\nAktuelle Fähigkeiten von Erwartungen und Übertreibungen unterscheiden", "VORAUSDENKEN\nMögliche Entwicklungen auf die eigene Arbeit übertragen"],
+    "KI Werkzeuge gezielt einsetzen": ["UNTERSCHEIDEN\nChat, Artefakt, Skill, Connector, Tool und Automation erklären", "GESTALTEN\nEinen kontrollierten Werkzeugfluss für eine reale Aufgabe planen", "ABSICHERN\nBerechtigungen, Prüfpunkte und Verantwortlichkeiten festlegen"],
+    "Professionelles Prompt Engineering": ["STRUKTURIEREN\nZiel, Kontext, Regeln und Ausgabe in einem Prompt verbinden", "VERBESSERN\nSchwache Prompts anhand konkreter Kriterien weiterentwickeln", "PRÜFEN\nBelege, Unsicherheit und Qualität von Ergebnissen bewerten"],
+    "ChatGPT vs. Claude Web/App und API im Vergleich": ["UNTERSCHEIDEN\nWeb Anwendung und API als unterschiedliche Zugangsformen erklären", "AUSWÄHLEN\nFür einen Praxisfall einen passenden Zugangsweg begründen", "ABSICHERN\nDaten, Verträge, Aufbewahrung und menschliche Kontrolle bewerten"],
+    "KI Modelle im Vergleich Welches Modell für welche Aufgabe?": ["VERSTEHEN\nTokens, Eingaben, Ausgaben und Kosten einordnen", "VERGLEICHEN\nModelle nach Qualität, Geschwindigkeit und Aufgabenfit bewerten", "ENTSCHEIDEN\nEinen nachvollziehbaren Modell Router für Arbeitsschritte entwerfen"]
+  };
+  const normalizedTitle = module.title.replace(/[^\p{L}\p{N}]+/gu, " ").trim();
+  return goalsByTitle[normalizedTitle] || [
+    "VERSTEHEN\nDie wichtigsten Inhalte des Moduls sicher erklären",
+    "ANWENDEN\nDas Wissen auf einen konkreten Praxisfall übertragen",
+    "PRÜFEN\nErgebnisse kritisch bewerten und nächste Schritte ableiten"
+  ];
+}
+
+function moduleAgenda(module) {
+  const titles = module.slides
+    .filter((slide) => slide.type !== "title" && slide.title)
+    .map((slide) => displayTitle(slide.title))
+    .filter((title, index, titles) => titles.indexOf(title) === index)
+    .slice(0, 6);
+  return titles.map((title, index) => `${index + 1}. ${title}`).join("\n") || "1. Einstieg\n2. Grundlagen\n3. Anwendung\n4. Transfer";
+}
+
+function slideBlocks(body = "") {
+  return body.split(/\n\s*---\s*\n/).map((part) => part.trim()).filter(Boolean);
+}
+
+function editorialLayout(slide, index, total) {
+  if (slide.type === "title" || Array.isArray(slide.visuals) && slide.visuals.length) return slide;
+  const title = `${slide.title} ${slide.body}`.toLowerCase();
+  const blocks = slideBlocks(slide.body);
+  let layout = slide.layout || "standard";
+
+  if (slide.id?.endsWith("-overview")) layout = "agenda";
+  else if (slide.id?.endsWith("-learning-goals")) layout = "process";
+  else if (layout === "table" || layout === "metrics") return slide;
+  else if (/roadmap|transfer|pilot|nächste schritte|was organisationen|einführen/.test(title) && blocks.length >= 3) layout = "roadmap";
+  else if (/hierarchie|stufen|ebenen|schichten|bausteine|pyramide/.test(title) && blocks.length >= 3) layout = "pyramid";
+  else if (/geschichte|entwicklung|meilenstein|ära |jahr|195|196|197|198|199|200|201|202/.test(title)) layout = "timeline";
+  else if (/prozess|ablauf|workflow|arbeitsfluss|route|router|schritt|phasen|kreislauf/.test(title) && blocks.length >= 3) layout = "process";
+  else if ((/vergleich|gegenüber|unterschied|versus| vs |web\/app|input und output/.test(title) || layout === "two-column") && blocks.length === 2) layout = "comparison";
+  else if (/system|landschaft|zusammen|architektur|modellmix|werkzeugmix/.test(title) && blocks.length >= 4) layout = "hub";
+  else if (/fazit|das wichtigste|kernaussage|schlussfolgerung|zusammenfassung/.test(slide.title.toLowerCase()) || index === total - 1 && slide.body.length < 520) layout = "statement";
+  else if (layout === "three-column" && blocks.length >= 3) layout = blocks.length >= 4 && index % 2 === 0 ? "hub" : "process";
+  else if (layout === "tiles" && blocks.length >= 3) layout = ["roadmap", "process", "hub"][index % 3];
+  else if (layout === "standard") layout = "editorial";
+
+  return { ...slide, layout };
+}
+
+function modulePresentationSlides(module) {
+  const slides = module.slides.map((slide) => ({ ...slide, moduleTitle: module.title, moduleCover: module.coverImage }));
+  const titleSlide = slides.find((slide) => slide.type === "title") || {
+    id: `${module.id}-title`, type: "title", layout: "standard", title: module.title, body: module.description || "", notes: ""
+  };
+  const remainingSlides = slides.filter((slide) => slide !== titleSlide);
+  const overviewSlide = {
+    id: `${module.id}-overview`, type: "content", layout: "standard", title: "Inhalte im Überblick", body: moduleAgenda(module),
+    notes: "Diese Übersicht gibt Orientierung. Die folgenden Kapitel werden nacheinander behandelt.", moduleTitle: module.title, moduleCover: module.coverImage
+  };
+  const goalSlide = {
+    id: `${module.id}-learning-goals`, type: "content", layout: "tiles", title: "Das nehmen Sie aus diesem Modul mit", body: learningGoalBlocks(module).join("\n---\n"),
+    notes: "Die Lernziele zu Beginn kurz einordnen und am Ende des Moduls wieder aufgreifen.", moduleTitle: module.title, moduleCover: module.coverImage
+  };
+  const assembled = [{ ...titleSlide, moduleTitle: module.title, moduleCover: module.coverImage }, overviewSlide, goalSlide, ...remainingSlides];
+  return assembled.map((slide, index) => editorialLayout(slide, index, assembled.length));
+}
+
 function workshopSlides(workshop) {
   const slides = [{ id: "opening", type: "title", title: workshop.title, body: `${workshop.client || ""}${workshop.date ? `\n${formatDate(workshop.date)}` : ""}`, notes: workshop.description || "", moduleCover: "assets/visuals/ki-ueberblick.jpeg" }];
   workshop.moduleIds.forEach((moduleId) => {
     const module = state.modules.find((item) => item.id === moduleId);
-    if (module) slides.push(...module.slides.map((slide) => ({ ...slide, moduleTitle: module.title, moduleCover: module.coverImage })));
+    if (module) slides.push(...modulePresentationSlides(module));
   });
   return slides;
 }
@@ -901,6 +1089,12 @@ function renderTextBlock(value = "") {
   return `<div class="block-heading">${escapeHtml(heading)}</div>${rest.length ? `<div class="block-copy">${rest.map((line) => escapeHtml(line)).join("<br>")}</div>` : ""}`;
 }
 
+function renderEditorialBlock(value = "", index = 0) {
+  const lines = value.split("\n").map((line) => line.trim()).filter(Boolean);
+  const [heading = "", ...copy] = lines;
+  return `<section class="editorial-block"><span class="editorial-index">${String(index + 1).padStart(2, "0")}</span><div><div class="block-heading">${escapeHtml(heading)}</div>${copy.length ? `<div class="block-copy">${copy.map((line) => escapeHtml(line)).join("<br>")}</div>` : ""}</div></section>`;
+}
+
 function renderSlideContent(slide) {
   const layout = slide.layout || "standard";
   if (Array.isArray(slide.visuals) && slide.visuals.length) {
@@ -910,7 +1104,37 @@ function renderSlideContent(slide) {
     if (layout === "image-split" && slide.visuals.length === 1) return `<div class="slide-image-split"><div class="slide-image-copy">${escapeHtml(slide.body || "").replace(/\n/g, "<br>")}</div>${visuals}</div>`;
     return `<div class="slide-visual-layout"><div class="slide-visual-grid ${visualClass}">${visuals}</div>${summary}</div>`;
   }
-  const blocks = slide.body.split(/\n\s*---\s*\n/).map((part) => part.trim()).filter(Boolean);
+  const blocks = slideBlocks(slide.body);
+  if (layout === "agenda") {
+    const items = slide.body.split("\n").map((line) => line.trim()).filter(Boolean).map((line) => line.replace(/^\d+[.)]\s*/, ""));
+    return `<ol class="slide-agenda">${items.map((item, index) => `<li><span>${String(index + 1).padStart(2, "0")}</span><strong>${escapeHtml(item)}</strong></li>`).join("")}</ol>`;
+  }
+  if (layout === "timeline") {
+    const items = blocks.length > 1 ? blocks : slide.body.split(/\n\n+/).map((part) => part.trim()).filter(Boolean);
+    return `<div class="slide-timeline">${items.slice(0, 6).map((block, index) => `<section class="timeline-event"><span class="timeline-dot"></span><span class="timeline-index">${String(index + 1).padStart(2, "0")}</span>${renderTextBlock(block)}</section>`).join("")}</div>`;
+  }
+  if (layout === "process") {
+    return `<div class="slide-process">${blocks.map((block, index) => `<section class="process-step"><span class="process-number">${index + 1}</span>${renderTextBlock(block)}</section>`).join("")}</div>`;
+  }
+  if (layout === "comparison") {
+    return `<div class="slide-comparison">${blocks.slice(0, 2).map((block, index) => `<section class="comparison-side comparison-${index + 1}"><span class="comparison-label">${index === 0 ? "A" : "B"}</span>${renderTextBlock(block)}</section>`).join("")}<div class="comparison-axis">↔</div></div>`;
+  }
+  if (layout === "roadmap") {
+    return `<div class="slide-roadmap">${blocks.slice(0, 6).map((block, index) => `<section class="roadmap-step" style="--roadmap-level:${index}"><span>${String(index + 1).padStart(2, "0")}</span>${renderTextBlock(block)}</section>`).join("")}</div>`;
+  }
+  if (layout === "pyramid") {
+    return `<div class="slide-pyramid">${blocks.slice(0, 5).map((block, index, items) => `<section class="pyramid-level" style="--pyramid-width:${62 + index * (36 / Math.max(items.length - 1, 1))}%"><span>${index + 1}</span>${renderTextBlock(block)}</section>`).join("")}</div>`;
+  }
+  if (layout === "hub") {
+    return `<div class="slide-hub"><div class="hub-center">${escapeHtml(displayTitle(slide.title))}</div>${blocks.slice(0, 6).map((block, index) => `<section class="hub-node hub-node-${index + 1}">${renderTextBlock(block)}</section>`).join("")}</div>`;
+  }
+  if (layout === "statement") {
+    return `<div class="slide-statement"><span class="statement-mark">“</span><div>${escapeHtml(slide.body).replace(/\n/g, "<br>")}</div></div>`;
+  }
+  if (layout === "editorial") {
+    const editorialBlocks = blocks.length > 1 ? blocks : slide.body.split(/\n\n+/).map((part) => part.trim()).filter(Boolean);
+    return `<div class="slide-editorial">${editorialBlocks.slice(0, 4).map(renderEditorialBlock).join("")}</div>`;
+  }
   if (layout === "two-column" || layout === "three-column") {
     const count = layout === "three-column" ? 3 : 2;
     return `<div class="slide-columns columns-${count} ${blocks.length > count ? "multi-row" : ""}">${blocks.map((block, index) => `<section class="slide-column tone-${index % 3}">${renderTextBlock(block)}</section>`).join("")}</div>`;
@@ -935,12 +1159,15 @@ function renderSlideBody(slide) {
 
 const EMBEDDED_VISUAL_CSS = `.slide-visual-layout{display:grid;gap:6px}.slide-visual-grid{display:grid;gap:8px;height:55%}.visual-count-2{grid-template-columns:repeat(2,minmax(0,1fr))}.visual-count-1{grid-template-columns:1fr;height:62%}.slide-visual-card{display:flex;flex-direction:column;min-width:0;margin:0;overflow:hidden;border:1px solid #cad5e2;background:#f3f7fa}.slide-visual-frame{flex:1;min-height:0;padding:4px;background:#fff}.slide-visual-card img{display:block;width:100%;height:100%;object-fit:contain}.slide-visual-card.fit-cover img{object-fit:cover}.slide-visual-card.position-left img{object-position:left center}.slide-visual-card.position-right img{object-position:right center}.slide-visual-card.position-top img{object-position:center top}.slide-visual-card.position-bottom img{object-position:center bottom}.slide-visual-card figcaption{padding:5px 7px;color:#354b68;font-size:.62em;font-weight:700}.slide-visual-summary{margin:0;font-size:.68em}.slide-image-split{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:18px;align-items:stretch;height:min(38vh,360px)}.slide-image-copy{display:flex;align-items:center;padding:20px;border-left:5px solid #2d4f7c;background:#f2f6fa;line-height:1.45}.slide-links{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}.slide-links a{display:inline-flex;gap:6px;padding:7px 10px;border:1px solid #bfd0e3;border-radius:6px;color:#204b7c;background:#eef5fb;font-size:.64em;font-weight:800;text-decoration:none}`;
 
+const EDITORIAL_EMBEDDED_CSS = `.slide:not(.title),.presenter-slide:not(.title){background-color:#f7f4ec;background-image:linear-gradient(rgba(42,73,112,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(42,73,112,.055) 1px,transparent 1px);background-size:22px 22px}.slide-agenda{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 26px;margin:0;padding:0;list-style:none}.slide-agenda li{display:grid;grid-template-columns:38px 1fr;gap:10px;align-items:center;min-height:48px;border-bottom:1px solid #bfc8d3}.slide-agenda li span,.editorial-index,.roadmap-step>span{color:#a54f43;font-family:Georgia,serif;font-weight:800}.slide-editorial{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 28px}.editorial-block{display:grid;grid-template-columns:36px 1fr;gap:10px;padding:8px 0 12px;border-bottom:1px solid #aeb9c7}.slide-timeline{position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(105px,1fr));gap:10px;padding-top:20px}.slide-timeline:before{content:"";position:absolute;top:27px;right:2%;left:2%;height:2px;background:linear-gradient(90deg,#a54f43,#315b8e)}.timeline-event{position:relative;padding:30px 9px 10px;border:1px solid #c9c1b3;background:rgba(255,253,247,.92)}.timeline-dot{position:absolute;top:0;left:calc(50% - 7px);width:14px;height:14px;border:3px solid #f7f4ec;border-radius:50%;background:#a54f43;box-shadow:0 0 0 2px #a54f43}.timeline-index{position:absolute;top:31px;right:7px;color:#a54f43;font-size:.6em}.slide-process{display:flex;gap:12px;align-items:stretch}.process-step{position:relative;flex:1;min-width:0;padding:15px 10px;border-top:4px solid #315b8e;background:rgba(255,253,247,.92)}.process-step:nth-child(even){margin-top:18px;border-top-color:#a54f43}.process-number{display:block;margin-bottom:8px;color:#a54f43;font:800 1.4em Georgia,serif}.slide-process .block-heading,.slide-timeline .block-heading{font-size:.64em}.slide-process .block-copy,.slide-timeline .block-copy{font-size:.56em;line-height:1.25}.slide-comparison{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:46px}.comparison-side{position:relative;min-height:175px;padding:22px;background:rgba(255,253,247,.92)}.comparison-1{border:2px solid #315b8e;box-shadow:inset 6px 0 0 #315b8e}.comparison-2{border:2px solid #a54f43;box-shadow:inset 6px 0 0 #a54f43}.comparison-label{position:absolute;top:9px;right:12px;color:rgba(49,91,142,.22);font:800 2.5em Georgia,serif}.comparison-axis{position:absolute;top:calc(50% - 20px);left:calc(50% - 20px);display:grid;place-items:center;width:40px;height:40px;border-radius:50%;color:#fff;background:#1f2d42}.slide-roadmap{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:6px;align-items:end;min-height:200px}.roadmap-step{min-width:0;padding:10px 8px;border-top:4px solid #315b8e;background:#e6e0d3}.roadmap-step:nth-child(1){min-height:80px}.roadmap-step:nth-child(2){min-height:100px}.roadmap-step:nth-child(3){min-height:120px}.roadmap-step:nth-child(4){min-height:140px}.roadmap-step:nth-child(5){min-height:160px}.roadmap-step:nth-child(6){min-height:180px;border-top-color:#a54f43}.roadmap-step .block-heading{font-size:.55em}.roadmap-step .block-copy{font-size:.48em}.slide-pyramid{display:flex;flex-direction:column;align-items:center;gap:5px}.pyramid-level{display:grid;grid-template-columns:30px 1fr;align-items:center;width:var(--pyramid-width);padding:7px 15px;color:#fff;background:#315b8e}.pyramid-level:nth-child(even){background:#223f65}.pyramid-level:last-child{background:#a54f43}.pyramid-level .block-heading,.pyramid-level .block-copy{color:#fff}.slide-hub{position:relative;min-height:215px}.hub-center{position:absolute;z-index:2;top:33%;left:36%;display:grid;place-items:center;width:28%;min-height:70px;padding:10px;border-radius:50%;color:#fff;background:#1f2d42;text-align:center;font-size:.55em;font-weight:800}.hub-node{position:absolute;width:27%;padding:8px 9px;border:1px solid #aeb9c7;background:rgba(255,253,247,.94)}.hub-node-1{top:0;left:2%}.hub-node-2{top:0;right:2%}.hub-node-3{top:37%;right:0}.hub-node-4{right:8%;bottom:0}.hub-node-5{bottom:0;left:8%}.hub-node-6{top:37%;left:0}.hub-node .block-heading{font-size:.52em}.hub-node .block-copy{font-size:.46em}.slide-statement{position:relative;display:flex;align-items:center;min-height:180px;padding:30px 38px 28px 58px;color:#fff;background:#1f2d42;font:600 1.45em/1.25 Georgia,serif}.statement-mark{position:absolute;top:5px;left:17px;color:#a54f43;font:800 3.3em Georgia,serif}`;
+
 function renderSlide(slide, index, total, className = "presentation-slide") {
+  const shownTitle = displayTitle(slide.title);
   const dense = slide.body.length > 420 || slide.body.split("\n").length > 10;
   const titleStyle = slide.type === "title" && slide.moduleCover ? ` style="--slide-cover:url('${escapeHtml(slide.moduleCover)}')"` : "";
   return `<article class="${className} ${slide.type === "title" ? "title-slide has-cover" : ""} layout-${slide.layout || "standard"} ${dense ? "dense" : ""}"${titleStyle}>
     <div class="slide-kicker">${escapeHtml(slide.moduleTitle || "SMART WorkshopStudio")}</div>
-    <h1 class="${slideTitleClass(slide.title)}">${escapeHtml(slide.title)}</h1>
+    <h1 class="${slideTitleClass(shownTitle)}">${escapeHtml(shownTitle)}</h1>
     <div class="slide-body">${renderSlideBody(slide)}</div>
     <span class="slide-number">${index + 1} / ${total}</span>
   </article>`;
@@ -960,7 +1187,7 @@ function startModulePreview(moduleId) {
     moduleId,
     workshopId: null,
     title: module.title,
-    slides: module.slides.map((slide) => ({ ...slide, moduleTitle: module.title, moduleCover: module.coverImage })),
+    slides: modulePresentationSlides(module),
     index: 0,
     startedAt: Date.now()
   };
@@ -1005,7 +1232,8 @@ function openPresenterView() {
 function presenterSlideMarkup(slide, label) {
   if (!slide) return `<div class="empty-preview">Ende der Präsentation</div>`;
   const coverStyle = slide.type === "title" && slide.moduleCover ? ` style="background-image:linear-gradient(90deg,rgba(20,33,61,.97),rgba(20,33,61,.67)),url('${escapeHtml(slide.moduleCover)}');background-size:cover;background-position:center"` : "";
-  return `<div class="presenter-slide ${slide.type === "title" ? "title" : ""}"${coverStyle}><small>${escapeHtml(label)}</small><h2 class="${slideTitleClass(slide.title)}">${escapeHtml(slide.title)}</h2><div class="slide-body">${renderSlideBody(slide)}</div></div>`;
+  const shownTitle = displayTitle(slide.title);
+  return `<div class="presenter-slide ${slide.type === "title" ? "title" : ""} layout-${slide.layout || "standard"}"${coverStyle}><small>${escapeHtml(label)}</small><h2 class="${slideTitleClass(shownTitle)}">${escapeHtml(shownTitle)}</h2><div class="slide-body">${renderSlideBody(slide)}</div></div>`;
 }
 
 function renderPresenterWindow(force = false) {
@@ -1017,7 +1245,7 @@ function renderPresenterWindow(force = false) {
   const nextLabel = next?.moduleTitle || presentation.title || "SMART WorkshopStudio";
   const html = `<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Referentenansicht – ${title}</title><style>
     :root{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#e9eef7;background:#080f1e}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:#080f1e}.shell{min-height:100vh;display:grid;grid-template-rows:auto 1fr auto}.top{display:flex;justify-content:space-between;align-items:center;padding:18px 24px;border-bottom:1px solid #26334b;background:#0d1930}.eyebrow{color:#9db8dc;font-size:11px;font-weight:800;letter-spacing:.14em}.top h1{margin:4px 0 0;font:500 24px Georgia,serif}.stats{display:flex;gap:24px;text-align:right}.stat strong,.stat span{display:block}.stat strong{font-size:20px}.stat span{color:#93a2b8;font-size:10px;text-transform:uppercase;letter-spacing:.08em}.grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(300px,.65fr);gap:18px;padding:18px;min-height:0}.panel{min-height:0;padding:14px;border:1px solid #26334b;border-radius:14px;background:#101a2c}.panel-label{margin:0 0 10px;color:#91a6c5;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.right{display:grid;grid-template-rows:minmax(220px,.9fr) minmax(210px,1.1fr);gap:18px;min-height:0}.presenter-slide{height:100%;padding:6%;overflow:auto;color:#172033;background:#fdfdfb}.presenter-slide.title{color:#fff;background:#14213d}.presenter-slide small{color:#2d4f7c;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.presenter-slide.title small{color:#a9c9ee}.presenter-slide h2{margin:7% 0 4%;font:500 clamp(21px,3vw,48px)/1.08 Georgia,serif;white-space:nowrap}.presenter-slide h2.title-md{font-size:clamp(19px,2.6vw,40px)}.presenter-slide h2.title-sm{font-size:clamp(17px,2.2vw,34px)}.presenter-slide h2.title-xs{font-size:clamp(15px,1.8vw,28px)}.presenter-slide .slide-body{color:#4d596c;font-size:clamp(12px,1.25vw,18px);line-height:1.4}.presenter-slide.title .slide-body{color:#cbd9ea}.slide-columns,.slide-tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.columns-3{grid-template-columns:repeat(3,minmax(0,1fr))}.slide-column,.slide-tile{padding:14px;border:1px solid #dce4ee;border-left:4px solid #2d4f7c;background:#f5f8fb}.tone-1{border-left-color:#6686ad}.tone-2{border-left-color:#173a64}.block-heading{color:#14213d!important;font-weight:800}.block-copy{margin-top:7px}.metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.metric-grid .block-heading{font-size:1.8em}.slide-table{width:100%;border-collapse:collapse}.slide-table th,.slide-table td{padding:7px;border:1px solid #d5dee9;text-align:left}.slide-table th{color:#fff;background:#14213d}.slide-visual-layout{display:grid;gap:6px}.slide-visual-grid{display:grid;gap:8px;height:55%}.visual-count-2{grid-template-columns:repeat(2,minmax(0,1fr))}.visual-count-1{grid-template-columns:1fr;height:62%}.slide-visual-card{display:flex;flex-direction:column;min-width:0;margin:0;overflow:hidden;border:1px solid #cad5e2;background:#f3f7fa}.slide-visual-frame{flex:1;min-height:0;padding:4px;background:#fff}.slide-visual-card img{display:block;width:100%;height:100%;object-fit:contain}.slide-visual-card figcaption{padding:5px 7px;color:#354b68;font-size:.62em;font-weight:700}.slide-visual-summary{margin:0;font-size:.68em}.next .presenter-slide h2{font-size:clamp(18px,2vw,30px)}.next .presenter-slide .slide-body{font-size:clamp(10px,1vw,14px)}.notes{height:100%;padding:18px;overflow:auto;border-radius:9px;color:#dce6f4;background:#17243b;font-size:16px;line-height:1.55;white-space:pre-line}.notes.empty{color:#7f8da2;font-style:italic}.empty-preview{display:grid;place-items:center;height:100%;color:#76849a;background:#111c2f}.controls{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 20px;border-top:1px solid #26334b;background:#0d1930}.controls button{padding:11px 15px;border:1px solid #34445f;border-radius:9px;color:#fff;background:#172b4d;font-weight:700;cursor:pointer}.controls button:hover{background:#233e69}.keys{color:#8fa0b8;font-size:12px}@media(max-width:850px){.grid{grid-template-columns:1fr}.right{grid-template-columns:1fr 1fr;grid-template-rows:320px}.stats{gap:10px}.keys{display:none}}
-    ${EMBEDDED_VISUAL_CSS.replace("height:min(38vh,360px)", "height:min(27vh,270px)").replace("height:62%", "height:52%")}
+    ${EMBEDDED_VISUAL_CSS.replace("height:min(38vh,360px)", "height:min(27vh,270px)").replace("height:62%", "height:52%")} ${EDITORIAL_EMBEDDED_CSS}
   </style></head><body><div class="shell"><header class="top"><div><div class="eyebrow">REFERENTENANSICHT</div><h1>${title}</h1></div><div class="stats"><div class="stat"><strong>${presentation.index + 1} / ${presentation.slides.length}</strong><span>Folie</span></div><div class="stat"><strong id="timer">00:00</strong><span>Vortragszeit</span></div></div></header><main class="grid"><section class="panel"><p class="panel-label">Aktuelle Folie</p>${presenterSlideMarkup(current, label)}</section><div class="right"><section class="panel next"><p class="panel-label">Nächste Folie</p>${presenterSlideMarkup(next, nextLabel)}</section><section class="panel"><p class="panel-label">Moderationsnotizen</p><div class="notes ${current?.notes ? "" : "empty"}">${current?.notes ? escapeHtml(current.notes) : "Für diese Folie sind keine Moderationsnotizen hinterlegt."}</div></section></div></main><footer class="controls"><div><button onclick="opener.workshopPresenterCommand('prev')">← Zurück</button> <button onclick="opener.workshopPresenterCommand('next')">Weiter →</button></div><span class="keys">Pfeiltasten · Leertaste · Page Up/Down</span><button onclick="opener.workshopPresenterCommand('closePresenter')">Referentenansicht schließen</button></footer></div><script>
     const startedAt=${presentation.startedAt};function updateTimer(){const seconds=Math.floor((Date.now()-startedAt)/1000);const m=String(Math.floor(seconds/60)).padStart(2,'0');const s=String(seconds%60).padStart(2,'0');document.getElementById('timer').textContent=m+':'+s}updateTimer();setInterval(updateTimer,1000);addEventListener('keydown',e=>{if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();opener.workshopPresenterCommand('next')}if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();opener.workshopPresenterCommand('prev')}if(e.key==='Escape')opener.workshopPresenterCommand('closePresenter')});
   <\/script></body></html>`;
@@ -1044,10 +1272,10 @@ function preparePrint(workshopId) {
 function prepareModulePrint(moduleId) {
   const module = state.modules.find((item) => item.id === moduleId);
   if (!module) return;
-  printSlides(module.slides.map((slide) => ({ ...slide, moduleTitle: module.title, moduleCover: module.coverImage })));
+  printSlides(modulePresentationSlides(module));
 }
 
-async function printSlides(slides) {
+async function buildPrintDeck(slides) {
   document.querySelector("#printDeck")?.remove();
   const deck = document.createElement("div");
   deck.id = "printDeck"; deck.className = "print-deck";
@@ -1057,8 +1285,29 @@ async function printSlides(slides) {
     image.addEventListener("load", resolve, { once: true });
     image.addEventListener("error", resolve, { once: true });
   })));
+  document.documentElement.dataset.pdfReady = "true";
+}
+
+async function printSlides(slides) {
+  await buildPrintDeck(slides);
   toast("Im Druckdialog „Als PDF sichern“ wählen");
   setTimeout(() => window.print(), 100);
+}
+
+async function activatePdfRenderMode() {
+  const params = new URLSearchParams(window.location.search);
+  const type = params.get("pdfType");
+  const id = params.get("pdfId");
+  if (!type || !id) return false;
+  const item = type === "module" ? state.modules.find((module) => module.id === id) : state.workshops.find((workshop) => workshop.id === id);
+  if (!item) {
+    document.documentElement.dataset.pdfReady = "missing";
+    return true;
+  }
+  document.title = `${item.title} PDF`;
+  const slides = type === "module" ? modulePresentationSlides(item) : workshopSlides(item);
+  await buildPrintDeck(slides);
+  return true;
 }
 
 async function fileAsDataUrl(src) {
@@ -1087,10 +1336,11 @@ async function exportHtml(workshopId) {
   const slideMarkup = slides.map((slide, index) => {
     const dense = slide.body.length > 420 || slide.body.split("\n").length > 10;
     const coverStyle = slide.type === "title" && slide.moduleCover ? ` style="background-image:linear-gradient(90deg,rgba(20,33,61,.97),rgba(20,33,61,.64)),url('${escapeHtml(slide.moduleCover)}');background-size:cover;background-position:center"` : "";
-    return `<section class="slide ${slide.type === "title" ? "title" : ""} ${dense ? "dense" : ""}"${coverStyle}><small>${escapeHtml(slide.moduleTitle || "SMART WorkshopStudio")}</small><h1 class="${slideTitleClass(slide.title)}">${escapeHtml(slide.title)}</h1><div class="slide-body">${renderSlideBody(slide)}</div><footer>${index + 1} / ${slides.length}</footer></section>`;
+    const shownTitle = displayTitle(slide.title);
+    return `<section class="slide ${slide.type === "title" ? "title" : ""} layout-${slide.layout || "standard"} ${dense ? "dense" : ""}"${coverStyle}><small>${escapeHtml(slide.moduleTitle || "SMART WorkshopStudio")}</small><h1 class="${slideTitleClass(shownTitle)}">${escapeHtml(shownTitle)}</h1><div class="slide-body">${renderSlideBody(slide)}</div><footer>${index + 1} / ${slides.length}</footer></section>`;
   }).join("");
   const html = `<!doctype html><html lang="de"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>${escapeHtml(workshop.title)}</title><style>*{box-sizing:border-box}body{margin:0;background:#080f1e;color:#172033;font-family:Arial,sans-serif}.slide{display:none;position:fixed;inset:4vh 4vw;padding:6vh 6vw;background:#fdfdfb}.slide.active{display:block}.slide.title{color:white;background:#14213d}.slide small{color:#2d4f7c;font-weight:bold;letter-spacing:.15em;text-transform:uppercase}.slide.title small{color:#a9c9ee}h1{width:100%;margin:5vh 0 3vh;font:700 clamp(32px,4.5vw,64px)/1.05 Arial,sans-serif;white-space:nowrap;border-bottom:1px solid #dbe2ea;padding-bottom:2.2vh}.title-md{font-size:clamp(28px,3.8vw,54px)}.title-sm{font-size:clamp(24px,3.2vw,45px)}.title-xs{font-size:clamp(20px,2.6vw,36px)}.slide-body{width:100%;font-size:clamp(15px,1.65vw,24px);line-height:1.4;color:#4d596c}.slide.dense .slide-body{font-size:clamp(13px,1.35vw,19px)}.slide.title .slide-body{color:#cbd9ea}.slide-columns,.slide-tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2vw}.columns-3{grid-template-columns:repeat(3,minmax(0,1fr))}.slide-column,.slide-tile{min-height:18vh;padding:2vw;border:1px solid #dce4ee;border-left:6px solid #2d4f7c;background:#f5f8fb}.tone-1{border-left-color:#6686ad}.tone-2{border-left-color:#173a64}.block-heading{color:#14213d;font-weight:800}.block-copy{margin-top:1.2vh}.metric-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.metric-grid .block-heading{font-size:1.8em}.slide-table{width:100%;border-collapse:collapse}.slide-table th,.slide-table td{padding:1.1vh 1vw;border:1px solid #d5dee9;text-align:left}.slide-table th{color:#fff;background:#14213d}.slide-visual-layout{display:grid;gap:1.2vh}.slide-visual-grid{display:grid;gap:1.2vw;height:min(35vh,340px)}.visual-count-2{grid-template-columns:repeat(2,minmax(0,1fr))}.visual-count-1{grid-template-columns:1fr;height:min(39vh,380px)}.slide-visual-card{display:flex;flex-direction:column;min-width:0;margin:0;overflow:hidden;border:1px solid #cad5e2;border-radius:8px;background:#f3f7fa}.slide-visual-frame{flex:1;min-height:0;padding:.6vw;background:#fff}.slide-visual-card img{display:block;width:100%;height:100%;object-fit:contain}.slide-visual-card figcaption{padding:.7vh .8vw;color:#354b68;background:#eef3f8;font-size:.62em;font-weight:700}.slide-visual-summary{margin:0;color:#59677b;font-size:.72em}footer{position:absolute;bottom:3vh;color:#7d899c}.hint{position:fixed;right:2vw;bottom:1vh;color:#9cacc2;font-size:12px}@media print{@page{size:A4 landscape;margin:0}.slide{display:block!important;position:relative;inset:auto;width:297mm;height:210mm;break-after:page}.hint{display:none}}</style><body>${slideMarkup}<div class="hint">← → Leertaste · F Vollbild · P PDF</div><script>const s=[...document.querySelectorAll('.slide')];let i=0;function show(n){i=Math.max(0,Math.min(s.length-1,n));s.forEach((x,j)=>x.classList.toggle('active',j===i))}addEventListener('keydown',e=>{if(['ArrowRight','PageDown',' '].includes(e.key))show(i+1);if(['ArrowLeft','PageUp'].includes(e.key))show(i-1);if(e.key.toLowerCase()==='f')document.documentElement.requestFullscreen?.();if(e.key.toLowerCase()==='p')print()});addEventListener('click',e=>show(i+(e.clientX>innerWidth/2?1:-1)));show(0)<\/script></body></html>`;
-  const standaloneVisualCss = EMBEDDED_VISUAL_CSS.replace("height:min(38vh,360px)", "height:min(27vh,270px)").replace("height:62%", "height:52%");
+  const standaloneVisualCss = `${EMBEDDED_VISUAL_CSS.replace("height:min(38vh,360px)", "height:min(27vh,270px)").replace("height:62%", "height:52%")} ${EDITORIAL_EMBEDDED_CSS}`;
   const standaloneHtml = html.replace("</style><body>", `</style><style>${standaloneVisualCss}</style><body>`);
   download(`${slugify(workshop.title)}.html`, standaloneHtml, "text/html");
   toast("Eigenständige HTML-Präsentation exportiert");
@@ -1165,3 +1415,4 @@ document.querySelector("#importInput").addEventListener("change", async (event) 
 });
 
 render();
+activatePdfRenderMode();

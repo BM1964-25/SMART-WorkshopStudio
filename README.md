@@ -18,6 +18,7 @@ Danach `http://localhost:3000` öffnen.
 - HTML-Präsentationsmodus mit Tastatur- und Funkmaus-Steuerung
 - Bildbasierte Titel-, Trenner- und Text-Bild-Folien
 - PDF-Ausgabe einschließlich Bilder über den Druckdialog des Browsers
+- Direkter PDF Download für alle mitgelieferten Modulpräsentationen und den Beispielworkshop
 - Export einer eigenständigen HTML-Präsentation mit eingebetteten Bildern
 - JSON-Datensicherung und Wiederherstellung
 - Speicherung im lokalen Browser ohne Benutzerkonto
@@ -31,3 +32,5 @@ Wichtig: Die Inhalte werden in `localStorage` gespeichert und gelten deshalb nur
 ## PDF
 
 Im Workshop-Builder oder in der Präsentation **PDF speichern** wählen. Im Systemdialog anschließend **Als PDF sichern** auswählen. Jede Folie wird als eigene A4-Querformatseite ausgegeben.
+
+Die mitgelieferten Präsentationen stehen außerdem direkt in der Modulbibliothek und in der Schulungsübersicht als PDF Download bereit. Die Dateien werden mit `npm run pdfs` neu erzeugt.
