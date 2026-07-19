@@ -154,6 +154,22 @@ h1 { margin: 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp
 .agenda-item small { color: var(--muted); }
 .agenda-actions { display: flex; gap: 4px; }
 .agenda-actions button { width: 30px; height: 30px; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
+.builder-sequence-label { display: grid; gap: 3px; margin: 0 0 11px; padding: 0 2px; }
+.builder-sequence-label strong { font-size: 12px; }
+.builder-sequence-label span { color: var(--muted); font-size: 10px; line-height: 1.4; }
+.agenda-type { display: block; margin-bottom: 3px; color: #55749c; font-size: 9px; font-weight: 900; letter-spacing: .1em; }
+.agenda-frame { border-color: #b8c9dd; background: #eef4fb; }
+.agenda-frame.is-inactive, .workshop-footer-card.is-inactive { border-style: dashed; opacity: .66; background: #f7f8fa; }
+.agenda-frame-number { color: #fff; background: #2d4f7c; }
+.agenda-frame-actions { display: flex; justify-content: flex-end; gap: 6px; flex-wrap: wrap; }
+.agenda-frame-actions .button { min-height: 30px; padding: 6px 9px; white-space: nowrap; }
+.button.status-active { color: #fff; border-color: #2d4f7c; background: #2d4f7c; }
+.agenda-empty { border: 1px dashed var(--line); border-radius: 10px; }
+.workshop-footer-card { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 12px; padding: 14px; border: 1px solid #b8c9dd; border-radius: 10px; background: #eef4fb; }
+.workshop-footer-copy { min-width: 0; }
+.workshop-footer-copy strong, .workshop-footer-copy small { display: block; }
+.workshop-footer-copy strong { font-size: 13px; }
+.workshop-footer-copy small { margin-top: 3px; color: var(--muted); font-size: 10px; line-height: 1.4; overflow-wrap: anywhere; }
 .time-summary { display: flex; justify-content: space-between; gap: 20px; margin-top: 18px; padding: 16px; border-radius: 10px; color: var(--green); background: var(--mint-2); font-size: 13px; }
 .time-summary strong { font-size: 16px; }
 
@@ -433,6 +449,10 @@ h1 { margin: 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp
   .toolbar { align-items: stretch; flex-direction: column; }
   .toolbar select { width: 100%; }
   .slide-editor-grid { grid-template-columns: 1fr; }
+  .agenda-item { grid-template-columns: 35px 1fr; }
+  .agenda-actions, .agenda-frame-actions { grid-column: 1 / -1; justify-content: flex-end; }
+  .workshop-footer-card { align-items: stretch; flex-direction: column; }
+  .time-summary { flex-direction: column; gap: 8px; }
   .slide-editor-grid .body-field { grid-column: auto; }
   .help-layout { grid-template-columns: 1fr; }
   .help-nav { grid-template-columns: repeat(2, minmax(0,1fr)); padding: 0 0 16px; border-right: 0; border-bottom: 1px solid var(--line); }

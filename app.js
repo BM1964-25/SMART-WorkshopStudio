@@ -920,6 +920,17 @@ function renderBuilder(id) {
   const selectedModules = workshop.moduleIds.map((moduleId) => state.modules.find((module) => module.id === moduleId)).filter(Boolean);
   const availableModules = state.modules.filter((module) => !workshop.moduleIds.includes(module.id));
   const duration = workshopDuration(workshop);
+  const start = resolvedWorkshopStart(workshop);
+  const end = resolvedWorkshopEnd(workshop);
+  const footer = resolvedWorkshopFooter(workshop);
+  const startActive = workshop.useStartPage !== false;
+  const endActive = Boolean(workshop.useEndPage);
+  const footerActive = workshop.useFooter !== false;
+  const frameCard = (type, active, title, detail) => `<div class="agenda-item agenda-frame ${active ? "is-active" : "is-inactive"}">
+    <span class="agenda-number agenda-frame-number">${type === "start" ? "S" : "E"}</span>
+    <div><span class="agenda-type">${type === "start" ? "ERSTE SEITE" : "LETZTE SEITE"}</span><strong>${escapeHtml(title)}</strong><small>${escapeHtml(detail)}</small></div>
+    <div class="agenda-frame-actions"><button class="button ghost small" data-preview-workshop-page="${type}">Vorschau</button><button class="button secondary small" data-edit-workshop-page="${type}">Bearbeiten</button><button class="button ${active ? "status-active" : "ghost"} small" data-toggle-workshop-page="${type}">${active ? "✓ Aktiv" : "Aktivieren"}</button></div>
+  </div>`;
   viewRoot.innerHTML = `
     <div class="builder">
       <section class="panel">
@@ -928,7 +939,13 @@ function renderBuilder(id) {
       </section>
       <section class="panel">
         <div class="panel-head"><div><h2>${escapeHtml(workshop.title)}</h2><p>${escapeHtml(workshop.client || "Eigene Schulung")} · ${formatDate(workshop.date)}</p></div><button class="button secondary small" data-workshop-settings="${workshop.id}">Einstellungen</button></div>
-        <div class="agenda">${selectedModules.length ? selectedModules.map((module, index) => `<div class="agenda-item"><span class="agenda-number">${index + 1}</span><div><strong>${escapeHtml(module.title)}</strong><small>Version ${module.version} · ${minutesLabel(module.duration)} · ${module.slides.length} Folien</small></div><div class="agenda-actions"><button data-move-module="${index}" data-direction="-1" title="Nach oben">↑</button><button data-move-module="${index}" data-direction="1" title="Nach unten">↓</button><button data-remove-from-workshop="${index}" title="Entfernen">×</button></div></div>`).join("") : `<div class="empty-state"><strong>Die Agenda ist noch leer</strong><p>Füge links Module hinzu.</p></div>`}</div>
+        <div class="builder-sequence-label"><strong>Aufbau der Schulung</strong><span>Startseite und Abschlussseite bleiben an ihrer festen Position. Die Module dazwischen sind frei sortierbar.</span></div>
+        <div class="agenda">
+          ${frameCard("start", startActive, start.title || workshop.title, `${workshop.title}${start.subtitle ? ` · ${start.subtitle}` : ""}`)}
+          ${selectedModules.length ? selectedModules.map((module, index) => `<div class="agenda-item agenda-module"><span class="agenda-number">${index + 1}</span><div><span class="agenda-type">MODUL ${index + 1}</span><strong>${escapeHtml(module.title)}</strong><small>Version ${module.version} · ${minutesLabel(module.duration)} · ${module.slides.length} Folien</small></div><div class="agenda-actions"><button data-move-module="${index}" data-direction="-1" title="Nach oben">↑</button><button data-move-module="${index}" data-direction="1" title="Nach unten">↓</button><button data-remove-from-workshop="${index}" title="Entfernen">×</button></div></div>`).join("") : `<div class="empty-state compact agenda-empty"><strong>Noch keine Module</strong><p>Füge links die gewünschten Inhalte hinzu.</p></div>`}
+          ${frameCard("end", endActive, end.title || "Vielen Dank", end.message || "Abschluss und Kontaktdaten")}
+        </div>
+        <div class="workshop-footer-card ${footerActive ? "is-active" : "is-inactive"}"><div class="workshop-footer-copy"><span class="agenda-type">FOOTER</span><strong>${escapeHtml(FOOTER_LAYOUTS.find((item) => item.id === footer.layout)?.title || "Klassisch")}</strong><small>${escapeHtml(footer.company || "Ohne Firmenname")} · ${escapeHtml(footer.dateText || "Datum der Schulung")} · automatische Seitenzahl</small></div><div class="agenda-frame-actions"><button class="button ghost small" data-preview-workshop-footer>Vorschau</button><button class="button secondary small" data-edit-workshop-footer>Bearbeiten</button><button class="button ${footerActive ? "status-active" : "ghost"} small" data-toggle-workshop-footer>${footerActive ? "✓ Aktiv" : "Aktivieren"}</button></div></div>
         <div class="time-summary"><span>Geplante Inhalte<br><strong>${minutesLabel(duration)}</strong></span><span>Zeitfenster<br><strong>${minutesLabel(workshop.targetMinutes)}</strong></span><span>${duration > workshop.targetMinutes ? `⚠ ${duration - workshop.targetMinutes} Min. zu lang` : `✓ ${workshop.targetMinutes - duration} Min. Reserve`}</span></div>
         <div class="card-actions"><button class="button primary" data-present="${workshop.id}">▶ Präsentation starten</button><button class="button secondary${actionClass(`print-workshop:${workshop.id}`)}" data-pdf="${workshop.id}">${actionText(`print-workshop:${workshop.id}`, "PDF speichern", "PDF vorbereitet")}</button><button class="button ghost${actionClass(`html-workshop:${workshop.id}`)}" data-export-html="${workshop.id}">${actionText(`html-workshop:${workshop.id}`, "HTML exportieren", "HTML exportiert")}</button></div>
       </section>
@@ -1057,7 +1074,7 @@ function openWorkshopModal(workshopId = null) {
     event.preventDefault();
     const data = new FormData(event.target);
     const workshop = {
-      id: original?.id || uid("ws"), title: data.get("title"), client: data.get("client"), date: data.get("date"), targetMinutes: Number(data.get("targetMinutes")), description: data.get("description"), useStartPage: data.get("useStartPage") === "on", useEndPage: data.get("useEndPage") === "on", useFooter: data.get("useFooter") === "on", moduleIds: original?.moduleIds || [], updatedAt: new Date().toISOString().slice(0, 10)
+      id: original?.id || uid("ws"), title: data.get("title"), client: data.get("client"), date: data.get("date"), targetMinutes: Number(data.get("targetMinutes")), description: data.get("description"), useStartPage: data.get("useStartPage") === "on", useEndPage: data.get("useEndPage") === "on", useFooter: data.get("useFooter") === "on", startPage: original?.startPage, endPage: original?.endPage, footer: original?.footer, moduleIds: original?.moduleIds || [], updatedAt: new Date().toISOString().slice(0, 10)
     };
     if (original) state.workshops[state.workshops.findIndex((item) => item.id === original.id)] = workshop;
     else state.workshops.unshift(workshop);
@@ -1087,6 +1104,80 @@ function resolvedPresentationFrame() {
     start: { ...seedState.presentationFrame.start, ...(state.presentationFrame?.start || {}) },
     end: { ...seedState.presentationFrame.end, ...(state.presentationFrame?.end || {}) }
   };
+}
+
+function resolvedWorkshopStart(workshop) {
+  return { ...resolvedPresentationFrame().start, ...(workshop?.startPage || {}) };
+}
+
+function resolvedWorkshopEnd(workshop) {
+  return { ...resolvedPresentationFrame().end, ...(workshop?.endPage || {}) };
+}
+
+function resolvedWorkshopFooter(workshop) {
+  const footer = { ...resolvedFooterSettings(), ...(workshop?.footer || {}) };
+  if (!FOOTER_LAYOUTS.some((option) => option.id === footer.layout)) footer.layout = "classic";
+  return footer;
+}
+
+function openWorkshopFramePageModal(workshopId, type) {
+  const workshop = state.workshops.find((item) => item.id === workshopId);
+  if (!workshop || !["start", "end"].includes(type)) return;
+  const isStart = type === "start";
+  const page = isStart ? resolvedWorkshopStart(workshop) : resolvedWorkshopEnd(workshop);
+  const imageOptions = imageLibrary().map((image) => `<option value="${escapeHtml(image.src)}" ${page.coverImage === image.src ? "selected" : ""}>${escapeHtml(image.name)}</option>`).join("");
+  modalRoot.innerHTML = `<div class="modal-backdrop"><div class="modal" role="dialog" aria-modal="true" aria-label="${isStart ? "Startseite" : "Abschlussseite"} bearbeiten">
+    <div class="modal-header"><h2>${isStart ? "Startseite" : "Abschlussseite"} bearbeiten</h2><button class="close-button" data-close-modal>×</button></div>
+    <form id="workshopFramePageForm"><div class="modal-body"><div class="form-grid">
+      <div class="field full"><label>Titel</label><input name="title" required value="${escapeHtml(page.title || "")}" /></div>
+      ${isStart ? `<div class="field full"><label>Untertitel</label><input name="subtitle" value="${escapeHtml(page.subtitle || "")}" /></div><div class="field full"><label>Referentin oder Referent</label><input name="presenter" value="${escapeHtml(page.presenter || "")}" /></div>` : `<div class="field full"><label>Abschlusstext</label><input name="message" value="${escapeHtml(page.message || "")}" /></div><div class="field"><label>Firmenname</label><input name="company" value="${escapeHtml(page.company || "")}" /></div><div class="field"><label>Ansprechpartner</label><input name="contactName" value="${escapeHtml(page.contactName || "")}" /></div><div class="field"><label>E Mail</label><input name="email" type="email" value="${escapeHtml(page.email || "")}" /></div><div class="field"><label>Telefon</label><input name="phone" value="${escapeHtml(page.phone || "")}" /></div><div class="field full"><label>Internetadresse</label><input name="website" value="${escapeHtml(page.website || "")}" /></div>`}
+      <div class="field full"><label>Titelbild</label><select name="coverImage">${imageOptions}</select></div>
+    </div><p class="footer-hint">Diese Angaben gelten nur für die Schulung „${escapeHtml(workshop.title)}“. Ohne eigene Angaben wird die allgemeine Vorlage verwendet.</p></div>
+    <div class="modal-footer">${workshop[isStart ? "startPage" : "endPage"] ? `<button type="button" class="button ghost" data-reset-workshop-page="${type}">Allgemeine Vorlage übernehmen</button>` : ""}<div class="footer-right"><button type="button" class="button secondary" data-close-modal>Abbrechen</button><button class="button primary" type="submit">${isStart ? "Startseite" : "Abschlussseite"} speichern</button></div></div></form>
+  </div></div>`;
+  modalRoot.querySelector("#workshopFramePageForm").addEventListener("submit", (event) => {
+    event.preventDefault();
+    const data = new FormData(event.target);
+    if (isStart) {
+      workshop.startPage = { title: String(data.get("title") || "").trim(), subtitle: String(data.get("subtitle") || "").trim(), presenter: String(data.get("presenter") || "").trim(), coverImage: String(data.get("coverImage") || "") };
+    } else {
+      workshop.endPage = { title: String(data.get("title") || "").trim(), message: String(data.get("message") || "").trim(), company: String(data.get("company") || "").trim(), contactName: String(data.get("contactName") || "").trim(), email: String(data.get("email") || "").trim(), phone: String(data.get("phone") || "").trim(), website: String(data.get("website") || "").trim(), coverImage: String(data.get("coverImage") || "") };
+    }
+    workshop.updatedAt = new Date().toISOString().slice(0, 10);
+    saveState(`${isStart ? "Startseite" : "Abschlussseite"} gespeichert`);
+    closeModal();
+    renderBuilder(workshop.id);
+  });
+}
+
+function openWorkshopFooterModal(workshopId) {
+  const workshop = state.workshops.find((item) => item.id === workshopId);
+  if (!workshop) return;
+  const footer = resolvedWorkshopFooter(workshop);
+  modalRoot.innerHTML = `<div class="modal-backdrop"><div class="modal wide" role="dialog" aria-modal="true" aria-label="Footer bearbeiten">
+    <div class="modal-header"><h2>Footer dieser Schulung</h2><button class="close-button" data-close-modal>×</button></div>
+    <form id="workshopFooterForm"><div class="modal-body"><div class="form-grid footer-fields"><div class="field"><label>Firmenname</label><input name="footerCompany" required value="${escapeHtml(footer.company || "")}" /></div><div class="field"><label>Datum oder Stand</label><input name="footerDateText" value="${escapeHtml(footer.dateText || "")}" placeholder="Termin der Schulung" /></div></div>
+      <fieldset class="footer-layout-fieldset"><legend>Darstellung wählen</legend><div class="footer-choice-grid">${FOOTER_LAYOUTS.map((option) => `<label class="footer-choice"><input type="radio" name="layout" value="${option.id}" ${footer.layout === option.id ? "checked" : ""} /><span class="footer-choice-copy"><strong>${option.title}</strong><small>${option.description}</small></span>${footerChoicePreview(option.id, footer.company, footer.dateText)}</label>`).join("")}</div></fieldset>
+      <p class="footer-hint">Die Seitenzahl wird automatisch erzeugt. Diese Einstellung gilt nur für „${escapeHtml(workshop.title)}“.</p></div>
+      <div class="modal-footer">${workshop.footer ? `<button type="button" class="button ghost" data-reset-workshop-footer>Allgemeine Vorlage übernehmen</button>` : ""}<div class="footer-right"><button type="button" class="button secondary" data-close-modal>Abbrechen</button><button class="button primary" type="submit">Footer speichern</button></div></div></form>
+  </div></div>`;
+  const form = modalRoot.querySelector("#workshopFooterForm");
+  const refresh = () => {
+    const data = new FormData(form);
+    const company = String(data.get("footerCompany") || "").trim() || "Firmenname";
+    const dateText = String(data.get("footerDateText") || "").trim() || "Datum";
+    modalRoot.querySelectorAll(".footer-choice-preview").forEach((preview) => {
+      const values = preview.querySelectorAll("span"); values[0].textContent = company; values[1].textContent = dateText;
+    });
+  };
+  form.querySelectorAll('input[name="footerCompany"], input[name="footerDateText"]').forEach((input) => input.addEventListener("input", refresh));
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const data = new FormData(event.target);
+    workshop.footer = { layout: FOOTER_LAYOUTS.some((option) => option.id === data.get("layout")) ? data.get("layout") : "classic", company: String(data.get("footerCompany") || "").trim(), dateText: String(data.get("footerDateText") || "").trim() };
+    workshop.updatedAt = new Date().toISOString().slice(0, 10);
+    saveState("Footer gespeichert"); closeModal(); renderBuilder(workshop.id);
+  });
 }
 
 function openPresentationFrameModal() {
@@ -1276,33 +1367,29 @@ function modulePresentationSlides(module) {
   return assembled.map((slide, index) => editorialLayout(slide, index, assembled.length));
 }
 
+function workshopFrameSlide(workshop, type) {
+  const footerDate = workshop.date ? formatDate(workshop.date) : "";
+  const footerSettings = resolvedWorkshopFooter(workshop);
+  if (type === "start") {
+    const start = resolvedWorkshopStart(workshop);
+    const startDetails = [workshop.title, start.subtitle, workshop.client || "", workshop.date ? formatDate(workshop.date) : "", start.presenter ? `Referent: ${start.presenter}` : ""].filter(Boolean).join("\n");
+    return { id: `${workshop.id}-frame-start`, type: "title", layout: "opening", title: start.title || workshop.title, body: startDetails, notes: workshop.description || "", moduleTitle: footerSettings.company || "SMART WorkshopStudio", moduleCover: start.coverImage || "assets/visuals/ki-ueberblick.jpeg", footerDate, footerSettings, hideFooter: workshop.useFooter === false };
+  }
+  const end = resolvedWorkshopEnd(workshop);
+  return { id: `${workshop.id}-frame-end`, type: "title", layout: "contact", title: end.title || "Vielen Dank", body: end.message || "", notes: "Kontaktdaten nennen und Raum für Fragen sowie den gemeinsamen Austausch öffnen.", moduleTitle: end.company || footerSettings.company || "SMART WorkshopStudio", moduleCover: end.coverImage || "assets/visuals/chat-kommunikation.jpeg", contact: { company: end.company, name: end.contactName, email: end.email, phone: end.phone, website: end.website }, footerDate, footerSettings, hideFooter: workshop.useFooter === false };
+}
+
 function workshopSlides(workshop) {
   const footerDate = workshop.date ? formatDate(workshop.date) : "";
-  const frame = resolvedPresentationFrame();
+  const footerSettings = resolvedWorkshopFooter(workshop);
   const slides = [];
-  if (workshop.useStartPage !== false) {
-    const startDetails = [workshop.title, frame.start.subtitle, workshop.client || "", workshop.date ? formatDate(workshop.date) : "", frame.start.presenter ? `Referent: ${frame.start.presenter}` : ""].filter(Boolean).join("\n");
-    slides.push({
-      id: `${workshop.id}-frame-start`, type: "title", layout: "opening", title: frame.start.title || workshop.title,
-      body: startDetails, notes: workshop.description || "", moduleTitle: state.footer?.company || "SMART WorkshopStudio",
-      moduleCover: frame.start.coverImage || "assets/visuals/ki-ueberblick.jpeg", footerDate
-    });
-  }
+  if (workshop.useStartPage !== false) slides.push(workshopFrameSlide(workshop, "start"));
   workshop.moduleIds.forEach((moduleId) => {
     const module = state.modules.find((item) => item.id === moduleId);
-    if (module) slides.push(...modulePresentationSlides(module).map((slide) => ({ ...slide, footerDate })));
+    if (module) slides.push(...modulePresentationSlides(module).map((slide) => ({ ...slide, footerDate, footerSettings })));
   });
-  if (workshop.useEndPage) {
-    slides.push({
-      id: `${workshop.id}-frame-end`, type: "title", layout: "contact", title: frame.end.title || "Vielen Dank",
-      body: frame.end.message || "", notes: "Kontaktdaten nennen und Raum für Fragen sowie den gemeinsamen Austausch öffnen.",
-      moduleTitle: frame.end.company || state.footer?.company || "SMART WorkshopStudio",
-      moduleCover: frame.end.coverImage || "assets/visuals/chat-kommunikation.jpeg",
-      contact: { company: frame.end.company, name: frame.end.contactName, email: frame.end.email, phone: frame.end.phone, website: frame.end.website },
-      footerDate
-    });
-  }
-  return slides.map((slide) => ({ ...slide, hideFooter: workshop.useFooter === false }));
+  if (workshop.useEndPage) slides.push(workshopFrameSlide(workshop, "end"));
+  return slides.map((slide) => ({ ...slide, footerSettings, hideFooter: workshop.useFooter === false }));
 }
 
 function slideTitleClass(title = "") {
@@ -1411,21 +1498,27 @@ function resolvedFooterSettings() {
   return footer;
 }
 
+function slideFooterSettings(slide = {}) {
+  const footer = { ...resolvedFooterSettings(), ...(slide.footerSettings || {}) };
+  if (!FOOTER_LAYOUTS.some((option) => option.id === footer.layout)) footer.layout = "classic";
+  return footer;
+}
+
 function slideFooterDate(slide) {
-  const footer = resolvedFooterSettings();
+  const footer = slideFooterSettings(slide);
   return footer.dateText || slide.footerDate || new Intl.DateTimeFormat("de-DE").format(new Date());
 }
 
 function renderSlideFooter(slide, index, total) {
   if (slide.hideFooter) return "";
-  const footer = resolvedFooterSettings();
+  const footer = slideFooterSettings(slide);
   return `<footer class="slide-footer"><span class="footer-company">${escapeHtml(footer.company)}</span><span class="footer-date">${escapeHtml(slideFooterDate(slide))}</span><span class="footer-page">Seite ${index + 1} von ${total}</span></footer>`;
 }
 
 function renderSlide(slide, index, total, className = "presentation-slide") {
   const shownTitle = displayTitle(slide.title);
   const dense = slide.body.length > 420 || slide.body.split("\n").length > 10;
-  const footer = resolvedFooterSettings();
+  const footer = slideFooterSettings(slide);
   const coverImage = slide.type === "title" && slide.moduleCover ? `<img class="slide-cover-image" src="${escapeHtml(slide.moduleCover)}" alt="" />` : "";
   return `<article class="${className} ${slide.type === "title" ? "title-slide has-cover" : ""} layout-${slide.layout || "standard"} footer-layout-${footer.layout} ${dense ? "dense" : ""}">
     ${coverImage}
@@ -1441,6 +1534,33 @@ function startPresentation(workshopId) {
   if (!workshop) return;
   presentation = { workshopId, moduleId: null, title: workshop.title, slides: workshopSlides(workshop), index: 0, startedAt: Date.now() };
   renderPresentation();
+}
+
+function startWorkshopPagePreview(workshopId, type, forceFooter = false) {
+  const workshop = state.workshops.find((item) => item.id === workshopId);
+  if (!workshop || !["start", "end"].includes(type)) return;
+  const slide = { ...workshopFrameSlide(workshop, type), hideFooter: forceFooter ? false : workshop.useFooter === false };
+  presentation = { workshopId: null, moduleId: null, title: `${workshop.title} · Vorschau`, slides: [slide], index: 0, startedAt: Date.now() };
+  renderPresentation();
+}
+
+function toggleWorkshopPage(workshopId, type) {
+  const workshop = state.workshops.find((item) => item.id === workshopId);
+  if (!workshop || !["start", "end"].includes(type)) return;
+  const key = type === "start" ? "useStartPage" : "useEndPage";
+  workshop[key] = !workshop[key];
+  workshop.updatedAt = new Date().toISOString().slice(0, 10);
+  saveState(`${type === "start" ? "Startseite" : "Abschlussseite"} ${workshop[key] ? "aktiviert" : "deaktiviert"}`);
+  renderBuilder(workshop.id);
+}
+
+function toggleWorkshopFooter(workshopId) {
+  const workshop = state.workshops.find((item) => item.id === workshopId);
+  if (!workshop) return;
+  workshop.useFooter = workshop.useFooter === false;
+  workshop.updatedAt = new Date().toISOString().slice(0, 10);
+  saveState(`Footer ${workshop.useFooter ? "aktiviert" : "deaktiviert"}`);
+  renderBuilder(workshop.id);
 }
 
 function startModulePreview(moduleId) {
@@ -1496,7 +1616,7 @@ function presenterSlideMarkup(slide, label, index, total) {
   if (!slide) return `<div class="empty-preview">Ende der Präsentation</div>`;
   const coverStyle = slide.type === "title" && slide.moduleCover ? ` style="background-image:linear-gradient(90deg,rgba(20,33,61,.97),rgba(20,33,61,.67)),url('${escapeHtml(slide.moduleCover)}');background-size:cover;background-position:center"` : "";
   const shownTitle = displayTitle(slide.title);
-  const footer = resolvedFooterSettings();
+  const footer = slideFooterSettings(slide);
   return `<div class="presenter-slide ${slide.type === "title" ? "title" : ""} layout-${slide.layout || "standard"} footer-layout-${footer.layout}"${coverStyle}><small>${escapeHtml(label)}</small><h2 class="${slideTitleClass(shownTitle)}">${escapeHtml(shownTitle)}</h2><div class="slide-body">${renderSlideBody(slide)}</div>${renderSlideFooter(slide, index, total)}</div>`;
 }
 
@@ -1603,7 +1723,7 @@ async function exportHtml(workshopId, button) {
     const dense = slide.body.length > 420 || slide.body.split("\n").length > 10;
     const coverStyle = slide.type === "title" && slide.moduleCover ? ` style="background-image:linear-gradient(90deg,rgba(20,33,61,.97),rgba(20,33,61,.64)),url('${escapeHtml(slide.moduleCover)}');background-size:cover;background-position:center"` : "";
     const shownTitle = displayTitle(slide.title);
-    const footer = resolvedFooterSettings();
+    const footer = slideFooterSettings(slide);
     return `<section class="slide ${slide.type === "title" ? "title" : ""} layout-${slide.layout || "standard"} footer-layout-${footer.layout} ${dense ? "dense" : ""}"${coverStyle}><small>${escapeHtml(slide.moduleTitle || "SMART WorkshopStudio")}</small><h1 class="${slideTitleClass(shownTitle)}">${escapeHtml(shownTitle)}</h1><div class="slide-body">${renderSlideBody(slide)}</div>${renderSlideFooter(slide, index, slides.length)}</section>`;
   }).join("");
   const html = `<!doctype html><html lang="de"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>${escapeHtml(workshop.title)}</title><style>*{box-sizing:border-box}body{margin:0;background:#080f1e;color:#172033;font-family:Arial,sans-serif}.slide{display:none;position:fixed;inset:4vh 4vw;padding:6vh 6vw;background:#fdfdfb}.slide.active{display:block}.slide.title{color:white;background:#14213d}.slide small{color:#2d4f7c;font-weight:bold;letter-spacing:.15em;text-transform:uppercase}.slide.title small{color:#a9c9ee}h1{width:100%;margin:5vh 0 3vh;font:700 clamp(32px,4.5vw,64px)/1.05 Arial,sans-serif;white-space:nowrap;border-bottom:1px solid #dbe2ea;padding-bottom:2.2vh}.title-md{font-size:clamp(28px,3.8vw,54px)}.title-sm{font-size:clamp(24px,3.2vw,45px)}.title-xs{font-size:clamp(20px,2.6vw,36px)}.slide-body{width:100%;font-size:clamp(15px,1.65vw,24px);line-height:1.4;color:#4d596c}.slide.dense .slide-body{font-size:clamp(13px,1.35vw,19px)}.slide.title .slide-body{color:#cbd9ea}.slide-columns,.slide-tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2vw}.columns-3{grid-template-columns:repeat(3,minmax(0,1fr))}.slide-column,.slide-tile{min-height:18vh;padding:2vw;border:1px solid #dce4ee;border-left:6px solid #2d4f7c;background:#f5f8fb}.tone-1{border-left-color:#6686ad}.tone-2{border-left-color:#173a64}.block-heading{color:#14213d;font-weight:800}.block-copy{margin-top:1.2vh}.metric-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.metric-grid .block-heading{font-size:1.8em}.slide-table{width:100%;border-collapse:collapse}.slide-table th,.slide-table td{padding:1.1vh 1vw;border:1px solid #d5dee9;text-align:left}.slide-table th{color:#fff;background:#14213d}.slide-visual-layout{display:grid;gap:1.2vh}.slide-visual-grid{display:grid;gap:1.2vw;height:min(35vh,340px)}.visual-count-2{grid-template-columns:repeat(2,minmax(0,1fr))}.visual-count-1{grid-template-columns:1fr;height:min(39vh,380px)}.slide-visual-card{display:flex;flex-direction:column;min-width:0;margin:0;overflow:hidden;border:1px solid #cad5e2;border-radius:8px;background:#f3f7fa}.slide-visual-frame{flex:1;min-height:0;padding:.6vw;background:#fff}.slide-visual-card img{display:block;width:100%;height:100%;object-fit:contain}.slide-visual-card figcaption{padding:.7vh .8vw;color:#354b68;background:#eef3f8;font-size:.62em;font-weight:700}.slide-visual-summary{margin:0;color:#59677b;font-size:.72em}footer{position:absolute;bottom:3vh;color:#7d899c}.hint{position:fixed;right:2vw;bottom:1vh;color:#9cacc2;font-size:12px}@media print{@page{size:A4 landscape;margin:0}.slide{display:block!important;position:relative;inset:auto;width:297mm;height:210mm;break-after:page}.hint{display:none}}</style><body>${slideMarkup}<div class="hint">← → Leertaste · F Vollbild · P PDF</div><script>const s=[...document.querySelectorAll('.slide')];let i=0;function show(n){i=Math.max(0,Math.min(s.length-1,n));s.forEach((x,j)=>x.classList.toggle('active',j===i))}addEventListener('keydown',e=>{if(['ArrowRight','PageDown',' '].includes(e.key))show(i+1);if(['ArrowLeft','PageUp'].includes(e.key))show(i-1);if(e.key.toLowerCase()==='f')document.documentElement.requestFullscreen?.();if(e.key.toLowerCase()==='p')print()});addEventListener('click',e=>show(i+(e.clientX>innerWidth/2?1:-1)));show(0)<\/script></body></html>`;
@@ -1682,6 +1802,23 @@ document.addEventListener("click", (event) => {
   if (target.dataset.duplicateModule) duplicateModule(target.dataset.duplicateModule);
   if (target.dataset.editWorkshop) setView("builder", target.dataset.editWorkshop);
   if (target.dataset.workshopSettings) openWorkshopModal(target.dataset.workshopSettings);
+  if (target.dataset.previewWorkshopPage) startWorkshopPagePreview(editingWorkshopId, target.dataset.previewWorkshopPage);
+  if (target.dataset.editWorkshopPage) openWorkshopFramePageModal(editingWorkshopId, target.dataset.editWorkshopPage);
+  if (target.dataset.toggleWorkshopPage) toggleWorkshopPage(editingWorkshopId, target.dataset.toggleWorkshopPage);
+  if (target.matches("[data-preview-workshop-footer]")) startWorkshopPagePreview(editingWorkshopId, "start", true);
+  if (target.matches("[data-edit-workshop-footer]")) openWorkshopFooterModal(editingWorkshopId);
+  if (target.matches("[data-toggle-workshop-footer]")) toggleWorkshopFooter(editingWorkshopId);
+  if (target.dataset.resetWorkshopPage) {
+    const workshop = state.workshops.find((item) => item.id === editingWorkshopId);
+    if (workshop) {
+      delete workshop[target.dataset.resetWorkshopPage === "start" ? "startPage" : "endPage"];
+      saveState("Allgemeine Vorlage übernommen"); closeModal(); renderBuilder(workshop.id);
+    }
+  }
+  if (target.matches("[data-reset-workshop-footer]")) {
+    const workshop = state.workshops.find((item) => item.id === editingWorkshopId);
+    if (workshop) { delete workshop.footer; saveState("Allgemeine Footer Vorlage übernommen"); closeModal(); renderBuilder(workshop.id); }
+  }
   if (target.dataset.addToWorkshop) addToWorkshop(editingWorkshopId, target.dataset.addToWorkshop);
   if (target.dataset.moveModule) moveWorkshopModule(editingWorkshopId, Number(target.dataset.moveModule), Number(target.dataset.direction));
   if (target.dataset.removeFromWorkshop) {
